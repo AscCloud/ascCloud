@@ -19,3 +19,19 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('sucursals', 'SucursalController');
+
+Route::resource('clientes', 'ClienteController');
+
+
+
+
+
+Route::resource('roles', 'RolesController');
+
+
+
+Route::resource('categorias', 'CategoriaController');
+
+Route::resource('productos', 'ProductosController');

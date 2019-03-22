@@ -44,13 +44,13 @@
 
             {!! csrf_field() !!}
 
-            <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
-                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Full Name">
+            <div class="form-group has-feedback{{ $errors->has('nombre_personal') ? ' has-error' : '' }}">
+                <input type="text" class="form-control" name="nombre_personal" value="{{ old('nombre_personal') }}" placeholder="Full Name">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
-                @if ($errors->has('name'))
+                @if ($errors->has('nombre_personal'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('name') }}</strong>
+                        <strong>{{ $errors->first('nombre_personal') }}</strong>
                     </span>
                 @endif
             </div>
