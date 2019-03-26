@@ -16,6 +16,12 @@
     {!! Form::text('telefono_sucursal', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Empresa Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('empresa_id', 'Empresa Id:') !!}
+    {!! Form::select('empresa_id', $emp, null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

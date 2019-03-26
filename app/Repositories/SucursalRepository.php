@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class SucursalRepository
  * @package App\Repositories
- * @version March 21, 2019, 1:15 am UTC
+ * @version March 26, 2019, 11:09 am UTC
 */
 
 class SucursalRepository extends BaseRepository
@@ -19,7 +19,8 @@ class SucursalRepository extends BaseRepository
     protected $fieldSearchable = [
         'nombre_sucursal',
         'direccion_sucursal',
-        'telefono_sucursal'
+        'telefono_sucursal',
+        'empresa_id'
     ];
 
     /**

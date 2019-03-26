@@ -9,7 +9,6 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
-use DB;
 use App\Models\Sucursal;
 
 class CategoriaController extends AppBaseController
@@ -44,14 +43,13 @@ class CategoriaController extends AppBaseController
      */
     public function create()
     {
-
-        $rols=Sucursal::all();
-        $rol=new Sucursal();
-        $rol->id=0;
-        $rol->nombre_categoria="---Seleccione---";
-        $rols->push($rol);
-        $papel=$rols->sortBy('id')->pluck('nombre_sucursal','id');
-        return view('categorias.create')->with('papel', $papel);
+        $sucursals=Sucursal::all();
+        $sucursal=new Sucursal();
+        $sucursal->id=0;
+        $sucursal->nombre_sucursal="---Seleccione---";
+        $sucursals->push($sucursal);
+        $suc=$sucursals->sortBy('id')->pluck('nombre_sucursal','id');
+        return view('categorias.create')->with('suc', $suc);
     }
 
     /**
@@ -102,14 +100,19 @@ class CategoriaController extends AppBaseController
     public function edit($id)
     {
         $categoria = $this->categoriaRepository->find($id);
-
+        $sucursals=Sucursal::all();
+        $sucursal=new Sucursal();
+        $sucursal->id=0;
+        $sucursal->nombre_sucursal="---Seleccione---";
+        $sucursals->push($sucursal);
+        $suc=$sucursals->sortBy('id')->pluck('nombre_sucursal','id');
         if (empty($categoria)) {
             Flash::error('Categoria not found');
 
             return redirect(route('categorias.index'));
         }
 
-        return view('categorias.edit')->with('categoria', $categoria);
+        return view('categorias.edit')->with('categoria', $categoria)->with('suc', $suc);
     }
 
     /**

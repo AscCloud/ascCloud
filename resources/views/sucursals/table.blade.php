@@ -4,6 +4,7 @@
             <th>Nombre Sucursal</th>
         <th>Direccion Sucursal</th>
         <th>Telefono Sucursal</th>
+        <th>Empresa Id</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -13,6 +14,7 @@
             <td>{!! $sucursal->nombre_sucursal !!}</td>
             <td>{!! $sucursal->direccion_sucursal !!}</td>
             <td>{!! $sucursal->telefono_sucursal !!}</td>
+            <td>{!! $sucursal->empresa_id !!}</td>
             <td>
                 {!! Form::open(['route' => ['sucursals.destroy', $sucursal->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

@@ -16,6 +16,12 @@
     {!! Form::text('img_producto', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Iva Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('iva_id', 'Iva Id:') !!}
+    {!! Form::select('iva_id', ], null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Sucursal Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('sucursal_id', 'Sucursal Id:') !!}

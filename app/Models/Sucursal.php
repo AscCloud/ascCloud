@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Sucursal
  * @package App\Models
- * @version March 21, 2019, 1:15 am UTC
+ * @version March 26, 2019, 11:09 am UTC
  *
  * @property string nombre_sucursal
  * @property string direccion_sucursal
  * @property string telefono_sucursal
+ * @property integer empresa_id
  */
 class Sucursal extends Model
 {
@@ -27,7 +28,8 @@ class Sucursal extends Model
     public $fillable = [
         'nombre_sucursal',
         'direccion_sucursal',
-        'telefono_sucursal'
+        'telefono_sucursal',
+        'empresa_id'
     ];
 
     /**
@@ -38,7 +40,8 @@ class Sucursal extends Model
     protected $casts = [
         'nombre_sucursal' => 'string',
         'direccion_sucursal' => 'string',
-        'telefono_sucursal' => 'string'
+        'telefono_sucursal' => 'string',
+        'empresa_id' => 'integer'
     ];
 
     /**
@@ -49,7 +52,8 @@ class Sucursal extends Model
     public static $rules = [
         'nombre_sucursal' => 'required',
         'direccion_sucursal' => 'required',
-        'telefono_sucursal' => 'required'
+        'telefono_sucursal' => 'required',
+        'empresa_id' => 'required'
     ];
 
     

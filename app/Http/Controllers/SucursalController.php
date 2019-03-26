@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\Empresa;
 
 class SucursalController extends AppBaseController
 {
@@ -42,7 +43,13 @@ class SucursalController extends AppBaseController
      */
     public function create()
     {
-        return view('sucursals.create');
+        $empresas=Empresa::all();
+        $empresa=new Empresa();
+        $empresa->id=0;
+        $empresa->nombre_empresa="---Seleccione---";
+        $empresas->push($empresa);
+        $emp=$empresas->sortBy('id')->pluck('nombre_empresa','id');
+        return view('sucursals.create')->with('emp', $emp);
     }
 
     /**
@@ -93,6 +100,12 @@ class SucursalController extends AppBaseController
     public function edit($id)
     {
         $sucursal = $this->sucursalRepository->find($id);
+        $empresas=Empresa::all();
+        $empresa=new Empresa();
+        $empresa->id=0;
+        $empresa->nombre_empresa="---Seleccione---";
+        $empresas->push($empresa);
+        $emp=$empresas->sortBy('id')->pluck('nombre_empresa','id');
 
         if (empty($sucursal)) {
             Flash::error('Sucursal not found');
@@ -100,7 +113,7 @@ class SucursalController extends AppBaseController
             return redirect(route('sucursals.index'));
         }
 
-        return view('sucursals.edit')->with('sucursal', $sucursal);
+        return view('sucursals.edit')->with('sucursal', $sucursal)->with('emp', $emp);
     }
 
     /**

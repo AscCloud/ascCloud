@@ -22,6 +22,12 @@
     <p>{!! $sucursal->telefono_sucursal !!}</p>
 </div>
 
+<!-- Empresa Id Field -->
+<div class="form-group">
+    {!! Form::label('empresa_id', 'Empresa Id:') !!}
+    <p>{!! $sucursal->empresa_id !!}</p>
+</div>
+
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}

@@ -16,22 +16,30 @@ Route::get('/', function () {
 });
 
 
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::resource('empresas', 'EmpresaController');
+
 Route::resource('sucursals', 'SucursalController');
 
-Route::resource('clientes', 'ClienteController');
 
 
 
 
-
-Route::resource('roles', 'RolesController');
-
-
+Route::resource('personals', 'PersonalController');
 
 Route::resource('categorias', 'CategoriaController');
 
-Route::resource('productos', 'ProductosController');
+
+
+Route::resource('ivas', 'IvaController');
+
+
+
+
+
+Route::resource('productos', 'ProductoController');
