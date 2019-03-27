@@ -20,7 +20,7 @@
             <td>{!! $personal->email_personal !!}</td>
             <td>{!! $personal->img_personal !!}</td>
             <td>{!! $personal->nacimiento_personal !!}</td>
-            <td>{!! $personal->sucursal_id !!}</td>
+            <td>{!! $personal->sucursal->nombre_sucursal !!}</td>
             <td>
                 {!! Form::open(['route' => ['personals.destroy', $personal->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

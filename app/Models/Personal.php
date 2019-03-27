@@ -23,7 +23,7 @@ class Personal extends Model
     use SoftDeletes;
 
     public $table = 'personals';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -68,5 +68,13 @@ class Personal extends Model
         'sucursal_id' => 'required'
     ];
 
-    
+    public function user()
+    {
+        return $this->hasMany('App\Models\Personal');
+    }
+
+    public function sucursal()
+    {
+        return $this->belongsTo('App\Models\Sucursal', 'sucursal_id', 'id');
+    }
 }

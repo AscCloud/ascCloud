@@ -7,9 +7,14 @@ use App\Http\Requests\UpdatePersonalRequest;
 use App\Repositories\PersonalRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Flash;
 use Response;
+use DB;
 use App\Models\Sucursal;
+use App\Models\Personal;
+use App\User;
+use App\Roles;
 
 class PersonalController extends AppBaseController
 {
@@ -49,7 +54,13 @@ class PersonalController extends AppBaseController
         $sucursal->nombre_sucursal="---Seleccione---";
         $sucursals->push($sucursal);
         $suc=$sucursals->sortBy('id')->pluck('nombre_sucursal','id');
-        return view('personals.create')->with('suc', $suc);
+        $rols=Roles::all();
+        $rol=new Roles();
+        $rol->id=0;
+        $rol->nombre_rol='---Seleccione---';
+        $rols->push($rol);
+        $r=$rols->sortBy('id')->pluck('nombre_rol','id');
+        return view('personals.create')->with('suc', $suc)->with('r', $r);
     }
 
     /**
@@ -61,13 +72,39 @@ class PersonalController extends AppBaseController
      */
     public function store(CreatePersonalRequest $request)
     {
-        $input = $request->all();
+        //$input = $request->all();
 
-        $personal = $this->personalRepository->create($input);
-
-        Flash::success('Personal saved successfully.');
-
-        return redirect(route('personals.index'));
+        /*if($request->hasFile('img_personal')){
+            $personal->img_personal=$request->file('img_personal')->store('public');
+        }*/
+        try{
+            DB::beginTransaction();
+            $personal= new Personal();
+            $personal->ruc_personal=$request->ruc_personal;
+            $personal->nombre_personal=$request->nombre_personal;
+            $personal->telefono_personal=$request->telefono_personal;
+            $personal->email_personal=$request->email_personal;
+            $personal->img_personal=$request->img_personal;
+            $personal->nacimiento_personal=$request->nacimiento_personal;
+            $personal->sucursal_id=$request->sucursal_id;
+            $usuario=new User();
+            $detalle=[];
+            $usuario->email=$request->email_personal;
+            $usuario->username=$request->username;
+            $usuario->password=Hash::make($request->password);
+            $usuario->rol_id=$request->rol_id;
+            $detalle[]=$usuario;
+            $personal->save();
+            $personal->user()->saveMany($detalle);
+            //$personal = $this->personalRepository->create($input);
+            DB::commit();
+            Flash::success('Personal saved successfully.');
+            return redirect(route('personals.index'));
+        }catch(\Exception $e){
+            DB::rollBack();
+            Flash::error('error');
+            return $e;
+        }
     }
 
     /**

@@ -31,13 +31,13 @@
 <!-- Nacimiento Personal Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nacimiento_personal', 'Nacimiento Personal:') !!}
-    {!! Form::date('nacimiento_personal', null, ['class' => 'form-control','id'=>'nacimiento_personal']) !!}
+    {!! Form::text('nacimiento_personal', null, ['class' => 'form-control','id'=>'nacimiento_personal']) !!}
 </div>
 
 @section('scripts')
     <script type="text/javascript">
         $('#nacimiento_personal').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
+            format: 'YYYY-MM-DD',
             useCurrent: false
         })
     </script>
@@ -49,8 +49,25 @@
     {!! Form::select('sucursal_id', $suc, null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Username user Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('username', 'Username:') !!}
+    {!! Form::text('username', null, ['class' => 'form-control']) !!}
+</div>
+<!-- Password user Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('password', 'Password:') !!}
+    {!! Form::password('password', null, ['class' => 'form-control']) !!}
+</div>
+<!-- Rol Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('rol_id', 'Rol Id:') !!}
+    {!! Form::select('rol_id', $r, null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('personals.index') !!}" class="btn btn-default">Cancel</a>
 </div>
+
