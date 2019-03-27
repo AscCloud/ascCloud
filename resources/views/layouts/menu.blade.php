@@ -1,15 +1,15 @@
 <li class="{{ Request::is('empresas*') ? 'active' : '' }}">
-    <a href="{!! route('empresas.index') !!}"><i class="fa fa-edit"></i><span>Empresas</span></a>
+    <a href="{!! route('empresas.index') !!}"><i class="fa fa-edit"></i><span>Empresa</span></a>
 </li>
 
 <li class="{{ Request::is('sucursals*') ? 'active' : '' }}">
-    <a href="{!! route('sucursals.index') !!}"><i class="fa fa-edit"></i><span>Sucursals</span></a>
+    <a href="{!! route('sucursals.index') !!}"><i class="fa fa-edit"></i><span>Sucursal</span></a>
 </li>
 
 
 
 <li class="{{ Request::is('personals*') ? 'active' : '' }}">
-    <a href="{!! route('personals.index') !!}"><i class="fa fa-edit"></i><span>Personals</span></a>
+    <a href="{!! route('personals.index') !!}"><i class="fa fa-edit"></i><span>Personal</span></a>
 </li>
 
 <li class="{{ Request::is('categorias*') ? 'active' : '' }}">
@@ -18,7 +18,7 @@
 
 
 <li class="{{ Request::is('ivas*') ? 'active' : '' }}">
-    <a href="{!! route('ivas.index') !!}"><i class="fa fa-edit"></i><span>Ivas</span></a>
+    <a href="{!! route('ivas.index') !!}"><i class="fa fa-edit"></i><span>Iva</span></a>
 </li>
 
 

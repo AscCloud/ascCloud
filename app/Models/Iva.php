@@ -10,14 +10,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  * @version March 26, 2019, 11:45 am UTC
  *
- * @property decimal iva
+ * @property integer iva
  */
 class Iva extends Model
 {
     use SoftDeletes;
 
     public $table = 'ivas';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -32,7 +32,7 @@ class Iva extends Model
      * @var array
      */
     protected $casts = [
-        
+
     ];
 
     /**
@@ -44,5 +44,5 @@ class Iva extends Model
         'iva' => 'required'
     ];
 
-    
+
 }

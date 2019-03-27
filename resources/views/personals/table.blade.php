@@ -1,14 +1,14 @@
 <table class="table table-responsive" id="personals-table">
     <thead>
         <tr>
-            <th>Ruc Personal</th>
-        <th>Nombre Personal</th>
-        <th>Telefono Personal</th>
-        <th>Email Personal</th>
-        <th>Img Personal</th>
-        <th>Nacimiento Personal</th>
-        <th>Sucursal Id</th>
-            <th colspan="3">Action</th>
+            <th>Ruc</th>
+        <th>Nombre</th>
+        <th>Telefono</th>
+        <th>Email</th>
+        <th>Img</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Sucursal</th>
+            <th colspan="3"></th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@
                 <div class='btn-group'>
                     <a href="{!! route('personals.show', [$personal->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="{!! route('personals.edit', [$personal->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('¿Desea eliminar?')"]) !!}
                 </div>
                 {!! Form::close() !!}
             </td>

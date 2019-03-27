@@ -1,13 +1,13 @@
 <table class="table table-responsive" id="productos-table">
     <thead>
         <tr>
-            <th>Nombre Producto</th>
-        <th>Precio Producto</th>
-        <th>Img Producto</th>
-        <th>Iva Id</th>
-        <th>Sucursal Id</th>
-        <th>Categoria Id</th>
-            <th colspan="3">Action</th>
+            <th>Nombre</th>
+        <th>Precio</th>
+        <th>Img</th>
+        <th>Iva</th>
+        <th>Sucursal</th>
+        <th>Categoria</th>
+            <th colspan="3"></th>
         </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
                 <div class='btn-group'>
                     <a href="{!! route('productos.show', [$producto->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="{!! route('productos.edit', [$producto->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('¿Desea eliminar?')"]) !!}
                 </div>
                 {!! Form::close() !!}
             </td>

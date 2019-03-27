@@ -15,7 +15,7 @@ class CreateIvasTable extends Migration
     {
         Schema::create('ivas', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('iva', 8, 2);
+            $table->integer('iva');
             $table->timestamps();
             $table->softDeletes();
         });

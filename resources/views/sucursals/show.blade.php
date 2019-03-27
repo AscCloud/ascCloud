@@ -11,7 +11,7 @@
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
                     @include('sucursals.show_fields')
-                    <a href="{!! route('sucursals.index') !!}" class="btn btn-default">Back</a>
+                    <a href="{!! route('sucursals.index') !!}" class="btn btn-default">Regresar</a>
                 </div>
             </div>
         </div>
