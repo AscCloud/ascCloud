@@ -19,7 +19,7 @@
             <td>{!! $personal->telefono_personal !!}</td>
             <td>{!! $personal->email_personal !!}</td>
             <td>{!! $personal->img_personal !!}</td>
-            <td>{!! $personal->nacimiento_personal !!}</td>
+            <td>{!! \Carbon\Carbon::parse($personal->nacimiento_personal)->format('Y-m-d')!!}</td>//Formato de fecha Año, mes y día
             <td>{!! $personal->sucursal->nombre_sucursal !!}</td>
             <td>
                 {!! Form::open(['route' => ['personals.destroy', $personal->id], 'method' => 'delete']) !!}
