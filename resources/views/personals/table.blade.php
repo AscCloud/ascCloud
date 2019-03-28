@@ -1,7 +1,7 @@
 <table class="table table-responsive" id="personals-table">
     <thead>
         <tr>
-            <th>Ruc</th>
+        <th>Ruc</th>
         <th>Nombre</th>
         <th>Telefono</th>
         <th>Email</th>

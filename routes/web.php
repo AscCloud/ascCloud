@@ -43,3 +43,4 @@ Route::resource('ivas', 'IvaController');
 
 
 Route::resource('productos', 'ProductoController');
+
