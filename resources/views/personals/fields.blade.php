@@ -86,4 +86,3 @@
     {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('personals.index') !!}" class="btn btn-default">Cancelar</a>
 </div>
-
