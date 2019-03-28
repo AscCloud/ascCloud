@@ -1,9 +1,3 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id') !!}
-    <p>{!! $personal->id !!}</p>
-</div>
-
 <!-- Ruc Personal Field -->
 <div class="form-group">
     {!! Form::label('ruc_personal', 'Ruc') !!}
@@ -37,24 +31,13 @@
 <!-- Nacimiento Personal Field -->
 <div class="form-group">
     {!! Form::label('nacimiento_personal', 'Fecha de Nacimiento') !!}
-    <p>{!! $personal->nacimiento_personal !!}</p>
+    <p>{!! \Carbon\Carbon::parse($personal->nacimiento_personal)->format('Y-m-d') !!}</p>
 </div>
 
 <!-- Sucursal Id Field -->
 <div class="form-group">
     {!! Form::label('sucursal_id', 'Sucursal') !!}
-    <p>{!! $personal->sucursal_id !!}</p>
+    <p>{!! $personal->sucursal->nombre_sucursal !!}</p>
 </div>
 
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At') !!}
-    <p>{!! $personal->created_at !!}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At') !!}
-    <p>{!! $personal->updated_at !!}</p>
-</div>
 

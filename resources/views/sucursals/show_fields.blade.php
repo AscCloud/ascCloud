@@ -1,8 +1,3 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id') !!}
-    <p>{!! $sucursal->id !!}</p>
-</div>
 
 <!-- Nombre Sucursal Field -->
 <div class="form-group">
@@ -27,16 +22,3 @@
     {!! Form::label('empresa_id', 'Empresa') !!}
     <p>{!! $sucursal->empresa_id !!}</p>
 </div>
-
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created') !!}
-    <p>{!! $sucursal->created_at !!}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated') !!}
-    <p>{!! $sucursal->updated_at !!}</p>
-</div>
-

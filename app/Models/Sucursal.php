@@ -20,7 +20,7 @@ class Sucursal extends Model
     use SoftDeletes;
 
     public $table = 'sucursals';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -56,5 +56,10 @@ class Sucursal extends Model
         'empresa_id' => 'required'
     ];
 
-    
+    public function empresa()
+    {
+        return $this->belongsTo('App\Models\Empresa', 'empresa_id', 'id');
+    }
+
+
 }

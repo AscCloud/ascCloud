@@ -18,7 +18,7 @@ class Categoria extends Model
     use SoftDeletes;
 
     public $table = 'categorias';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -48,5 +48,10 @@ class Categoria extends Model
         'sucursal_id' => 'required'
     ];
 
-    
+    public function sucursal()
+    {
+        return $this->belongsTo('App\Models\Sucursal', 'sucursal_id', 'id');
+    }
+
+
 }

@@ -14,7 +14,7 @@
             <td>{!! $sucursal->nombre_sucursal !!}</td>
             <td>{!! $sucursal->direccion_sucursal !!}</td>
             <td>{!! $sucursal->telefono_sucursal !!}</td>
-            <td>{!! $sucursal->empresa_id !!}</td>
+            <td>{!! $sucursal->empresa->nombre_empresa !!}</td>
             <td>
                 {!! Form::open(['route' => ['sucursals.destroy', $sucursal->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
