@@ -1,3 +1,29 @@
+<script>
+        function soloLetras(e){
+            key = e.keyCode || e.which;
+            tecla = String.fromCharCode(key).toLowerCase();
+            letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+            especiales = "8-37-39-46";
+
+            tecla_especial = false
+            for(var i in especiales){
+                if(key == especiales[i]){
+                        ecla_especial = true;
+                break;
+                }
+            }
+
+            if(letras.indexOf(tecla)==-1 && !tecla_especial){
+                return false;
+            }
+        }
+
+        function soloNumeros(e){
+            var key = window.Event ? e.which : e.keyCode
+            return (key >= 48 && key <= 57)
+        }
+</script>
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/style_normalize.css') }}" />
 @endsection
@@ -14,19 +40,19 @@
 <!-- Ruc Personal Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('ruc_personal', 'Ruc') !!}
-    {!! Form::text('ruc_personal', null, ['class' => 'form-control']) !!}
+    {!! Form::text('ruc_personal', null, ['class' => 'form-control', 'onkeypress'=>'return soloNumeros(event)']) !!}
 </div>
 
 <!-- Nombre Personal Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nombre_personal', 'Nombre') !!}
-    {!! Form::text('nombre_personal', null, ['class' => 'form-control']) !!}
+    {!! Form::text('nombre_personal', null, ['class' => 'form-control', 'onkeypress'=>'return soloLetras(event)']) !!}
 </div>
 
 <!-- Telefono Personal Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('telefono_personal', 'Telefono') !!}
-    {!! Form::text('telefono_personal', null, ['class' => 'form-control']) !!}
+    {!! Form::text('telefono_personal', null, ['class' => 'form-control', 'onkeypress'=>'return soloNumeros(event)']) !!}
 </div>
 
 <!-- Email Personal Field -->

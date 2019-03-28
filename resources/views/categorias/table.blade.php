@@ -54,3 +54,33 @@
         </div>
     </div>
 </div>
+
+<!--Pop up para mostrar la información -->
+<div class="modal fade" id="up">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>×</span>
+                </button>
+                <h4>Crear</h4>
+            </div>
+             <div class="modal-body">
+                    <!-- Nombre Categoria Field -->
+                    <div class="form-group">
+                        {!! Form::label('nombre_categoria', 'Nombre') !!}
+                        <p>{!! $categoria->nombre_categoria !!}</p>
+                    </div>
+
+                    <!-- Sucursal Id Field -->
+                    <div class="form-group">
+                        {!! Form::label('sucursal_id', 'Sucursal') !!}
+                        <p>{!! $categoria->sucursal->nombre_sucursal !!}</p>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <a href="{!! route('categorias.index') !!}" class="btn btn-default" data-dismiss="modal">Regresar</a>
+            </div>
+        </div>
+    </div>
+</div>
