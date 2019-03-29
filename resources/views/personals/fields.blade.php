@@ -1,6 +1,8 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/style_normalize.css') }}" />
 @endsection
+<!-- token -->
+{!! Form::hidden('token', csrf_token(),['id'=>'token']) !!}
 <!-- Img Personal Field -->
 <div class="form-group col-sm-6">
 
@@ -32,6 +34,11 @@
     {!! Form::label('email_personal', 'Email') !!}
     {!! Form::email('email_personal', null, ['class' => 'form-control']) !!}
 </div>
+<!-- Empresa field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('empresa_id', 'Empresa') !!}
+    {!! Form::select('empresa_id', $emp, null, ['class' => 'form-control','id'=>'empresa_id']) !!}
+</div>
 
 <!-- Nacimiento Personal Field -->
 <div class="form-group col-sm-6">
@@ -57,26 +64,29 @@
             });
         });
     </script>
+    <script src="{{ asset('js/dependencias_empresa_sucursal.js') }}"></script>
 @endsection
+
+
 
 <!-- Sucursal Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('sucursal_id', 'Sucursal') !!}
-    {!! Form::select('sucursal_id', $suc, null, ['class' => 'form-control']) !!}
+    {!! Form::select('sucursal_id', ['--Seleccione--'=>'--Seleccione--'], null, ['class' => 'form-control','id'=>'sucursal_id']) !!}
 </div>
 
 <!-- Username user Field -->
-<div class="form-group col-sm-4">
+<div class="form-group col-sm-6">
     {!! Form::label('username', 'Username') !!}
     {!! Form::text('username', null, ['class' => 'form-control']) !!}
 </div>
 <!-- Password user Field -->
-<div class="form-group col-sm-4">
+<div class="form-group col-sm-6">
     {!! Form::label('password', 'Password') !!}
     {!! Form::password('password', ['class' => 'form-control']) !!}
 </div>
 <!-- Rol Id Field -->
-<div class="form-group col-sm-4">
+<div class="form-group col-sm-6">
     {!! Form::label('rol_id', 'Rol') !!}
     {!! Form::select('rol_id', $r, null, ['class' => 'form-control']) !!}
 </div>
@@ -86,3 +96,4 @@
     {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('personals.index') !!}" class="btn btn-default">Cancelar</a>
 </div>
+

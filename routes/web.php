@@ -43,4 +43,5 @@ Route::resource('ivas', 'IvaController');
 
 
 Route::resource('productos', 'ProductoController');
+Route::post('empresa/find/{id}', 'SucursalController@empresas');
 

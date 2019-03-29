@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use App\Models\Empresa;
+use App\Models\Sucursal;
 
 class SucursalController extends AppBaseController
 {
@@ -165,5 +166,13 @@ class SucursalController extends AppBaseController
         Flash::success('Sucursal deleted successfully.');
 
         return redirect(route('sucursals.index'));
+    }
+
+    public function empresas($id){
+        $sucursales=Sucursal::where('empresa_id',$id)->get();
+        if(empty($sucursales)){
+            return "-1";
+        }
+        return $sucursales;
     }
 }

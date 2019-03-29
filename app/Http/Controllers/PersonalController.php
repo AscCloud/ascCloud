@@ -8,10 +8,12 @@ use App\Repositories\PersonalRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Flash;
 use Response;
 use DB;
 use App\Models\Sucursal;
+use App\Models\Empresa;
 use App\Models\Personal;
 use App\User;
 use App\Roles;
@@ -48,19 +50,19 @@ class PersonalController extends AppBaseController
      */
     public function create()
     {
-        $sucursals=Sucursal::all();
-        $sucursal=new Sucursal();
-        $sucursal->id=0;
-        $sucursal->nombre_sucursal="---Seleccione---";
-        $sucursals->push($sucursal);
-        $suc=$sucursals->sortBy('id')->pluck('nombre_sucursal','id');
+        $empresas=Empresa::all();
+        $empresa=new Empresa();
+        $empresa->id=0;
+        $empresa->nombre_empresa="---Seleccione---";
+        $empresas->push($empresa);
+        $emp=$empresas->sortBy('id')->pluck('nombre_empresa','id');
         $rols=Roles::all();
         $rol=new Roles();
         $rol->id=0;
         $rol->nombre_rol='---Seleccione---';
         $rols->push($rol);
         $r=$rols->sortBy('id')->pluck('nombre_rol','id');
-        return view('personals.create')->with('suc', $suc)->with('r', $r);
+        return view('personals.create')->with('emp', $emp)->with('r', $r);
     }
 
     /**

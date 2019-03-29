@@ -22,3 +22,6 @@
         </div>
     </div>
 @endsection
+@section('scripts')
+    {!! Html::script('js/dependencia.js') !!}
+@endsection
