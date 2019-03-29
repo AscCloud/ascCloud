@@ -1,8 +1,8 @@
-<table class="table table-responsive" id="ivas-table">
+<table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
     <thead>
         <tr>
             <th>Iva</th>
-            <th colspan="3"></th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>

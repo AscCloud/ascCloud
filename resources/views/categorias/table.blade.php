@@ -1,9 +1,9 @@
-<table class="table table-responsive" id="categorias-table">
+<table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
     <thead>
         <tr>
             <th>Nombre</th>
-        <th>Sucursal</th>
-            <th colspan="3"></th>
+            <th>Sucursal</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -11,7 +11,7 @@
         <tr>
             <td>{!! $categoria->nombre_categoria !!}</td>
             <td>{!! $categoria->sucursal->nombre_sucursal !!}</td>
-            <td>
+            <td >
                 {!! Form::open(['route' => ['categorias.destroy', $categoria->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     <a href="#" class='btn btn-default btn-xs' data-toggle="modal" data-target="#mostrar"><i class="glyphicon glyphicon-eye-open"></i></a>

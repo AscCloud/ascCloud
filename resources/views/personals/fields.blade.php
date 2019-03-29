@@ -93,8 +93,6 @@
     <script src="{{ asset('js/dependencias_empresa_sucursal.js') }}"></script>
 @endsection
 
-
-
 <!-- Sucursal Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('sucursal_id', 'Sucursal') !!}

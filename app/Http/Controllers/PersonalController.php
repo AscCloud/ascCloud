@@ -76,9 +76,7 @@ class PersonalController extends AppBaseController
     {
         //$input = $request->all();
 
-        /*if($request->hasFile('img_personal')){
-            $personal->img_personal=$request->file('img_personal')->store('public');
-        }*/
+
         try{
             DB::beginTransaction();
             $personal= new Personal();
@@ -86,7 +84,9 @@ class PersonalController extends AppBaseController
             $personal->nombre_personal=$request->nombre_personal;
             $personal->telefono_personal=$request->telefono_personal;
             $personal->email_personal=$request->email_personal;
-            $personal->img_personal=$request->img_personal;
+            if($request->hasFile('img_personal')){
+                $personal->img_personal=$request->file('img_personal')->store('public');
+            }
             $personal->nacimiento_personal=$request->nacimiento_personal;
             $personal->sucursal_id=$request->sucursal_id;
             $usuario=new User();
