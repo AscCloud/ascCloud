@@ -16,9 +16,9 @@
             <td>{!! $producto->nombre_producto !!}</td>
             <td>{!! $producto->precio_producto !!}</td>
             <td>{!! $producto->img_producto !!}</td>
-            <td>{!! $producto->iva_id !!}</td>
-            <td>{!! $producto->sucursal_id !!}</td>
-            <td>{!! $producto->categoria_id !!}</td>
+            <td>{!! $producto->iva->iva !!}</td>
+            <td>{!! $producto->sucursal->nombre_sucursal !!}</td>
+            <td>{!! $producto->categoria->nombre_categoria !!}</td>
             <td>
                 {!! Form::open(['route' => ['productos.destroy', $producto->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

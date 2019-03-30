@@ -14,7 +14,8 @@
 
         <div class="clearfix"></div>
         <div class="box box-primary">
-            <div class="box-body">
+            <div id="refesh" class="box-body">
+                    {!! Form::hidden('token', csrf_token(),['id'=>'token']) !!}
                     @include('personals.table')
             </div>
         </div>

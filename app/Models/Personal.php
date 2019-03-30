@@ -63,7 +63,6 @@ class Personal extends Model
         'nombre_personal' => 'required',
         'telefono_personal' => 'required',
         'email_personal' => 'email',
-        'img_personal' => 'required',
         'nacimiento_personal' => 'date',
         'sucursal_id' => 'required'
     ];

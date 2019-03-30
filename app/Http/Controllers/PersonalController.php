@@ -6,6 +6,7 @@ use App\Http\Requests\CreatePersonalRequest;
 use App\Http\Requests\UpdatePersonalRequest;
 use App\Repositories\PersonalRepository;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -75,37 +76,52 @@ class PersonalController extends AppBaseController
     public function store(CreatePersonalRequest $request)
     {
         //$input = $request->all();
-
-
-        try{
-            DB::beginTransaction();
-            $personal= new Personal();
-            $personal->ruc_personal=$request->ruc_personal;
-            $personal->nombre_personal=$request->nombre_personal;
-            $personal->telefono_personal=$request->telefono_personal;
-            $personal->email_personal=$request->email_personal;
-            if($request->hasFile('img_personal')){
-                $personal->img_personal=$request->file('img_personal')->store('public');
+        $v=Validator::make($request->all(),[
+            'ruc_personal'=>['required','string','max:20'],
+            'nombre_personal'=>['required','string','max:20'],
+            'telefono_personal'=>['required','string','min:10', 'max:10'],
+            'email_personal' => ['required', 'string', 'email', 'max:100'],
+            'img_personal'=>['required','image'],
+            'nacimiento_personal'=>['required','date','max:20'],
+            'sucursal_id'=>['required'],
+            'username' => ['required', 'string', 'max:255','unique:users'],
+            'password' => ['required', 'string', 'min:8'],
+            'rol_id'=>['required','integer'],
+        ]);
+        if($v->fails()){
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        }else{
+            try{
+                DB::beginTransaction();
+                $personal= new Personal();
+                $personal->ruc_personal=$request->ruc_personal;
+                $personal->nombre_personal=$request->nombre_personal;
+                $personal->telefono_personal=$request->telefono_personal;
+                $personal->email_personal=$request->email_personal;
+                if($request->hasFile('img_personal')){
+                    $personal->img_personal=$request->file('img_personal')->store('public');
+                }
+                $personal->nacimiento_personal=$request->nacimiento_personal;
+                $personal->sucursal_id=$request->sucursal_id;
+                $usuario=new User();
+                $detalle=[];
+                $usuario->email=$request->email_personal;
+                $usuario->username=$request->username;
+                $usuario->password=Hash::make($request->password);
+                $usuario->rol_id=$request->rol_id;
+                $detalle[]=$usuario;
+                $personal->save();
+                $personal->user()->saveMany($detalle);
+                //$personal = $this->personalRepository->create($input);
+                DB::commit();
+                Flash::success('Personal saved successfully.');
+                return redirect(route('personals.index'));
+            }catch(\Exception $e){
+                DB::rollBack();
+                Flash::error('error');
+                return redirect(route('personals.create'));
+                return $e;
             }
-            $personal->nacimiento_personal=$request->nacimiento_personal;
-            $personal->sucursal_id=$request->sucursal_id;
-            $usuario=new User();
-            $detalle=[];
-            $usuario->email=$request->email_personal;
-            $usuario->username=$request->username;
-            $usuario->password=Hash::make($request->password);
-            $usuario->rol_id=$request->rol_id;
-            $detalle[]=$usuario;
-            $personal->save();
-            $personal->user()->saveMany($detalle);
-            //$personal = $this->personalRepository->create($input);
-            DB::commit();
-            Flash::success('Personal saved successfully.');
-            return redirect(route('personals.index'));
-        }catch(\Exception $e){
-            DB::rollBack();
-            Flash::error('error');
-            return $e;
         }
     }
 
@@ -139,6 +155,18 @@ class PersonalController extends AppBaseController
     public function edit($id)
     {
         $personal = $this->personalRepository->find($id);
+        $empresas=Empresa::all();
+        $empresa=new Empresa();
+        $empresa->id=0;
+        $empresa->nombre_empresa="---Seleccione---";
+        $empresas->push($empresa);
+        $emp=$empresas->sortBy('id')->pluck('nombre_empresa','id');
+        $rols=Roles::all();
+        $rol=new Roles();
+        $rol->id=0;
+        $rol->nombre_rol='---Seleccione---';
+        $rols->push($rol);
+        $r=$rols->sortBy('id')->pluck('nombre_rol','id');
         $sucursals=Sucursal::all();
         $sucursal=new Sucursal();
         $sucursal->id=0;
@@ -152,7 +180,7 @@ class PersonalController extends AppBaseController
             return redirect(route('personals.index'));
         }
 
-        return view('personals.edit')->with('personal', $personal)->with('suc', $suc);
+        return view('personals.edit')->with('personal', $personal)->with('emp', $emp)->with('r', $r)->with('suc', $suc);
     }
 
     /**
@@ -172,8 +200,17 @@ class PersonalController extends AppBaseController
 
             return redirect(route('personals.index'));
         }
-
-        $personal = $this->personalRepository->update($request->all(), $id);
+        $personal->ruc_personal=$request->ruc_personal;
+        $personal->nombre_personal=$request->nombre_personal;
+        $personal->telefono_personal=$request->telefono_personal;
+        $personal->email_personal=$request->email_personal;
+        if($request->hasFile('img_personal')){
+            $personal->img_personal=$request->file('img_personal')->store('public');
+        }
+        $personal->nacimiento_personal=$request->nacimiento_personal;
+        $personal->sucursal_id=$request->sucursal_id;
+        $personal->save();
+        //$personal = $this->personalRepository->update($request->all(), $id);
 
         Flash::success('Personal updated successfully.');
 
@@ -204,5 +241,14 @@ class PersonalController extends AppBaseController
         Flash::success('Personal deleted successfully.');
 
         return redirect(route('personals.index'));
+    }
+
+    public function todos(Request $request){
+        $personals = $this->personalRepository->all();
+        if(empty($personals)){
+            return "-1";
+        }
+        return $personals;
+
     }
 }

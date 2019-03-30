@@ -12,7 +12,7 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'productos.store']) !!}
+                    {!! Form::open(['route' => 'productos.store', 'enctype'=>'multipart/form-data']) !!}
 
                         @include('productos.fields')
 

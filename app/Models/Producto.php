@@ -22,7 +22,7 @@ class Producto extends Model
     use SoftDeletes;
 
     public $table = 'productos';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -63,5 +63,19 @@ class Producto extends Model
         'categoria_id' => 'required'
     ];
 
-    
+    public function sucursal()
+    {
+        return $this->belongsTo('App\Models\Sucursal', 'sucursal_id', 'id');
+    }
+
+    public function categoria()
+    {
+        return $this->belongsTo('App\Models\Categoria', 'categoria_id', 'id');
+    }
+
+    public function iva()
+    {
+        return $this->belongsTo('App\Models\Iva', 'iva_id', 'id');
+    }
+
 }

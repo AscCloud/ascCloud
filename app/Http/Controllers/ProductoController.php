@@ -9,6 +9,9 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\Sucursal;
+use App\Models\Categoria;
+use App\Models\Producto;
 
 class ProductoController extends AppBaseController
 {
@@ -42,7 +45,19 @@ class ProductoController extends AppBaseController
      */
     public function create()
     {
-        return view('productos.create');
+        $sucursals=Sucursal::all();
+        $sucursal=new Sucursal();
+        $sucursal->id=0;
+        $sucursal->nombre_sucursal="---Seleccione---";
+        $sucursals->push($sucursal);
+        $suc=$sucursals->sortBy('id')->pluck('nombre_sucursal','id');
+        $categorias=Categoria::all();
+        $categoria=new Categoria();
+        $categoria->id=0;
+        $categoria->nombre_categoria="---Seleccione---";
+        $categorias->push($categoria);
+        $cat=$categorias->sortBy('id')->pluck('nombre_categoria','id');
+        return view('productos.create')->with('suc', $suc)->with('cat', $cat);
     }
 
     /**
@@ -54,9 +69,19 @@ class ProductoController extends AppBaseController
      */
     public function store(CreateProductoRequest $request)
     {
-        $input = $request->all();
+        //$input = $request->all();
+        $producto=new Producto();
+        $producto->nombre_producto=$request->nombre_producto;
+        $producto->precio_producto=$request->precio_producto;
+        if($request->hasFile('img_producto')){
+            $personal->img_producto=$request->file('img_producto')->store('public');
+        }
+        $producto->iva_id=$request->iva_id;
+        $producto->sucursal_id=$request->sucursal_id;
+        $producto->categoria_id=$request->categoria_id;
+        $producto->save();
 
-        $producto = $this->productoRepository->create($input);
+        //$producto = $this->productoRepository->create($input);
 
         Flash::success('Producto saved successfully.');
 
@@ -93,14 +118,25 @@ class ProductoController extends AppBaseController
     public function edit($id)
     {
         $producto = $this->productoRepository->find($id);
-
+        $sucursals=Sucursal::all();
+        $sucursal=new Sucursal();
+        $sucursal->id=0;
+        $sucursal->nombre_sucursal="---Seleccione---";
+        $sucursals->push($sucursal);
+        $suc=$sucursals->sortBy('id')->pluck('nombre_sucursal','id');
+        $categorias=Categoria::all();
+        $categoria=new Categoria();
+        $categoria->id=0;
+        $categoria->nombre_categoria="---Seleccione---";
+        $categorias->push($categorias);
+        $cat=$categorias->sortBy('id')->pluck('nombre_categoria','id');
         if (empty($producto)) {
             Flash::error('Producto not found');
 
             return redirect(route('productos.index'));
         }
 
-        return view('productos.edit')->with('producto', $producto);
+        return view('productos.edit')->with('producto', $producto)->with('suc', $suc)->with('cat', $cat);
     }
 
     /**
@@ -121,7 +157,17 @@ class ProductoController extends AppBaseController
             return redirect(route('productos.index'));
         }
 
-        $producto = $this->productoRepository->update($request->all(), $id);
+        $producto->nombre_producto=$request->nombre_producto;
+        $producto->precio_producto=$request->precio_producto;
+        if($request->hasFile('img_producto')){
+            $personal->img_producto=$request->file('img_producto')->store('public');
+        }
+        $producto->iva_id=$request->iva_id;
+        $producto->sucursal_id=$request->sucursal_id;
+        $producto->categoria_id=$request->categoria_id;
+        $producto->save();
+
+        //$producto = $this->productoRepository->update($request->all(), $id);
 
         Flash::success('Producto updated successfully.');
 

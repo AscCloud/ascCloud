@@ -10,7 +10,7 @@
         <th>Acciones</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="#detalle-table tbody">
     @foreach($personals as $personal)
         <tr>
             <td>{!! $personal->ruc_personal !!}</td>
@@ -34,6 +34,7 @@
 </table>
 
 <!--Pop up para mostrar la información -->
+
 <div class="modal fade" id="mostrar">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -92,3 +93,4 @@
         </div>
     </div>
 </div>
+
