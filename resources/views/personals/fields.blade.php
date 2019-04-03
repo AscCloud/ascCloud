@@ -12,7 +12,7 @@
 
 <!-- Ruc Personal Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('ruc_personal', 'Ruc') !!}
+    {!! Form::label('ruc_personal', 'Identificación Tributaria') !!}
     {!! Form::text('ruc_personal', null, ['class' => 'form-control', 'onkeypress'=>'return soloNumeros(event)']) !!}
 </div>
 

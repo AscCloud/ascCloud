@@ -1,13 +1,13 @@
 <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
     <thead>
         <tr>
-        <th>Ruc</th>
+        <th>Identificación Tributaria</th>
         <th>Nombre</th>
         <th>Telefono</th>
         <th>Email</th>
         <th>Fecha de Nacimiento</th>
         <th>Sucursal</th>
-        <th>Acciones</th>
+        <th></th>
         </tr>
     </thead>
     <tbody id="#detalle-table tbody">
@@ -42,12 +42,12 @@
                 <button type="button" class="close" data-dismiss="modal">
                     <span>×</span>
                 </button>
-                <h4>Crear</h4>
+                <h4></h4>
             </div>
              <div class="modal-body">
                     <!-- Ruc Personal Field -->
                     <div class="form-group">
-                        {!! Form::label('ruc_personal', 'Ruc') !!}
+                        {!! Form::label('ruc_personal', 'Identificación Tributaria') !!}
                         <p>{!! $personal->ruc_personal !!}</p>
                     </div>
 

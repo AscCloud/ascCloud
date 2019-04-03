@@ -1,7 +1,5 @@
 @extends('layouts.app')
-@section('css')
-    {!! Html::style('css/mesa.css') !!}
-@endsection
+
 @section('content')
     <section class="content-header">
         <h1>
