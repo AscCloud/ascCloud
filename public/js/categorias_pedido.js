@@ -13,13 +13,14 @@ $(document).ready(function () {
                     $('#pops').modal('show');
                 }
                 else{
+                    var origin = window.location.origin
                     var fillSecondary = function(){
                       var selected = $('#categoria_id').val();
                       $('#contenedor_producto').empty();
                       response.forEach(function(element,index){
-                            cadena='<div class="col-sm-12 col-xs-12">'
+                            cadena='<div class="col-sm-2 col-xs-4">'
                             cadena=cadena+'<img class="imagen_producto" src="'+element['img_producto']+'"/>';
-                            cadena=cadena +'<div class="form-group col-sm-12 col-xs-12 btn btn-success"><a href="#"><span style="color:white" class="glyphicon glyphicon-plus"</span></a></div>';
+                            cadena=cadena +'<a href="'+origin+'/pedido/detalle/add/'+element['id']+'"><div class="form-group col-sm-12 col-xs-12 btn btn-success"><span style="color:white" class="glyphicon glyphicon-plus"</span></div></a>';
                             cadena=cadena +'</div>';
                           $('#contenedor_producto').append(cadena);
                       });

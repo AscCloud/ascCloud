@@ -10,9 +10,15 @@ use Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Producto;
 use App\Models\Categoria;
+use App\Detalle_pedido;
 
 class PedidoController extends Controller
 {
+    public function __construct(){
+        if(!Session::has('cart')){
+            Session::put('cart',array());
+        }
+    }
     //
     public function index(){
         $personal=Auth::user();
@@ -24,6 +30,28 @@ class PedidoController extends Controller
         $cat=$categorias->sortBy('id')->pluck('nombre_categoria','id');
         return view('pedido.index')->with('cat',$cat);
 
+    }
+
+    public function show(){
+        $cart=Session::get('cart');
+        return view('detalle_pedido.index')->with('cart',$cart);
+        // return $cart;
+    }
+
+    public function add(Request $request,Producto $producto){
+        $cart=Session::get('cart');
+        //$dato=array_search($producto->id, array_column($cart, 'producto_id'));
+        $detalle=new Detalle_pedido();
+        $detalle->producto_id=$producto->id;
+        $detalle->nombre_producto=$producto->nombre_producto;
+        $detalle->img_producto=$producto->img_producto;
+        $detalle->cantidad_detalle_pedido=1;
+        $detalle->total_detalle_pedido=$producto->precio_producto * 1.12;
+        $cart[]=$detalle;
+        Session::put('cart',$cart);
+        // Session::forget('cart');
+        return redirect('pedido');
+        // return $request;
     }
     public function pedido(){
         $id_mesa=Session::get('idm');

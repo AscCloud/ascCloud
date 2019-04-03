@@ -58,12 +58,16 @@
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
+                        <!-- Cart -->
+                        <li>
+                            <a href="{{ asset('/pedido/detalle') }}"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                        </li>
                         <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
+                                <img src="{{ Auth::user()->personal->img_personal }}"
                                      class="user-image" alt="User Image"/>
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{!! Auth::user()->username !!}</span>
@@ -95,6 +99,7 @@
                                 </li>
                             </ul>
                         </li>
+
                     </ul>
                 </div>
             </nav>

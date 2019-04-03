@@ -51,7 +51,19 @@
     overflow: hidden;
     display: block;
     width: 100%;
-    height: 146.533px;
+    height: 120px;
+}
+.imagen_productos{
+    border: 6px solid black;
+    margin: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    border-radius:8px;
+    overflow: hidden;
+    display: block;
+    width: 30%;
+    height: 60px;
 }
 
 

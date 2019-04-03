@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::bind('producto',function($id){
+    return App\Models\Producto::where('id',$id)->first();
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -61,3 +64,5 @@ Route::get('/reservasm/{id}', 'ReservaController@reserva');
 
 Route::get('/pedido', 'PedidoController@index');
 Route::post('categorias/find/{id}', 'PedidoController@categorias');
+Route::get('/pedido/detalle', 'PedidoController@show');
+Route::get('/pedido/detalle/add/{producto}','PedidoController@add');
