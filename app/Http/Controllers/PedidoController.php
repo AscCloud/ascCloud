@@ -16,15 +16,13 @@ class PedidoController extends Controller
     //
     public function index(){
         $personal=Auth::user();
-        $productos=Producto::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
         $categorias=Categoria::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
         $categoria=new Categoria();
         $categoria->id=0;
         $categoria->nombre_categoria='---Seleccione---';
         $categorias->push($categoria);
         $cat=$categorias->sortBy('id')->pluck('nombre_categoria','id');
-
-        return view('pedido.index')->with('productos',$productos)->with('cat',$cat);
+        return view('pedido.index')->with('cat',$cat);
 
     }
     public function pedido(){

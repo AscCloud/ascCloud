@@ -25,7 +25,8 @@ class Mesa extends Model
 
     public $fillable = [
         'numero_mesa',
-        'planta_id'
+        'planta_id',
+        'sucursal_id'
     ];
 
     /**
@@ -35,7 +36,8 @@ class Mesa extends Model
      */
     protected $casts = [
         'numero_mesa' => 'integer',
-        'planta_id' => 'integer'
+        'planta_id' => 'integer',
+        'sucursal_id' => 'integer'
     ];
 
     /**
@@ -45,7 +47,8 @@ class Mesa extends Model
      */
     public static $rules = [
         'numero_mesa' => 'required',
-        'planta_id' => 'required'
+        'planta_id' => 'required',
+        'sucursal_id' => 'required'
     ];
 
     public function planta()

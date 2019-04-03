@@ -6,6 +6,8 @@ use App\Http\Requests\CreateCategoriaRequest;
 use App\Http\Requests\UpdateCategoriaRequest;
 use App\Repositories\CategoriaRepository;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -30,7 +32,8 @@ class CategoriaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $categorias = $this->categoriaRepository->all();
+        $personal=Auth::user();
+        $categorias = Categoria::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
 
         return view('categorias.index')
             ->with('categorias', $categorias);

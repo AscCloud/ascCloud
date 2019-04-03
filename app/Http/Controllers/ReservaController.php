@@ -25,7 +25,8 @@ class ReservaController extends Controller
         return view('reservas.index')->with('mesas', $mesas)->with('plant',$plant);
     }
     public function planta(Request $request){
-        $mesas = Mesa::where('planta_id','=',$request->id)->get();
+        $personal=Auth::user();
+        $mesas = Mesa::where('planta_id','=',$request->id)->where('sucursal_id','=',$personal->personal->sucursal_id)->get();
         if(empty($mesas)){
             return "-1";
         }

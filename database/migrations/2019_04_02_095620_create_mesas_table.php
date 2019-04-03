@@ -17,10 +17,12 @@ class CreateMesasTable extends Migration
             $table->increments('id');
             $table->integer('numero_mesa');
             $table->integer('planta_id')->unsigned();
+            $table->integer('sucursal_id')->unsigned();
             $table->boolean('estado_mesa')->default(false);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('planta_id')->references('id')->on('plantas');
+            $table->foreign('sucursal_id')->references('id')->on('sucursals');
         });
     }
 

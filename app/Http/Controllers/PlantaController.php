@@ -6,6 +6,8 @@ use App\Http\Requests\CreatePlantaRequest;
 use App\Http\Requests\UpdatePlantaRequest;
 use App\Repositories\PlantaRepository;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Planta;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -30,7 +32,8 @@ class PlantaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $plantas = $this->plantaRepository->all();
+        $personal=Auth::user();
+        $plantas = Planta::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
 
         return view('plantas.index')
             ->with('plantas', $plantas);

@@ -18,7 +18,8 @@ class MesaRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'numero',
-        'planta_id'
+        'planta_id',
+        'sucursal_id'
     ];
 
     /**

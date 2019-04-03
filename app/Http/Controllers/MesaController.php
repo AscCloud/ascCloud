@@ -7,9 +7,12 @@ use App\Http\Requests\UpdateMesaRequest;
 use App\Repositories\MesaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Mesa;
 use Flash;
 use Response;
 use App\Models\Planta;
+use App\Models\Sucursal;
 
 class MesaController extends AppBaseController
 {
@@ -30,7 +33,8 @@ class MesaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $mesas = $this->mesaRepository->all();
+        $personal=Auth::user();
+        $mesas = Mesa::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
 
         return view('mesas.index')
             ->with('mesas', $mesas);
@@ -43,13 +47,20 @@ class MesaController extends AppBaseController
      */
     public function create()
     {
-        $plantas=Planta::all();
+        $personal=Auth::user();
+        $plantas=Planta::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
         $planta= new Planta();
         $planta->id=0;
         $planta->nombre_planta="---Selecione---";
         $plantas->push($planta);
         $plant=$plantas->sortBy('id')->pluck('nombre_planta','id');
-        return view('mesas.create')->with('plant',$plant);
+        $sucursals=Sucursal::all();
+        $sucursal=new Sucursal();
+        $sucursal->id=0;
+        $sucursal->nombre_sucursal="---Seleccione---";
+        $sucursals->push($sucursal);
+        $suc=$sucursals->sortBy('id')->pluck('nombre_sucursal','id');
+        return view('mesas.create')->with('plant',$plant)->with('suc', $suc);
     }
 
     /**
@@ -99,20 +110,27 @@ class MesaController extends AppBaseController
      */
     public function edit($id)
     {
+        $personal=Auth::user();
         $mesa = $this->mesaRepository->find($id);
-        $plantas=Planta::all();
+        $plantas=Planta::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
         $planta= new Planta();
         $planta->id=0;
         $planta->nombre_planta="---Selecione---";
         $plantas->push($planta);
         $plant=$plantas->sortBy('id')->pluck('nombre_planta','id');
+        $sucursals=Sucursal::all();
+        $sucursal=new Sucursal();
+        $sucursal->id=0;
+        $sucursal->nombre_sucursal="---Seleccione---";
+        $sucursals->push($sucursal);
+        $suc=$sucursals->sortBy('id')->pluck('nombre_sucursal','id');
         if (empty($mesa)) {
             Flash::error('Mesa not found');
 
             return redirect(route('mesas.index'));
         }
 
-        return view('mesas.edit')->with('mesa', $mesa)->with('plant',$plant);
+        return view('mesas.edit')->with('mesa', $mesa)->with('plant',$plant)->with('suc', $suc);
     }
 
     /**

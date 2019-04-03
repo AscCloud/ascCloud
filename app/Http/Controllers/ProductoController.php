@@ -8,6 +8,7 @@ use App\Repositories\ProductoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Flash;
 use Response;
 use App\Models\Sucursal;
@@ -33,7 +34,8 @@ class ProductoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $productos = $this->productoRepository->all();
+        $personal=Auth::user();
+        $productos = Producto::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
 
         return view('productos.index')
             ->with('productos', $productos);
@@ -46,13 +48,14 @@ class ProductoController extends AppBaseController
      */
     public function create()
     {
+        $personal=Auth::user();
         $sucursals=Sucursal::all();
         $sucursal=new Sucursal();
         $sucursal->id=0;
         $sucursal->nombre_sucursal="---Seleccione---";
         $sucursals->push($sucursal);
         $suc=$sucursals->sortBy('id')->pluck('nombre_sucursal','id');
-        $categorias=Categoria::all();
+        $categorias=Categoria::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
         $categoria=new Categoria();
         $categoria->id=0;
         $categoria->nombre_categoria="---Seleccione---";
@@ -119,6 +122,7 @@ class ProductoController extends AppBaseController
      */
     public function edit($id)
     {
+        $personal=Auth::user();
         $producto = $this->productoRepository->find($id);
         $sucursals=Sucursal::all();
         $sucursal=new Sucursal();
@@ -126,7 +130,7 @@ class ProductoController extends AppBaseController
         $sucursal->nombre_sucursal="---Seleccione---";
         $sucursals->push($sucursal);
         $suc=$sucursals->sortBy('id')->pluck('nombre_sucursal','id');
-        $categorias=Categoria::all();
+        $categorias=Categoria::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
         $categoria=new Categoria();
         $categoria->id=0;
         $categoria->nombre_categoria="---Seleccione---";

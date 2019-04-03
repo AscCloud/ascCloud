@@ -18,7 +18,7 @@ $(document).ready(function () {
                       $('#contenedor_producto').empty();
                       response.forEach(function(element,index){
                             cadena='<div class="col-sm-12 col-xs-12">'
-                            cadena=cadena+'<img class="imagen_producto" src="<?php echo e(Storage::url('+element['img_producto']+')); ?>"/>';
+                            cadena=cadena+'<img class="imagen_producto" src="'+element['img_producto']+'"/>';
                             cadena=cadena +'<div class="form-group col-sm-12 col-xs-12 btn btn-success"><a href="#"><span style="color:white" class="glyphicon glyphicon-plus"</span></a></div>';
                             cadena=cadena +'</div>';
                           $('#contenedor_producto').append(cadena);

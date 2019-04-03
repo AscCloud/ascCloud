@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use Flash;
 use Response;
 use DB;
@@ -38,7 +39,8 @@ class PersonalController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $personals = $this->personalRepository->all();
+        $personal=Auth::user();
+        $personals = Personal::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
 
         return view('personals.index')
             ->with('personals', $personals);
