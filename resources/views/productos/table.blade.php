@@ -3,7 +3,6 @@
         <tr>
             <th>Nombre</th>
         <th>Precio</th>
-        <th>Img</th>
         <th>Iva</th>
         <th>Sucursal</th>
         <th>Categoria</th>
@@ -15,7 +14,6 @@
         <tr>
             <td>{!! $producto->nombre_producto !!}</td>
             <td>{!! $producto->precio_producto !!}</td>
-            <td>{!! $producto->img_producto !!}</td>
             <td>{!! $producto->iva->iva !!}</td>
             <td>{!! $producto->sucursal->nombre_sucursal !!}</td>
             <td>{!! $producto->categoria->nombre_categoria !!}</td>
@@ -56,12 +54,6 @@
                         <p>{!! $producto->precio_producto !!}</p>
                     </div>
 
-                    <!-- Img Producto Field -->
-                    <div class="form-group">
-                        {!! Form::label('img_producto', 'Img') !!}
-                        <p>{!! $producto->img_producto !!}</p>
-                    </div>
-
                     <!-- Iva Id Field -->
                     <div class="form-group">
                         {!! Form::label('iva_id', 'Iva') !!}
@@ -86,3 +78,4 @@
         </div>
     </div>
 </div>
+

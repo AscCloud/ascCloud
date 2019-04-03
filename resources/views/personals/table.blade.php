@@ -1,3 +1,4 @@
+
 <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
     <thead>
         <tr>
@@ -67,12 +68,6 @@
                     <div class="form-group">
                         {!! Form::label('email_personal', 'Email') !!}
                         <p>{!! $personal->email_personal !!}</p>
-                    </div>
-
-                    <!-- Img Personal Field -->
-                    <div class="form-group">
-                        {!! Form::label('img_personal', 'Img') !!}
-                        <p>{!! $personal->img_personal !!}</p>
                     </div>
 
                     <!-- Nacimiento Personal Field -->
