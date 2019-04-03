@@ -1,10 +1,10 @@
 $(document).ready(function () {
-    $("#planta_id").change(function (e) {
-        var id = $("#planta_id").val();
+    $("#categoria_id").change(function (e) {
+        var id = $("#categoria_id").val();
         var token = $("#token").val();
         $.ajax({
             type: "POST",
-            url: "/planta/find/"+id,
+            url: "/categorias/find/"+id,
             data: { "_token": token, "id": id},
             success: function (response) {
                 if(response == "-1"){
@@ -14,21 +14,14 @@ $(document).ready(function () {
                 }
                 else{
                     var fillSecondary = function(){
-                      var selected = $('#planta_id').val();
-                      $('#contenedor_mesa').empty();
+                      var selected = $('#categoria_id').val();
+                      $('#contenedor_producto').empty();
                       response.forEach(function(element,index){
-                            cadena='<div class="mesa col-md-2 col-xs-6">'
-                            cadena=cadena+'<a href="#">';
-                            cadena=cadena +'<div class="cuartoactive "></div>';
-                            cadena=cadena +'<div class="primeractive">';
-                            cadena=cadena +'<div class="terceroactive"></div>';
-                            cadena=cadena + '</div>';
-                            cadena=cadena+ '<div class="centroactive">'+element['numero_mesa']+'</div>';
-                            cadena=cadena +'<div class="segundoactive"></div>';
-                            cadena=cadena +'</a>'
-                            cadena=cadena + '<br>'
-                            cadena=cadena +'</div>'
-                          $('#contenedor_mesa').append(cadena);
+                            cadena='<div class="col-sm-12 col-xs-12">'
+                            cadena=cadena+'<img class="imagen_producto" src="<?php echo e(Storage::url('+element['img_producto']+')); ?>"/>';
+                            cadena=cadena +'<div class="form-group col-sm-12 col-xs-12 btn btn-success"><a href="#"><span style="color:white" class="glyphicon glyphicon-plus"</span></a></div>';
+                            cadena=cadena +'</div>';
+                          $('#contenedor_producto').append(cadena);
                       });
 
                     }

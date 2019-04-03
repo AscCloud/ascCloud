@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateProductoRequest;
 use App\Repositories\ProductoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Flash;
 use Response;
 use App\Models\Sucursal;
@@ -74,7 +75,8 @@ class ProductoController extends AppBaseController
         $producto->nombre_producto=$request->nombre_producto;
         $producto->precio_producto=$request->precio_producto;
         if($request->hasFile('img_producto')){
-            $producto->img_producto=$request->file('img_producto')->store('public');
+            $path=Storage::disk('public')->put('image/productos',$request->file('img_producto'));
+            $producto->img_producto=asset($path);
         }
         $producto->iva_id=$request->iva_id;
         $producto->sucursal_id=$request->sucursal_id;
@@ -160,7 +162,8 @@ class ProductoController extends AppBaseController
         $producto->nombre_producto=$request->nombre_producto;
         $producto->precio_producto=$request->precio_producto;
         if($request->hasFile('img_producto')){
-            $producto->img_producto=$request->file('img_producto')->store('public');
+            $path=Storage::disk('public')->put('image/productos',$request->file('img_producto'));
+            $producto->img_producto=asset($path);
         }
         $producto->iva_id=$request->iva_id;
         $producto->sucursal_id=$request->sucursal_id;

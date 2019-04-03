@@ -60,3 +60,4 @@ Route::post('planta/find/{id}', 'ReservaController@planta');
 Route::get('/reservasm/{id}', 'ReservaController@reserva');
 
 Route::get('/pedido', 'PedidoController@index');
+Route::post('categorias/find/{id}', 'PedidoController@categorias');

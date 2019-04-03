@@ -8,7 +8,7 @@
 <!-- Img Personal Field -->
 <div class="form-group col-sm-6">
 
-    <img class="imagen" id="imagen"  src="{{ Storage::url($personal->img_personal) }}"/>
+    <img class="imagen" id="imagen"  src="{!! $personal->img_personal!!}"/>
     {!! Form::label('img_personal','Foto', ['for'=>'img_personal','id'=>'label']) !!}
     {!! Form::file('img_personal', null, ['class' => 'updatefile']) !!}
 </div>

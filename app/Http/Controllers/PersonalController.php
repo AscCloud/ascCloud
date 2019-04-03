@@ -99,7 +99,8 @@ class PersonalController extends AppBaseController
                 $personal->telefono_personal=$request->telefono_personal;
                 $personal->email_personal=$request->email_personal;
                 if($request->hasFile('img_personal')){
-                    $personal->img_personal=$request->file('img_personal')->store('public');
+                    $path=Storage::disk('public')->put('image/personal',$request->file('img_personal'));
+                    $personal->img_personal=asset($path);
                 }
                 $personal->nacimiento_personal=$request->nacimiento_personal;
                 $personal->sucursal_id=$request->sucursal_id;
@@ -205,7 +206,8 @@ class PersonalController extends AppBaseController
         $personal->telefono_personal=$request->telefono_personal;
         $personal->email_personal=$request->email_personal;
         if($request->hasFile('img_personal')){
-            $personal->img_personal=$request->file('img_personal')->store('public');
+            $path=Storage::disk('public')->put('image/personal',$request->file('img_personal'));
+            $personal->img_personal=asset($path);
         }
         $personal->nacimiento_personal=$request->nacimiento_personal;
         $personal->sucursal_id=$request->sucursal_id;
