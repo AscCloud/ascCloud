@@ -1,9 +1,9 @@
-<table class="table table-responsive" id="mesas-table">
+<table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
     <thead>
         <tr>
             <th>Numero</th>
         <th>Planta Id</th>
-            <th colspan="3">Action</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>

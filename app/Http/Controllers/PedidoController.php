@@ -35,4 +35,10 @@ class PedidoController extends Controller
         return view('pedido.index')->with('id_mesa',$id_mesa)->with('id_personal',$id_personal);
     }
 
+    public function categorias(Request $request){
+        $personal=Auth::user();
+        $productos=Producto::where('sucursal_id','=',$personal->personal->sucursal_id)->where('categoria_id','=',$request->id)->get();
+        return $productos;
+    }
+
 }

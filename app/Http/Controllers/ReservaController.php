@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Planta;
 use App\Models\Mesa;
+use Illuminate\Support\Facades\Auth;
 use Flash;
 use Response;
 use Session;
@@ -13,7 +14,8 @@ class ReservaController extends Controller
 {
     //
     public function index(){
-        $plantas=Planta::all();
+        $personal=Auth::user();
+        $plantas=Planta::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
         $planta= new Planta();
         $planta->id=0;
         $planta->nombre_planta="---Selecione---";
