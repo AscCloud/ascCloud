@@ -1,3 +1,6 @@
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/popup.css') }}" />
+@endsection
 <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
     <thead>
         <tr>
@@ -31,9 +34,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">
-                    <span>×</span>
+                    <i class="glyphicon glyphicon-remove-circle"></i>
                 </button>
-                <h4>Crear</h4>
+                <label style="font-size: 30px">Información</label>
             </div>
              <div class="modal-body">
                     <!-- Nombre Categoria Field -->
@@ -79,7 +82,7 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <a href="{!! route('categorias.index') !!}" class="btn btn-default" data-dismiss="modal">Regresar</a>
+                <a href="{!! route('categorias.index') !!}" class="btn btn-danger" data-dismiss="modal">Regresar</a>
             </div>
         </div>
     </div>

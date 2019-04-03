@@ -1,0 +1,23 @@
+.modal-content{
+    background:#E1E0DF;
+	font-family: 'Georgia', serif;
+    text-align: center;
+	transition: .3s ease all;
+    opacity: 1;
+    margin: 8px;
+    border-radius: 30px;
+    height: 100;
+    width: 500px;
+}
+
+.modal-content label{
+    color: black;
+    border-width: 1px;
+    font-size: 18px;
+}
+.modal-body{
+    background: #EEECEB;
+}
+
+
+

@@ -1,4 +1,6 @@
-
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/popup.css') }}" />
+@endsection
 <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
     <thead>
         <tr>
@@ -36,15 +38,15 @@
 
 <!--Pop up para mostrar la información -->
 
-<div class="modal fade" id="mostrar">
+<div class="modal fade" id="mostrar" >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span>×</span>
-                </button>
-                <h4></h4>
-            </div>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <i class="glyphicon glyphicon-remove-circle"></i>
+                    </button>
+                    <label style="font-size: 30px">Información</label>
+             </div>
              <div class="modal-body">
                     <!-- Ruc Personal Field -->
                     <div class="form-group">
@@ -60,7 +62,7 @@
 
                     <!-- Telefono Personal Field -->
                     <div class="form-group">
-                        {!! Form::label('telefono_personal', 'Telefono') !!}
+                        {!! Form::label('telefono_personal', 'Teléfono') !!}
                         <p>{!! $personal->telefono_personal !!}</p>
                     </div>
 
@@ -83,7 +85,7 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <a href="{!! route('personals.index') !!}" class="btn btn-default" data-dismiss="modal">Regresar</a>
+                <a href="{!! route('personals.index') !!}" class="btn btn-danger" data-dismiss="modal">Regresar</a>
             </div>
         </div>
     </div>

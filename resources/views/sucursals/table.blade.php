@@ -1,3 +1,6 @@
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/popup.css') }}" />
+@endsection
 <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
     <thead>
         <tr>
@@ -33,12 +36,12 @@
 <div class="modal fade" id="mostrar">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span>×</span>
-                </button>
-                <h4>Crear</h4>
-            </div>
+                <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <i class="glyphicon glyphicon-remove-circle"></i>
+                        </button>
+                        <label style="font-size: 30px">Información</label>
+                    </div>
              <div class="modal-body">
                 <!-- Nombre Sucursal Field -->
                 <div class="form-group">
@@ -48,13 +51,13 @@
 
                 <!-- Direccion Sucursal Field -->
                 <div class="form-group">
-                    {!! Form::label('direccion_sucursal', 'Direccion') !!}
+                    {!! Form::label('direccion_sucursal', 'Dirección') !!}
                     <p>{!! $sucursal->direccion_sucursal !!}</p>
                 </div>
 
                 <!-- Telefono Sucursal Field -->
                 <div class="form-group">
-                    {!! Form::label('telefono_sucursal', 'Telefono') !!}
+                    {!! Form::label('telefono_sucursal', 'Teléfono') !!}
                     <p>{!! $sucursal->telefono_sucursal !!}</p>
                 </div>
 
@@ -65,7 +68,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="{!! route('sucursals.index') !!}" class="btn btn-default" data-dismiss="modal">Regresar</a>
+                <a href="{!! route('sucursals.index') !!}" class="btn btn-danger" data-dismiss="modal">Regresar</a>
             </div>
         </div>
     </div>

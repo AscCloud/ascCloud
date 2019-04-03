@@ -1,3 +1,6 @@
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/popup.css') }}" />
+@endsection
 <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
     <thead>
         <tr>
@@ -26,12 +29,12 @@
 <div class="modal fade" id="mostrar">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span>×</span>
-                </button>
-                <h4>Crear</h4>
-            </div>
+                <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <i class="glyphicon glyphicon-remove-circle"></i>
+                        </button>
+                        <label style="font-size: 30px">Información</label>
+                    </div>
              <div class="modal-body">
                     <!-- Iva Field -->
                     <div class="form-group">
@@ -40,7 +43,7 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <a href="{!! route('ivas.index') !!}" class="btn btn-default" data-dismiss="modal">Regresar</a>
+                <a href="{!! route('ivas.index') !!}" class="btn btn-danger" data-dismiss="modal">Regresar</a>
             </div>
         </div>
     </div>
