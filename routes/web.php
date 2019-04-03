@@ -45,3 +45,18 @@ Route::resource('ivas', 'IvaController');
 Route::resource('productos', 'ProductoController');
 Route::post('empresa/find/{id}', 'SucursalController@empresas');
 
+
+
+
+
+
+
+Route::resource('plantas', 'PlantaController');
+
+Route::resource('mesas', 'MesaController');
+
+Route::get('reserva','ReservaController@index');
+Route::post('planta/find/{id}', 'ReservaController@planta');
+Route::get('/reservasm/{id}', 'ReservaController@reserva');
+
+Route::get('/pedido', 'PedidoController@index');

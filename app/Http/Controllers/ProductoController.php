@@ -74,7 +74,7 @@ class ProductoController extends AppBaseController
         $producto->nombre_producto=$request->nombre_producto;
         $producto->precio_producto=$request->precio_producto;
         if($request->hasFile('img_producto')){
-            $personal->img_producto=$request->file('img_producto')->store('public');
+            $producto->img_producto=$request->file('img_producto')->store('public');
         }
         $producto->iva_id=$request->iva_id;
         $producto->sucursal_id=$request->sucursal_id;
@@ -160,7 +160,7 @@ class ProductoController extends AppBaseController
         $producto->nombre_producto=$request->nombre_producto;
         $producto->precio_producto=$request->precio_producto;
         if($request->hasFile('img_producto')){
-            $personal->img_producto=$request->file('img_producto')->store('public');
+            $producto->img_producto=$request->file('img_producto')->store('public');
         }
         $producto->iva_id=$request->iva_id;
         $producto->sucursal_id=$request->sucursal_id;

@@ -1,28 +1,24 @@
 @extends('layouts.app')
-@section('css')
-    {!! Html::style('css/mesa.css') !!}
-@endsection
+
 @section('content')
     <section class="content-header">
         <h1>
-            Personal
+            Mesa
         </h1>
     </section>
     <div class="content">
         @include('adminlte-templates::common.errors')
         <div class="box box-primary">
+
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'personals.store','enctype'=>'multipart/form-data']) !!}
+                    {!! Form::open(['route' => 'mesas.store']) !!}
 
-                        @include('personals.fields')
+                        @include('mesas.fields')
 
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
-@endsection
-@section('scripts')
-    {!! Html::script('js/dependencia.js') !!}
 @endsection

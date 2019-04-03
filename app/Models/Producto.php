@@ -57,7 +57,6 @@ class Producto extends Model
     public static $rules = [
         'nombre_producto' => 'required',
         'precio_producto' => 'required',
-        'img_producto' => 'required',
         'iva_id' => 'required',
         'sucursal_id' => 'required',
         'categoria_id' => 'required'

@@ -1,0 +1,175 @@
+.centro{
+
+	width: 100px;
+    height: 50px;
+    border: 3px solid #555;
+    background: #fff;
+    border-radius: 60px 60px 60px 60px;
+    -moz-border-radius: 60px 60px 60px 60px;
+    -webkit-border-radius: 60px 60px 60px 60px;
+    position: relative;
+    text-align: center;
+    font-size: 30px;
+    top:5px;
+    left: 30px;
+    color: #000000;
+}
+.primer{
+	width: 40px;
+    height: 15px;
+    border: 3px solid #555;
+    background: #fff;
+    border-radius: 60px 60px 60px 60px;
+    -moz-border-radius: 60px 60px 60px 60px;
+    -webkit-border-radius: 60px 60px 60px 60px;
+    position: relative;
+    left: 35px;
+}
+.segundo{
+	width: 40px;
+    height: 15px;
+    border: 3px solid #555;
+    background: #fff;
+    border-radius: 60px 60px 60px 60px;
+    -moz-border-radius: 60px 60px 60px 60px;
+    -webkit-border-radius: 60px 60px 60px 60px;
+    position: relative;
+    top:8px;
+    left: 35px;
+}
+.tercero{
+	width: 40px;
+    height: 15px;
+    border: 3px solid #555;
+    background: #fff;
+    border-radius: 60px 60px 60px 60px;
+    -moz-border-radius: 60px 60px 60px 60px;
+    -webkit-border-radius: 60px 60px 60px 60px;
+    position: relative;
+    left: 40px;
+    top:70px;
+}
+.cuarto{
+	width: 40px;
+    height: 15px;
+    border: 3px solid #555;
+    background: #fff;
+    border-radius: 60px 60px 60px 60px;
+    -moz-border-radius: 60px 60px 60px 60px;
+    -webkit-border-radius: 60px 60px 60px 60px;
+    position: relative;
+    top:15px;
+    left:80px;
+}
+.quinto{
+	width: 40px;
+    height: 15px;
+    border: 3px solid #555;
+    background: #fff;
+    border-radius: 60px 60px 60px 60px;
+    -moz-border-radius: 60px 60px 60px 60px;
+    -webkit-border-radius: 60px 60px 60px 60px;
+    position: relative;
+    top:180px;
+}
+
+.sexto{
+	width: 40px;
+    height: 15px;
+    border: 3px solid #555;
+    background: #fff;
+    border-radius: 60px 60px 60px 60px;
+    -moz-border-radius: 60px 60px 60px 60px;
+    -webkit-border-radius: 60px 60px 60px 60px;
+    position: relative;
+    top:100px;
+}
+
+.centroactive{
+
+	width: 100px;
+    height: 50px;
+    border: 3px solid #555;
+    background: #FE2E2E;
+    border-radius: 60px 60px 60px 60px;
+    -moz-border-radius: 60px 60px 60px 60px;
+    -webkit-border-radius: 60px 60px 60px 60px;
+    position: relative;
+    text-align: center;
+    font-size: 30px;
+    top:5px;
+    left: 30px;
+    color: #000000;
+}
+.primeractive{
+	width: 40px;
+    height: 15px;
+    border: 3px solid #555;
+    background: #FE2E2E;
+    border-radius: 60px 60px 60px 60px;
+    -moz-border-radius: 60px 60px 60px 60px;
+    -webkit-border-radius: 60px 60px 60px 60px;
+    position: relative;
+    left: 35px;
+}
+.segundoactive{
+	width: 40px;
+    height: 15px;
+    border: 3px solid #555;
+    background: #FE2E2E;
+    border-radius: 60px 60px 60px 60px;
+    -moz-border-radius: 60px 60px 60px 60px;
+    -webkit-border-radius: 60px 60px 60px 60px;
+    position: relative;
+    top:8px;
+    left: 35px;
+}
+.terceroactive{
+	width: 40px;
+    height: 15px;
+    border: 3px solid #555;
+    background: #FE2E2E;
+    border-radius: 60px 60px 60px 60px;
+    -moz-border-radius: 60px 60px 60px 60px;
+    -webkit-border-radius: 60px 60px 60px 60px;
+    position: relative;
+    left: 40px;
+    top:70px;
+}
+.cuartoactive{
+	width: 40px;
+    height: 15px;
+    border: 3px solid #555;
+    background: #FE2E2E;
+    border-radius: 60px 60px 60px 60px;
+    -moz-border-radius: 60px 60px 60px 60px;
+    -webkit-border-radius: 60px 60px 60px 60px;
+    position: relative;
+    top:15px;
+    left:80px;
+}
+.quintoactive{
+	width: 40px;
+    height: 15px;
+    border: 3px solid #555;
+    background: #FE2E2E;
+    border-radius: 60px 60px 60px 60px;
+    -moz-border-radius: 60px 60px 60px 60px;
+    -webkit-border-radius: 60px 60px 60px 60px;
+    position: relative;
+    top:180px;
+}
+
+.sextoactive{
+	width: 40px;
+    height: 15px;
+    border: 3px solid #555;
+    background: #FE2E2E;
+    border-radius: 60px 60px 60px 60px;
+    -moz-border-radius: 60px 60px 60px 60px;
+    -webkit-border-radius: 60px 60px 60px 60px;
+    position: relative;
+    top:100px;
+}
+
+

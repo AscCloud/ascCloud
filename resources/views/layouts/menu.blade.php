@@ -28,3 +28,13 @@
 </li>
 
 
+
+
+<li class="{{ Request::is('plantas*') ? 'active' : '' }}">
+    <a href="{!! route('plantas.index') !!}"><i class="fa fa-edit"></i><span>Plantas</span></a>
+</li>
+
+<li class="{{ Request::is('mesas*') ? 'active' : '' }}">
+    <a href="{!! route('mesas.index') !!}"><i class="fa fa-edit"></i><span>Mesas</span></a>
+</li>
+
