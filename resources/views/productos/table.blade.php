@@ -7,7 +7,7 @@
         <th>Iva</th>
         <th>Sucursal</th>
         <th>Categoria</th>
-            <th>Acciones</th>
+        <th></th>
         </tr>
     </thead>
     <tbody>
@@ -65,19 +65,19 @@
                     <!-- Iva Id Field -->
                     <div class="form-group">
                         {!! Form::label('iva_id', 'Iva') !!}
-                        <p>{!! $producto->iva_id !!}</p>
+                        <p>{!! $producto->iva->iva !!}</p>
                     </div>
 
                     <!-- Sucursal Id Field -->
                     <div class="form-group">
                         {!! Form::label('sucursal_id', 'Sucursal') !!}
-                        <p>{!! $producto->sucursal_id !!}</p>
+                        <p>{!! $producto->sucursal->nombre_sucursal!!}</p>
                     </div>
 
                     <!-- Categoria Id Field -->
                     <div class="form-group">
                         {!! Form::label('categoria_id', 'Categoria') !!}
-                        <p>{!! $producto->categoria_id !!}</p>
+                        <p>{!! $producto->categoria->nombre_categoria !!}</p>
                     </div>
             </div>
             <div class="modal-footer">

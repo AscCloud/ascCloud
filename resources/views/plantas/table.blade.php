@@ -1,10 +1,10 @@
 <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
     <thead>
         <tr>
-            <th>Nombre Planta</th>
-        <th>Descuento Planta</th>
-        <th>Sucursal Id</th>
-            <th>Action</th>
+        <th>Nombre</th>
+        <th>Descuento</th>
+        <th>Sucursal</th>
+        <th></th>
         </tr>
     </thead>
     <tbody>
@@ -16,7 +16,7 @@
             <td>
                 {!! Form::open(['route' => ['plantas.destroy', $planta->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('plantas.show', [$planta->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="#" class='btn btn-default btn-xs' data-toggle="modal" data-target="#mostrar"><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="{!! route('plantas.edit', [$planta->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 </div>
@@ -26,3 +26,40 @@
     @endforeach
     </tbody>
 </table>
+
+<!--Pop up para mostrar la información -->
+<div class="modal fade" id="mostrar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>×</span>
+                </button>
+                <h4></h4>
+            </div>
+             <div class="modal-body">
+
+                <!-- Nombre Planta Field -->
+                <div class="form-group">
+                    {!! Form::label('nombre_planta', 'Nombre') !!}
+                    <p>{!! $planta->nombre_planta !!}</p>
+                </div>
+
+                <!-- Descuento Planta Field -->
+                <div class="form-group">
+                    {!! Form::label('descuento_planta', 'Descuento') !!}
+                    <p>{!! $planta->descuento_planta !!}</p>
+                </div>
+
+                <!-- Sucursal Id Field -->
+                <div class="form-group">
+                    {!! Form::label('sucursal_id', 'Sucursal') !!}
+                    <p>{!! $planta->sucursal->nombre_sucursal !!}</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="{!! route('plantas.index') !!}" class="btn btn-default" data-dismiss="modal">Regresar</a>
+            </div>
+        </div>
+    </div>
+</div>

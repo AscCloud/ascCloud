@@ -2,8 +2,8 @@
     <thead>
         <tr>
             <th>Numero</th>
-        <th>Planta Id</th>
-            <th>Action</th>
+        <th>Planta</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -24,3 +24,34 @@
     @endforeach
     </tbody>
 </table>
+
+<!--Pop up para mostrar la información -->
+<div class="modal fade" id="mostrar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>×</span>
+                </button>
+                <h4></h4>
+            </div>
+             <div class="modal-body">
+
+                <!-- Numero Field -->
+                <div class="form-group">
+                    {!! Form::label('numero', 'Numero') !!}
+                    <p>{!! $mesa->numero_mesa !!}</p>
+                </div>
+
+                <!-- Planta Id Field -->
+                <div class="form-group">
+                    {!! Form::label('planta_id', 'Planta') !!}
+                    <p>{!! $mesa->planta->nombre_planta !!}</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="{!! route('mesas.index') !!}" class="btn btn-default" data-dismiss="modal">Regresar</a>
+            </div>
+        </div>
+    </div>
+</div>
