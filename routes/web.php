@@ -66,3 +66,6 @@ Route::get('/pedido', 'PedidoController@index');
 Route::post('categorias/find/{id}', 'PedidoController@categorias');
 Route::get('/pedido/detalle', 'PedidoController@show');
 Route::get('/pedido/detalle/add/{producto}','PedidoController@add');
+Route::get('/pedido/detalle/eliminar/{producto}/{dot}','PedidoController@delete');
+Route::get('/pedido/detalle/update/{producto}/{dot}/{cantidad}/{observacion}','PedidoController@update');
+Route::get('/pedido/detalle/update/{producto}/{dot}/{cantidad}','PedidoController@sinupdate');

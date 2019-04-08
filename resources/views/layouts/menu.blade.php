@@ -38,3 +38,7 @@
     <a href="{!! route('mesas.index') !!}"><i class="fa fa-edit"></i><span>Mesas</span></a>
 </li>
 
+<li class="{{ Request::is('reserva*') ? 'active' : '' }}">
+    <a href="{!! asset('/reserva') !!}"><i class="fa fa-edit"></i><span>Reserva</span></a>
+</li>
+

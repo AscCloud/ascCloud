@@ -20,6 +20,7 @@ class PedidoController extends Controller
         }
     }
     //
+
     public function index(){
         $personal=Auth::user();
         $categorias=Categoria::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
@@ -34,25 +35,89 @@ class PedidoController extends Controller
 
     public function show(){
         $cart=Session::get('cart');
-        return view('detalle_pedido.index')->with('cart',$cart);
-        // return $cart;
+        $subtotal = $this->subtotal();
+        $servicio=$this->servicio();
+        $total=$this->total($servicio);
+        if(empty($cart)){
+            $iva='';
+        }else{
+            $iva=Session::get('iva');
+
+        }
+        return view('detalle_pedido.index')->with('cart',$cart)->with('subtotal',$subtotal)->with('iva',$iva)->with('total',$total)->with('servicio',$servicio);
     }
 
-    public function add(Request $request,Producto $producto){
+    public function add(Producto $producto){
         $cart=Session::get('cart');
         //$dato=array_search($producto->id, array_column($cart, 'producto_id'));
         $detalle=new Detalle_pedido();
         $detalle->producto_id=$producto->id;
         $detalle->nombre_producto=$producto->nombre_producto;
         $detalle->img_producto=$producto->img_producto;
+        Session::put('iva',$producto->iva->iva);
         $detalle->cantidad_detalle_pedido=1;
-        $detalle->total_detalle_pedido=$producto->precio_producto * 1.12;
+        $detalle->precio_producto=$producto->precio_producto;
+        $detalle->observacion_detalle_pedido='';
         $cart[]=$detalle;
         Session::put('cart',$cart);
         // Session::forget('cart');
         return redirect('pedido');
         // return $request;
     }
+
+    public function delete(Producto $producto,$dot){
+        $cart=Session::get('cart');
+        unset($cart[$dot]);
+        Session::put('cart',$cart);
+        return redirect('pedido/detalle');
+    }
+
+    public function update(Producto $producto,$dot,$cantidad,$observacion){
+        $cart=Session::get('cart');
+        $cart[$dot]->cantidad_detalle_pedido=$cantidad;
+        $cart[$dot]->observacion_detalle_pedido=$observacion;
+        Session::put('cart',$cart);
+        return redirect('pedido/detalle');
+    }
+
+    private function subtotal(){
+        $cart=Session::get('cart');
+        $subtotal=0;
+        foreach ($cart as $clave => $item) {
+            $subtotal +=$item->precio_producto *$item->cantidad_detalle_pedido;
+        }
+        return $subtotal;
+    }
+
+    private function total($servicio){
+        $cart=Session::get('cart');
+        $total=0;
+        foreach ($cart as $clave => $item) {
+            $total +=(($item->precio_producto)*(($item->iva/100)+1)) *$item->cantidad_detalle_pedido;
+        }
+        $total=$total+$servicio;
+        return $total;
+    }
+
+    private function servicio(){
+        $cart=Session::get('cart');
+        $total=0;
+        $servicio=0;
+        foreach ($cart as $clave => $item) {
+            $total +=(($item->precio_producto)*(($item->iva/100)+1)) *$item->cantidad_detalle_pedido;
+        }
+        $servicio=$total*0.10;
+        return $servicio;
+    }
+
+    public function sinupdate(Producto $producto,$dot,$cantidad){
+        $cart=Session::get('cart');
+        $cart[$dot]->cantidad_detalle_pedido=$cantidad;
+        $cart[$dot]->observacion_detalle_pedido='';
+        Session::put('cart',$cart);
+        return redirect('pedido/detalle');
+    }
+
     public function pedido(){
         $id_mesa=Session::get('idm');
         $personal=Auth::user();
@@ -66,5 +131,6 @@ class PedidoController extends Controller
         $productos=Producto::where('sucursal_id','=',$personal->personal->sucursal_id)->where('categoria_id','=',$request->id)->get();
         return $productos;
     }
+
 
 }
