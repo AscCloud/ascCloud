@@ -4,8 +4,17 @@
 @endsection
 @section('content')
 <div class="content">
+    @include('flash::message')
     <div class="box box-primary">
         <div class="box-body">
+            <div class="row" style="margin:5px">
+                <div class="col-lg-6 col-xs-6">
+                    <a href="/pedido" class="btn btn-primary col-lg-12 col-xs-12" ><i class="fa fa-arrow-circle-left"></i> Regresar</a>
+                </div>
+                <div class="col-lg-6 col-xs-6">
+                    <a href="/pedido/create" class="btn btn-success col-lg-12 col-xs-12" ><i class="fa fa-save"></i> Guardar</a>
+                </div>
+            </div>
             <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
                 <thead>
                     <tr>

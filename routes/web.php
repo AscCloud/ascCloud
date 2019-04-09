@@ -69,3 +69,6 @@ Route::get('/pedido/detalle/add/{producto}','PedidoController@add');
 Route::get('/pedido/detalle/eliminar/{producto}/{dot}','PedidoController@delete');
 Route::get('/pedido/detalle/update/{producto}/{dot}/{cantidad}/{observacion}','PedidoController@update');
 Route::get('/pedido/detalle/update/{producto}/{dot}/{cantidad}','PedidoController@sinupdate');
+Route::get('/pedido/create','PedidoController@create');
+Route::get('/pedido/list','PedidoController@list');
+Route::get('/pedido/edit/{id}','PedidoController@edit');

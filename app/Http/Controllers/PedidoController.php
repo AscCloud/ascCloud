@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Producto;
 use App\Models\Categoria;
 use App\Detalle_pedido;
+use DB;
 
 class PedidoController extends Controller
 {
@@ -22,15 +23,20 @@ class PedidoController extends Controller
     //
 
     public function index(){
-        $personal=Auth::user();
-        $categorias=Categoria::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
-        $categoria=new Categoria();
-        $categoria->id=0;
-        $categoria->nombre_categoria='---Seleccione---';
-        $categorias->push($categoria);
-        $cat=$categorias->sortBy('id')->pluck('nombre_categoria','id');
-        return view('pedido.index')->with('cat',$cat);
-
+        $id_mesa=Session::get('idm');
+        if(!empty($id_mesa)){
+            $personal=Auth::user();
+            $categorias=Categoria::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
+            $categoria=new Categoria();
+            $categoria->id=0;
+            $categoria->nombre_categoria='---Seleccione---';
+            $categorias->push($categoria);
+            $cat=$categorias->sortBy('id')->pluck('nombre_categoria','id');
+            return view('pedido.index')->with('cat',$cat);
+        }else{
+            return redirect('reserva');
+        }
+        // Session::forget('idm');
     }
 
     public function show(){
@@ -132,5 +138,65 @@ class PedidoController extends Controller
         return $productos;
     }
 
+    public function create(){
+        $ped=Session::get('cart');
+        if(!empty($ped)){
+            try{
+                DB::beginTransaction();
+                $cabecera=new Pedido();
+                $personal=Auth::user();
+                $cabecera->sucursal_id=$personal->personal->sucursal_id;
+                $cabecera->personal_id=$personal->personal->id;
+                $cabecera->mesa_id=Session::get('idm');
+                $cabecera->fecha_pedido=\Carbon\Carbon::today();
+                $servicio=$this->servicio();
+                $subtotal = $this->subtotal();
+                $cabecera->total_pedido=$this->total($servicio);
+                $iva=Session::get('iva');
+                $cabecera->iva_pedido=round($subtotal*($iva/100),2);
+                $cart=Session::get('cart');
+                $cabecera->save();
+                $detalles=[];
+                foreach ($cart as $clave => $item) {
+                    $detalle_pedido=new Detalle_pedido();
+                    $detalle_pedido->cantidad_detalle_pedido=$item->cantidad_detalle_pedido;
+                    if($item->observacion_detalle_pedido!=''){
+                        $detalle_pedido->observacion_detalle_pedido=$item->observacion_detalle_pedido;
+                    }
 
+                    $detalle_pedido->total_detalle_pedido=round($item->precio_producto * $item->cantidad_detalle_pedido,2);
+                    $detalle_pedido->producto_id=$item->producto_id;
+                    $detalles[]=$detalle_pedido;
+                }
+                $cabecera->detalle()->saveMany($detalles);
+                DB::commit();
+                Flash::success('Pedido saved successfully.');
+                Session::forget('idm');
+                Session::forget('cart');
+                return redirect('pedido');
+            }catch(\Exception $e){
+                DB::rollBack();
+                return $e;
+            }
+        }else{
+            Flash::error('No se encuentran productos agregados.');
+            return redirect('pedido/detalle');
+        }
+    }
+
+    public function list(){
+        $personal=Auth::user();
+        $pedidos=Pedido::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
+        $detalles=[];
+        foreach ($pedidos as $clave => $item) {
+            $detalle_pedido=Detalle_pedido::where('pedido_id','=',$item->id)->get();
+            $detalles[]=$detalle_pedido;
+        }
+        return view('pedido.list')->with('pedidos',$pedidos)->with('detalle',$detalles);
+    }
+
+    public function edit($id){
+        $detalle=Detalle_pedido::where('pedido_id','=',$id)->get();
+        return $detalle;
+    }
 }

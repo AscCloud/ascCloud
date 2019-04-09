@@ -16,8 +16,8 @@ class CreateDetallePedidosTable extends Migration
         Schema::create('detalle_pedidos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('cantidad_detalle_pedido');
-            $table->string('observacion_detalle_pedido', 300);
-            $table->boolean('estado_total_detalle_pedido')->default(false);
+            $table->string('observacion_detalle_pedido', 300)->nullable();
+            $table->boolean('estado_detalle_pedido')->default(false);
             $table->decimal('total_detalle_pedido',10,2);
             $table->integer('pedido_id')->unsigned();
             $table->integer('producto_id')->unsigned();
