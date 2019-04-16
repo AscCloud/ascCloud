@@ -33,7 +33,7 @@
     @endforeach
     </tbody>
 </table>
-
+@foreach($productos as $producto)
 <!--Pop up para mostrar la información -->
 <div class="modal fade" id="mostrar">
     <div class="modal-dialog">
@@ -81,4 +81,4 @@
         </div>
     </div>
 </div>
-
+@endforeach

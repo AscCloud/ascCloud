@@ -29,6 +29,10 @@ class Sucursal extends Model
         'nombre_sucursal',
         'direccion_sucursal',
         'telefono_sucursal',
+        'secuencial_sucursal',
+        'establecimiento_sucursal',
+        'punto_emision_sucursal',
+        'img_sucursal',
         'empresa_id'
     ];
 
@@ -41,6 +45,10 @@ class Sucursal extends Model
         'nombre_sucursal' => 'string',
         'direccion_sucursal' => 'string',
         'telefono_sucursal' => 'string',
+        'secuencial_sucursal' => 'string',
+        'establecimiento_sucursal' => 'string',
+        'punto_emision_sucursal' => 'string',
+        'img_sucursal' => 'string',
         'empresa_id' => 'integer'
     ];
 
@@ -53,6 +61,10 @@ class Sucursal extends Model
         'nombre_sucursal' => 'required',
         'direccion_sucursal' => 'required',
         'telefono_sucursal' => 'required',
+        'secuencial_sucursal' => 'required',
+        'establecimiento_sucursal' => 'required',
+        'punto_emision_sucursal' => 'required',
+        'img_sucursal' => 'required',
         'empresa_id' => 'required'
     ];
 

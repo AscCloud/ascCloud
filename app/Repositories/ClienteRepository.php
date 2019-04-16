@@ -2,29 +2,26 @@
 
 namespace App\Repositories;
 
-use App\Models\Sucursal;
+use App\Models\Cliente;
 use App\Repositories\BaseRepository;
 
 /**
- * Class SucursalRepository
+ * Class ClienteRepository
  * @package App\Repositories
- * @version March 26, 2019, 11:09 am UTC
+ * @version April 10, 2019, 3:15 pm -05
 */
 
-class SucursalRepository extends BaseRepository
+class ClienteRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'nombre_sucursal',
-        'direccion_sucursal',
-        'telefono_sucursal',
-        'secuencial_sucursal',
-        'establecimiento_sucursal',
-        'punto_emision_sucursal',
-        'img_sucursal',
-        'empresa_id'
+        'ruc_cliente',
+        'nombre_cliente',
+        'telefono_cliente',
+        'email_cliente',
+        'nacimiento_cliente'
     ];
 
     /**
@@ -42,6 +39,6 @@ class SucursalRepository extends BaseRepository
      **/
     public function model()
     {
-        return Sucursal::class;
+        return Cliente::class;
     }
 }

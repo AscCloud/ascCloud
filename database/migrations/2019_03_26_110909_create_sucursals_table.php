@@ -18,6 +18,10 @@ class CreateSucursalsTable extends Migration
             $table->string('nombre_sucursal', 60);
             $table->string('direccion_sucursal', 200);
             $table->string('telefono_sucursal', 10);
+            $table->string('secuencial_sucursal', 9)->default('000000000');
+            $table->string('establecimiento_sucursal', 3);
+            $table->string('punto_emision_sucursal', 3);
+            $table->string('img_sucursal', 200);
             $table->integer('empresa_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();

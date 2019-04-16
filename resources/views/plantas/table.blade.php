@@ -29,7 +29,7 @@
     @endforeach
     </tbody>
 </table>
-
+@foreach($plantas as $planta)
 <!--Pop up para mostrar la información -->
 <div class="modal fade" id="mostrar">
     <div class="modal-dialog">
@@ -66,3 +66,5 @@
         </div>
     </div>
 </div>
+@endforeach
+

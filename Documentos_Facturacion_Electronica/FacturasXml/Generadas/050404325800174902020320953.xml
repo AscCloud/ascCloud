@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Factura>
+  <infoTributaria>
+    <ambiente>01</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>1</razonSocial>
+    <nombreComercial>1</nombreComercial>
+    <ruc>1</ruc>
+    <claveAcceso>1</claveAcceso>
+    <codDoc>1</codDoc>
+    <estab>1</estab>
+    <ptoEmi>001</ptoEmi>
+    <secuencial>001</secuencial>
+    <dirMatriz>direccion matris</dirMatriz>
+  </infoTributaria>
+  <infoFactura>
+    <fechaEmision>01</fechaEmision>
+    <dirEstablecimiento>1</dirEstablecimiento>
+    <contribuyenteEspecial>000</contribuyenteEspecial>
+    <obligadoContabilidad>1</obligadoContabilidad>
+    <tipoIdentificacionComprador>1</tipoIdentificacionComprador>
+    <razonSocialComprador>1</razonSocialComprador>
+    <identificacionComprador>1</identificacionComprador>
+    <totalSinImpuestos>1</totalSinImpuestos>
+    <totalDescuento>001</totalDescuento>
+    <totalConImpuestos>
+      <totalImpuesto>
+        <codigo>001</codigo>
+        <codigoPorcentaje>001</codigoPorcentaje>
+        <descuentoAdicional>001</descuentoAdicional>
+        <baseImponible>001</baseImponible>
+        <valor>001</valor>
+      </totalImpuesto>
+    </totalConImpuestos>
+    <propina>1</propina>
+    <importeTotal>1</importeTotal>
+    <moneda>DOLAR</moneda>
+  </infoFactura>
+  <detalles>
+    <detalle>
+      <codigoPrincipal>1</codigoPrincipal>
+      <codigoAuxiliar>1</codigoAuxiliar>
+      <descripcion>descripcion del producto 1 / 1</descripcion>
+      <cantidad>21</cantidad>
+      <precioUnitario>200</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>1</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>001</codigo>
+          <codigoPorcentaje>001</codigoPorcentaje>
+          <tarifa>001</tarifa>
+          <baseImponible>001</baseImponible>
+          <valor>001</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>1</codigoPrincipal>
+      <codigoAuxiliar>1</codigoAuxiliar>
+      <descripcion>descricon del producto 2 / 2</descripcion>
+      <cantidad>12</cantidad>
+      <precioUnitario>100</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>1</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>001</codigo>
+          <codigoPorcentaje>001</codigoPorcentaje>
+          <tarifa>001</tarifa>
+          <baseImponible>001</baseImponible>
+          <valor>001</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+  </detalles>
+</Factura>

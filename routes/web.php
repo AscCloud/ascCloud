@@ -72,3 +72,21 @@ Route::get('/pedido/detalle/update/{producto}/{dot}/{cantidad}','PedidoControlle
 Route::get('/pedido/create','PedidoController@create');
 Route::get('/pedido/list','PedidoController@list');
 Route::get('/pedido/edit/{id}','PedidoController@edit');
+
+Route::get('/reportes','ReporteController@ventas');
+
+
+Route::resource('clientes', 'ClienteController');
+
+Route::get('/facturacion', function(){
+    $url="https://celcer.sri.gob.ec/comprobantes-electronicos-ws/RecepcionComprobantesOffline?wsdl";
+    try{
+        $client = new SoapClient($url);
+        dd($client->__getTypes());
+        //dd($client->validarComprobante());
+    }catch( SoapFault $fault){
+        echo '<br>'.$fault;
+    }
+});
+Route::get('/xml','FacturacionController@genrarxml');
+Route::get('/verificador','FacturacionController@modulo11');

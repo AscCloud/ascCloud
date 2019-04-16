@@ -1,28 +1,13 @@
-<script>
-        function soloLetras(e){
-            key = e.keyCode || e.which;
-            tecla = String.fromCharCode(key).toLowerCase();
-            letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
-            especiales = "8-37-39-46";
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/style_normalize.css') }}" />
+@endsection
 
-            tecla_especial = false
-            for(var i in especiales){
-                if(key == especiales[i]){
-                        ecla_especial = true;
-                break;
-                }
-            }
-
-            if(letras.indexOf(tecla)==-1 && !tecla_especial){
-                return false;
-            }
-        }
-
-        function soloNumeros(e){
-            var key = window.Event ? e.which : e.keyCode
-            return (key >= 48 && key <= 57)
-        }
-</script>
+<!-- Img Personal Field -->
+<div class="form-group col-sm-6">
+        <img class="imagen" id="imagen"  src="{{ asset('images/user.png') }}"/>
+        {!! Form::label('img_personal','Foto', ['for'=>'img_personal','id'=>'label']) !!}
+        {!! Form::file('img_personal', null, ['class' => 'updatefile']) !!}
+</div>
 
 <!-- Nombre Sucursal Field -->
 <div class="form-group col-sm-6">
@@ -42,6 +27,18 @@
     {!! Form::text('telefono_sucursal', null, ['class' => 'form-control', 'onkeypress'=>'return soloNumeros(event)']) !!}
 </div>
 
+<!-- Establecimiento Sucursal Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('establecimiento_sucursal', 'Establecimiento') !!}
+    {!! Form::text('establecimiento_sucursal', null, ['class' => 'form-control', 'onkeypress'=>'return soloLetras(event)']) !!}
+</div>
+
+<!-- Punto de Emision Sucursal Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('punto_emision_sucursal', 'Punto Emision') !!}
+    {!! Form::text('punto_emision_sucursal', null, ['class' => 'form-control', 'onkeypress'=>'return soloLetras(event)']) !!}
+</div>
+
 <!-- Empresa Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('empresa_id', 'Empresa') !!}
@@ -53,3 +50,37 @@
     {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('sucursals.index') !!}" class="btn btn-default">Cancelar</a>
 </div>
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+          $('#img_personal').change(function() {
+                var a=window.location.host;
+                var b=document.querySelector('#img_personal').files[0];
+                var dato =URL.createObjectURL(b)
+                var elemento = document.getElementById("imagen");
+                document.querySelector('#imagen').src=dato
+            });
+        });
+    </script>
+    <script>
+        function soloLetras(e){
+            key = e.keyCode || e.which;
+            tecla = String.fromCharCode(key).toLowerCase();
+            letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+            especiales = "8-37-39-46";
+
+            tecla_especial = false
+            for(var i in especiales){
+                if(key == especiales[i]){
+                        ecla_especial = true;
+                break;
+                }
+            }
+
+            if(letras.indexOf(tecla)==-1 && !tecla_especial){
+                return false;
+            }
+        }
+
+</script>
+@endsection

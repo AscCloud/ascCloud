@@ -17,13 +17,13 @@ class Empresa extends Model
     use SoftDeletes;
 
     public $table = 'empresas';
-    
+
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
-        'nombre_empresa'
+        'nombre_empresa','ruc_empresa','firma_digital_empresa','clave_empresa','img_empresa'
     ];
 
     /**
@@ -32,7 +32,11 @@ class Empresa extends Model
      * @var array
      */
     protected $casts = [
-        'nombre_empresa' => 'string'
+        'nombre_empresa' => 'string',
+        'ruc_empresa'=> 'string',
+        'firma_digital_empresa'=> 'string',
+        'clave_empresa'=> 'string',
+        'img_empresa'=> 'string'
     ];
 
     /**
@@ -41,8 +45,12 @@ class Empresa extends Model
      * @var array
      */
     public static $rules = [
-        'nombre_empresa' => 'required'
+        'nombre_empresa' => 'required',
+        'ruc_empresa'=> 'required',
+        'firma_digital_empresa'=> 'required',
+        'clave_empresa'=> 'required',
+        'img_empresa'=> 'required'
     ];
 
-    
+
 }

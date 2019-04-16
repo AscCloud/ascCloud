@@ -17,7 +17,11 @@ class EmpresaRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'nombre_empresa'
+        'nombre_empresa',
+        'ruc_empresa',
+        'firma_digital_empresa',
+        'clave_empresa',
+        'img_empresa'
     ];
 
     /**

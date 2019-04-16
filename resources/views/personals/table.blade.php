@@ -35,7 +35,7 @@
     @endforeach
     </tbody>
 </table>
-
+@foreach($personals as $personal)
 <!--Pop up para mostrar la información -->
 
 <div class="modal fade" id="mostrar" >
@@ -90,4 +90,6 @@
         </div>
     </div>
 </div>
+@endforeach
+
 
