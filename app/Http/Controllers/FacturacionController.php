@@ -8,12 +8,15 @@ use DOMDocument;
 class FacturacionController extends Controller
 {
     //
-    function genrarxml(){
+    function crearXml(){
+        $filexml="C:/xampp/htdocs/esquemas offline/factura_2_1_0.xml";
+        $schema="C:/xampp/htdocs/esquemas offline/factura_2_1_0.xsd";
         $rucem='0504043258001';
         $xml=new DomDocument('1.0', 'UTF-8');
-        $xml->preserveWhiteSpace = false;
+        $xml->load($filexml);
         $Factura = $xml->createElement('Factura');
         $Factura = $xml->appendChild($Factura);
+        // $Factura->setAttributeNS( "comprobante","version","1.0.0");
         // INFORMACION TRIBUTARIA.
         $infoTributaria = $xml->createElement('infoTributaria');
         $infoTributaria = $Factura->appendChild($infoTributaria);
@@ -25,7 +28,7 @@ class FacturacionController extends Controller
         $cbc = $infoTributaria->appendChild($cbc);
         $cbc = $xml->createElement('nombreComercial', '1');
         $cbc = $infoTributaria->appendChild($cbc);
-        $cbc = $xml->createElement('ruc', '1');
+        $cbc = $xml->createElement('ruc', $rucem);
         $cbc = $infoTributaria->appendChild($cbc);
         $cbc = $xml->createElement('claveAcceso', '1');
         $cbc = $infoTributaria->appendChild($cbc);
@@ -144,7 +147,7 @@ class FacturacionController extends Controller
         $xml->formatOutput = true;
         $strings_xml       = $xml->saveXML();
         $xml->save('C:/Users/Mauricio/Documents/Laravel/ascCloud/Documentos_Facturacion_Electronica/FacturasXml/Generadas/'.$rucem.'74902020320953.xml');
-        chmod($rucem.'74902020320953.xml', 0777);
+        chmod('C:/Users/Mauricio/Documents/Laravel/ascCloud/Documentos_Facturacion_Electronica/FacturasXml/Generadas/'.$rucem.'74902020320953.xml', 0777);
         return $rucem.'74902020320953.xml';
     }
 

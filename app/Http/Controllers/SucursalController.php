@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateSucursalRequest;
 use App\Repositories\SucursalRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
 use Flash;
 use Response;
 use App\Models\Empresa;
@@ -62,10 +64,21 @@ class SucursalController extends AppBaseController
      */
     public function store(CreateSucursalRequest $request)
     {
-        $input = $request->all();
+        // $input = $request->all();
 
-        $sucursal = $this->sucursalRepository->create($input);
-
+        // $sucursal = $this->sucursalRepository->create($input);
+        $sucursal = new Sucursal();
+        if($request->hasFile('img_sucursal')){
+            $path=Storage::disk('public')->put('image/sucursal',$request->file('img_sucursal'));
+            $sucursal->img_sucursal=asset($path);
+        }
+        $sucursal->nombre_sucursal=$request->nombre_sucursal;
+        $sucursal->direccion_sucursal=$request->direccion_sucursal;
+        $sucursal->telefono_sucursal=$request->telefono_sucursal;
+        $sucursal->establecimiento_sucursal=$request->establecimiento_sucursal;
+        $sucursal->punto_emision_sucursal=$request->punto_emision_sucursal;
+        $sucursal->empresa_id=$request->empresa_id;
+        $sucursal->save();
         Flash::success('Sucursal saved successfully.');
 
         return redirect(route('sucursals.index'));
@@ -135,7 +148,19 @@ class SucursalController extends AppBaseController
             return redirect(route('sucursals.index'));
         }
 
-        $sucursal = $this->sucursalRepository->update($request->all(), $id);
+        if($request->hasFile('img_sucursal')){
+            $path=Storage::disk('public')->put('image/sucursal',$request->file('img_sucursal'));
+            $sucursal->img_sucursal=asset($path);
+        }
+        $sucursal->nombre_sucursal=$request->nombre_sucursal;
+        $sucursal->direccion_sucursal=$request->direccion_sucursal;
+        $sucursal->telefono_sucursal=$request->telefono_sucursal;
+        $sucursal->establecimiento_sucursal=$request->establecimiento_sucursal;
+        $sucursal->punto_emision_sucursal=$request->punto_emision_sucursal;
+        $sucursal->empresa_id=$request->empresa_id;
+        $sucursal->save();
+
+        // $sucursal = $this->sucursalRepository->update($request->all(), $id);
 
         Flash::success('Sucursal updated successfully.');
 

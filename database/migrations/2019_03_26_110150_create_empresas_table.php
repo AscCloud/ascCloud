@@ -17,8 +17,6 @@ class CreateEmpresasTable extends Migration
             $table->increments('id');
             $table->string('ruc_empresa',20);
             $table->string('nombre_empresa', 120);
-            $table->string('firma_digital_empresa',200);
-            $table->string('clave_empresa');
             $table->string('img_empresa',200);
             $table->timestamps();
             $table->softDeletes();

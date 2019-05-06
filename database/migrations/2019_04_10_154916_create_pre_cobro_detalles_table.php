@@ -13,9 +13,15 @@ class CreatePreCobroDetallesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pre__cobro__detalles', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('pre_cobro_detalles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('detalle_pedido_id')->unsigned();
+            $table->integer('pre_cobro_id')->unsigned();
+            $table->integer('sucursal_id')->unsigned();
+            $table->foreign('pre_cobro_id')->references('id')->on('pre_cobros');
+            $table->foreign('sucursal_id')->references('id')->on('sucursals');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

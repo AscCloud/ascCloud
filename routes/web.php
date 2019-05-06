@@ -80,13 +80,14 @@ Route::resource('clientes', 'ClienteController');
 
 Route::get('/facturacion', function(){
     $url="https://celcer.sri.gob.ec/comprobantes-electronicos-ws/RecepcionComprobantesOffline?wsdl";
-    try{
-        $client = new SoapClient($url);
-        dd($client->__getTypes());
-        //dd($client->validarComprobante());
-    }catch( SoapFault $fault){
-        echo '<br>'.$fault;
-    }
+    // try{
+    //     $client = new SoapClient($url);
+    //     dd($client->__getTypes());
+    //     //dd($client->validarComprobante());
+    // }catch( SoapFault $fault){
+    //     echo '<br>'.$fault;
+    // }
+    phpinfo();
 });
-Route::get('/xml','FacturacionController@genrarxml');
+Route::get('/xml','FacturacionController@crearXml');
 Route::get('/verificador','FacturacionController@modulo11');

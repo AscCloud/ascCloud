@@ -7,6 +7,9 @@ use App\Http\Requests\UpdateEmpresaRequest;
 use App\Repositories\EmpresaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use App\Models\Empresa;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
 use Flash;
 use Response;
 
@@ -54,12 +57,17 @@ class EmpresaController extends AppBaseController
      */
     public function store(CreateEmpresaRequest $request)
     {
-        $input = $request->all();
-
-        $empresa = $this->empresaRepository->create($input);
-
-        Flash::success('Empresa saved successfully.');
-
+        // $input = $request->all();
+        // $empresa = $this->empresaRepository->create($input);
+        $empresa= new Empresa();
+        if($request->hasFile('img_empresa')){
+            $path=Storage::disk('public')->put('image/empresa',$request->file('img_empresa'));
+            $empresa->img_empresa=asset($path);
+        }
+        $empresa->nombre_empresa=$request->nombre_empresa;
+        $empresa->ruc_empresa=$request->ruc_empresa;
+        $empresa->save();
+        Flash::success('La Empresa ha sido creada satisfactoriamente.');
         return redirect(route('empresas.index'));
     }
 
@@ -81,6 +89,15 @@ class EmpresaController extends AppBaseController
         }
 
         return view('empresas.show')->with('empresa', $empresa);
+    }
+
+    private function rwTmpFile($data = null)
+    {
+        $temp_file = tempnam(sys_get_temp_dir(), 'YaMWS');
+        if ($data !== null) {
+            file_put_contents($temp_file, $data);
+        }
+        return $temp_file;
     }
 
     /**
@@ -116,14 +133,21 @@ class EmpresaController extends AppBaseController
         $empresa = $this->empresaRepository->find($id);
 
         if (empty($empresa)) {
-            Flash::error('Empresa not found');
+            Flash::error('Empresa no encontrada');
 
             return redirect(route('empresas.index'));
         }
 
-        $empresa = $this->empresaRepository->update($request->all(), $id);
+        if($request->hasFile('img_empresa')){
+            $path=Storage::disk('public')->put('image/empresa',$request->file('img_empresa'));
+            $empresa->img_empresa=asset($path);
+        }
+        $empresa->nombre_empresa=$request->nombre_empresa;
+        $empresa->ruc_empresa=$request->ruc_empresa;
+        $empresa->save();
+        // $empresa = $this->empresaRepository->update($request->all(), $id);
 
-        Flash::success('Empresa updated successfully.');
+        Flash::success('Empresa a sido actualizada satisfactoriamente.');
 
         return redirect(route('empresas.index'));
     }

@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($sucursal, ['route' => ['sucursals.update', $sucursal->id], 'method' => 'patch']) !!}
+                   {!! Form::model($sucursal, ['route' => ['sucursals.update', $sucursal->id], 'method' => 'patch', 'enctype'=>'multipart/form-data']) !!}
 
-                        @include('sucursals.fields')
+                        @include('sucursals.fieldsedit')
 
                    {!! Form::close() !!}
                </div>

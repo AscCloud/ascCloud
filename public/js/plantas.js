@@ -1,10 +1,12 @@
 $(document).ready(function () {
+    var loc= window.location;
+    var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/'));
     $("#planta_id").change(function (e) {
         var id = $("#planta_id").val();
         var token = $("#token").val();
         $.ajax({
             type: "POST",
-            url: "/planta/find/"+id,
+            url: pathName+"/planta/find/"+id,
             data: { "_token": token, "id": id},
             success: function (response) {
                 if(response == "-1"){
@@ -31,7 +33,7 @@ $(document).ready(function () {
                             cadena=cadena +'</div>'
                           }else{
                             cadena='<div class="mesa col-md-2 col-xs-6">'
-                            cadena=cadena +'<a href="/reservasm/'+element['id']+'">';
+                            cadena=cadena +'<a href="'+pathName+'/reservasm/'+element['id']+'">';
                             cadena=cadena +'<div class="cuarto col"></div>';
                             cadena=cadena +'<div class="primer">';
                             cadena=cadena +'<div class="tercero"></div>';

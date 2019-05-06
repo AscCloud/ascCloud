@@ -1,10 +1,12 @@
 $(document).ready(function () {
+    var loc= window.location;
+    var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/')-10);
     $("#empresa_id").change(function (e) {
         var id = $("#empresa_id").val();
         var token = $("#token").val();
         $.ajax({
             type: "POST",
-            url: "/empresa/find/"+id,
+            url: pathName+"/empresa/find/"+id,
             data: { "_token": token },
             success: function (response) {
                 if(response == "-1"){
