@@ -4,7 +4,7 @@
 
 <!-- Img Personal Field -->
 <div class="form-group col-sm-6">
-        <img class="imagen" id="imagen"  src="{{ asset('images/empresa.png') }}"/>
+        <img class="imagen" id="imagen" src="{!! $empresa->img_empresa !!}"/>
         {!! Form::label('img_empresa','Foto', ['for'=>'img_empresa','id'=>'label']) !!}
         {!! Form::file('img_empresa', null, ['class' => 'updatefile']) !!}
 </div>

@@ -13,14 +13,19 @@ class CreatePreCobrosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pre__cobros', function (Blueprint $table) {
+        Schema::create('pre_cobros', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('descripcion_pre_cobro', 150)->nullable()->default('Consumo de Alimentos');
+            $table->string('descripcion_pre_cobro', 150)->nullable()->default('Alimentación');
             $table->date('fecha_pre_cobro');
             $table->decimal('total_pre_cobro', 10, 2);
+            $table->integer('cliente_id')->unsigned();
             $table->integer('pedido_id')->unsigned();
+            $table->integer('sucursal_id')->unsigned();
+            $table->foreign('sucursal_id')->references('id')->on('sucursals');
             $table->foreign('pedido_id')->references('id')->on('pedidos');
+            $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

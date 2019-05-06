@@ -61,10 +61,8 @@ class Sucursal extends Model
         'nombre_sucursal' => 'required',
         'direccion_sucursal' => 'required',
         'telefono_sucursal' => 'required',
-        'secuencial_sucursal' => 'required',
         'establecimiento_sucursal' => 'required',
         'punto_emision_sucursal' => 'required',
-        'img_sucursal' => 'required',
         'empresa_id' => 'required'
     ];
 

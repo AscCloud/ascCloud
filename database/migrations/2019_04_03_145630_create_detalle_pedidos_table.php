@@ -18,9 +18,12 @@ class CreateDetallePedidosTable extends Migration
             $table->integer('cantidad_detalle_pedido');
             $table->string('observacion_detalle_pedido', 300)->nullable();
             $table->boolean('estado_detalle_pedido')->default(false);
+            $table->boolean('estado_detalle_pedido_cobrado')->default(false);
             $table->decimal('total_detalle_pedido',10,2);
             $table->integer('pedido_id')->unsigned();
             $table->integer('producto_id')->unsigned();
+            $table->integer('sucursal_id')->unsigned();
+            $table->foreign('sucursal_id')->references('id')->on('sucursals');
             $table->foreign('pedido_id')->references('id')->on('pedidos');
             $table->foreign('producto_id')->references('id')->on('productos');
             $table->timestamps();

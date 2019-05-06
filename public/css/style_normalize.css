@@ -19,7 +19,7 @@
     padding: 0.625rem 1.25rem;
 }
 
-#img_personal,#img_producto {
+#img_personal,#img_producto,#img_empresa, #img_sucursal {
     width: 0.1px;
     height: 0.1px;
     opacity: 0;

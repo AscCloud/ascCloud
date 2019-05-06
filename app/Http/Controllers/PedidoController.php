@@ -10,6 +10,7 @@ use Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Producto;
 use App\Models\Categoria;
+use App\Models\Mesa;
 use App\Detalle_pedido;
 use DB;
 
@@ -166,10 +167,14 @@ class PedidoController extends Controller
 
                     $detalle_pedido->total_detalle_pedido=round($item->precio_producto * $item->cantidad_detalle_pedido,2);
                     $detalle_pedido->producto_id=$item->producto_id;
+                    $detalle_pedido->sucursal_id=$personal->personal->sucursal_id;
                     $detalles[]=$detalle_pedido;
                 }
                 $cabecera->detalle()->saveMany($detalles);
                 DB::commit();
+                $mesa=Mesa::find(Session::get('idm'));
+                $mesa->estado_mesa=true;
+                $mesa->save();
                 Flash::success('Pedido saved successfully.');
                 Session::forget('idm');
                 Session::forget('cart');

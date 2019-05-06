@@ -9,7 +9,5 @@ $(document).ready(function () {
         }else{
             window.location.href= href+"/"+cantidad;
         }
-
-
     });
 });

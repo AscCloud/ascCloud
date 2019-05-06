@@ -4,8 +4,8 @@
 
 <!-- Img Sucursal Field -->
 <div class="form-group col-sm-6">
-        <img class="imagen" id="imagen"  src="{{ asset('images/sucursales.png') }}"/>
-        {!! Form::label('img_sucursal','Foto', ['for'=>'img_sucursal','id'=>'label']) !!}
+        <img class="imagen" id="imagen"  src="{!! $sucursal->img_sucursal !!}"/>
+        {!! Form::label('img_sucursal','Foto', ['for'=>'img_personal','id'=>'label']) !!}
         {!! Form::file('img_sucursal', null, ['class' => 'updatefile']) !!}
 </div>
 

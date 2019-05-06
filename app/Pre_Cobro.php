@@ -9,7 +9,7 @@ class Pre_Cobro extends Model
 {
     //
     use SoftDeletes;
-    public $table = 'pedidos';
+    public $table = 'pre_cobros';
 
     protected $dates = ['deleted_at'];
 }
