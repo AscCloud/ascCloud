@@ -14,15 +14,19 @@ class ReservaController extends Controller
 {
     //
     public function index(){
-        $personal=Auth::user();
-        $plantas=Planta::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
-        $planta= new Planta();
-        $planta->id=0;
-        $planta->nombre_planta="---Selecione---";
-        $plantas->push($planta);
-        $plant=$plantas->sortBy('id')->pluck('nombre_planta','id');
-        $mesas=Mesa::all();
-        return view('reservas.index')->with('mesas', $mesas)->with('plant',$plant);
+        $id_mesa=Session::get('idm');
+        if(empty($id_mesa)){
+            $personal=Auth::user();
+            $plantas=Planta::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
+            $planta= new Planta();
+            $planta->id=0;
+            $planta->nombre_planta="---Selecione---";
+            $plantas->push($planta);
+            $plant=$plantas->sortBy('id')->pluck('nombre_planta','id');
+            return view('reservas.index')->with('plant',$plant);
+        }else{
+            return redirect('pedido');
+        }
     }
     public function planta(Request $request){
         $personal=Auth::user();
