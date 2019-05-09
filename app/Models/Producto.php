@@ -31,6 +31,7 @@ class Producto extends Model
         'nombre_producto',
         'precio_producto',
         'img_producto',
+        'especificacion_producto',
         'iva_id',
         'sucursal_id',
         'categoria_id'
@@ -44,6 +45,7 @@ class Producto extends Model
     protected $casts = [
         'nombre_producto' => 'string',
         'img_producto' => 'string',
+        'especificacion_producto' => 'string',
         'iva_id' => 'integer',
         'sucursal_id' => 'integer',
         'categoria_id' => 'integer'
@@ -57,6 +59,7 @@ class Producto extends Model
     public static $rules = [
         'nombre_producto' => 'required',
         'precio_producto' => 'required',
+        'especificacion_producto' => 'required',
         'iva_id' => 'required',
         'sucursal_id' => 'required',
         'categoria_id' => 'required'

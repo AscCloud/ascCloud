@@ -16,7 +16,9 @@ class CreatePedidosTable extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha_pedido');
+            $table->decimal('subtotal_pedido', 10, 2);
             $table->decimal('iva_pedido', 10, 2);
+            $table->decimal('servicio_pedido', 10, 2);
             $table->decimal('total_pedido', 10, 2);
             $table->integer('sucursal_id')->unsigned();
             $table->integer('personal_id')->unsigned();

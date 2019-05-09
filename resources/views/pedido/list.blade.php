@@ -28,7 +28,7 @@
                             <td>{!! $pedido->total_pedido !!}</td>
                             <td>
                                 <a href="#" style="background-color:#000 !important; border-color:#000 !important;" class="btn btn-warning btn-update-item"><i class="fa fa-eye"></i></a>
-                                <a href="/pedido/edit/{!! $pedido->id !!}" class="btn btn-warning btn-update-item"><i class="fa fa-edit"></i></a>
+                                <a href="{{ url('/pedido/edit/') }}/{!! $pedido->id !!}" class="btn btn-warning btn-update-item"><i class="fa fa-edit"></i></a>
                             </td>
                         </tr>
                     @endforeach

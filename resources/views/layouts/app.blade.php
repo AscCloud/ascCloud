@@ -58,10 +58,6 @@
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <!-- Cart -->
-                        <li>
-                            <a href="{{ asset('/pedido/detalle') }}"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                        </li>
                         <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->

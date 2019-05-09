@@ -64,6 +64,7 @@ Route::get('/reservasm/{id}', 'ReservaController@reserva');
 
 Route::get('/pedido', 'PedidoController@index');
 Route::post('categorias/find/{id}', 'PedidoController@categorias');
+
 Route::get('/pedido/detalle', 'PedidoController@show');
 Route::get('/pedido/detalle/add/{producto}','PedidoController@add');
 Route::get('/pedido/detalle/eliminar/{producto}/{dot}','PedidoController@delete');
@@ -72,6 +73,16 @@ Route::get('/pedido/detalle/update/{producto}/{dot}/{cantidad}','PedidoControlle
 Route::get('/pedido/create','PedidoController@create');
 Route::get('/pedido/list','PedidoController@list');
 Route::get('/pedido/edit/{id}','PedidoController@edit');
+
+Route::get('/agregar/detalle', 'EditPedidoController@show');
+Route::get('/agregar','EditPedidoController@agregar');
+Route::get('/agregar/detalle','EditPedidoController@show');
+Route::get('/agregar/detalle/add/{producto}','EditPedidoController@add');
+Route::get('/agregar/detalle/eliminar/{producto}/{dot}','EditPedidoController@delete');
+Route::get('/agregar/detalle/update/{producto}/{dot}/{cantidad}/{observacion}','EditPedidoController@update');
+Route::get('/agregar/detalle/update/{producto}/{dot}/{cantidad}','EditPedidoController@sinupdate');
+Route::get('/agregar/create','EditPedidoController@create');
+
 
 Route::get('/reportes','ReporteController@ventas');
 
