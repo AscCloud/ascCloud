@@ -4,6 +4,7 @@
 @endsection
 @section('content')
 <div class="content">
+    @include('flash::message')
     <div class="box box-primary">
         <div class="box-body">
             <div class="form-group col-sm-12">

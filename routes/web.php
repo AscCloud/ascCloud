@@ -83,6 +83,9 @@ Route::get('/agregar/detalle/update/{producto}/{dot}/{cantidad}/{observacion}','
 Route::get('/agregar/detalle/update/{producto}/{dot}/{cantidad}','EditPedidoController@sinupdate');
 Route::get('/agregar/create','EditPedidoController@create');
 
+Route::get('/precobro/{id}', 'PreCobroController@index');
+Route::post('/precobro/cliente/{ruc}', 'PreCobroController@cliente');
+
 
 Route::get('/reportes','ReporteController@ventas');
 

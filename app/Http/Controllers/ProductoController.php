@@ -84,6 +84,7 @@ class ProductoController extends AppBaseController
         $producto->iva_id=$request->iva_id;
         $producto->sucursal_id=$request->sucursal_id;
         $producto->categoria_id=$request->categoria_id;
+        $producto->especificacion_producto=$request->especificacion_producto;
         $producto->save();
 
         //$producto = $this->productoRepository->create($input);

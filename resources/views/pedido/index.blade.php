@@ -4,6 +4,7 @@
 @endsection
 @section('content')
 <div class="content">
+    @include('flash::message')
     <div class="box box-primary">
         <div class="box-body">
                 <div class="form-group col-sm-8">
@@ -14,7 +15,7 @@
                 <div class="form-group col-sm-2">
                         <br>
                         <a href="{{ asset('/pedido/detalle') }}" class="btn btn-warning btn-update-item col-sm-6">Pedido <i class="fa fa-shopping-cart"></i></a>
-                    </div>
+                </div>
                 <div id="contenedor_producto" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                 </div>
