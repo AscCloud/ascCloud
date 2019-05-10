@@ -62,6 +62,7 @@ class PedidoController extends Controller
         $detalle->nombre_producto=$producto->nombre_producto;
         $detalle->img_producto=$producto->img_producto;
         Session::put('iva',$producto->iva->iva);
+        $detalle->iva=$producto->iva->iva;
         $detalle->cantidad_detalle_pedido=1;
         $detalle->precio_producto=$producto->precio_producto;
         $detalle->observacion_detalle_pedido='';
@@ -111,7 +112,7 @@ class PedidoController extends Controller
         $total=0;
         $servicio=0;
         foreach ($cart as $clave => $item) {
-            $total +=(($item->precio_producto)*(($item->iva/100)+1)) *$item->cantidad_detalle_pedido;
+            $total +=(($item->precio_producto)) *$item->cantidad_detalle_pedido;
         }
         $servicio=$total*0.10;
         return $servicio;
@@ -263,7 +264,7 @@ class PedidoController extends Controller
         $total=0;
         $servicio=0;
         foreach ($cart as $clave => $item) {
-            $total +=(($item->precio_producto)*(($item->iva/100)+1)) *$item->cantidad_detalle_pedido;
+            $total +=(($item->precio_producto)) *$item->cantidad_detalle_pedido;
         }
         $servicio=$total*0.10;
         return $servicio;

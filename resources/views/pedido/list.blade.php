@@ -52,7 +52,7 @@
                                         <a href="{{ url('/precobro/') }}/{!! $pedido->id !!}" class="btn btn-primary btn-update-item"><i class="fa fa-id-card"> Todo en una Cuenta</i></a>
                                     </div>
                                     <div class="form-group">
-                                        <a href="{{ url('/precobro/') }}/{!! $pedido->id !!}" class="btn btn-primary btn-update-item"><i class="fa fa-fax"> Cuentas por separadado</i></a>
+                                        <a href="{{ url('/precobro/separado/') }}/{!! $pedido->id !!}" class="btn btn-primary btn-update-item"><i class="fa fa-fax"> Cuentas por separadado</i></a>
                                     </div>
                             </div>
                             <div class="modal-footer">

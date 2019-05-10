@@ -9,6 +9,8 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Session;
+use Redirect;
 
 class ClienteController extends AppBaseController
 {
@@ -152,5 +154,27 @@ class ClienteController extends AppBaseController
         Flash::success('Cliente deleted successfully.');
 
         return redirect(route('clientes.index'));
+    }
+
+    public function newcliente(CreateClienteRequest $request)
+    {
+        $input = $request->all();
+
+        $cliente = $this->clienteRepository->create($input);
+
+        Flash::success('Cliente saved successfully.');
+        $url='/precobro/'. Session::get('pedido_id');
+        return redirect($url);
+    }
+
+    public function newclienteseparado(CreateClienteRequest $request)
+    {
+        $input = $request->all();
+
+        $cliente = $this->clienteRepository->create($input);
+
+        Flash::success('Cliente saved successfully.');
+        $url='/precobro/separado/'. Session::get('pedido_id');
+        return redirect($url);
     }
 }

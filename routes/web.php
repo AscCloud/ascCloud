@@ -85,12 +85,19 @@ Route::get('/agregar/create','EditPedidoController@create');
 
 Route::get('/precobro/{id}', 'PreCobroController@index');
 Route::post('/precobro/cliente/{ruc}', 'PreCobroController@cliente');
+Route::get('/precobro/pedido/{id}', 'PreCobroController@pedido');
 
+
+Route::get('/precobro/separado/{id}', 'PreCobroController@indexseparado');
+Route::post('/precobro/separado/cliente/{ruc}', 'PreCobroController@cliente');
+Route::get('/precobro/separado/pedido/{id}', 'PreCobroController@pedido_separado');
 
 Route::get('/reportes','ReporteController@ventas');
 
 
 Route::resource('clientes', 'ClienteController');
+Route::post('/newcliente', 'ClienteController@newcliente');
+Route::post('/newcliente/separado', 'ClienteController@newclienteseparado');
 
 Route::get('/facturacion', function(){
     $url="https://celcer.sri.gob.ec/comprobantes-electronicos-ws/RecepcionComprobantesOffline?wsdl";
