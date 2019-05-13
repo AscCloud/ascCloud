@@ -91,6 +91,7 @@ Route::get('/precobro/pedido/{id}', 'PreCobroController@pedido');
 Route::get('/precobro/separado/{id}', 'PreCobroController@indexseparado');
 Route::post('/precobro/separado/cliente/{ruc}', 'PreCobroController@cliente');
 Route::get('/precobro/separado/pedido/{id}', 'PreCobroController@pedido_separado');
+Route::get('/precobro/separado/pedido/total/{id}', 'PreCobroController@pedido_separado_total');
 
 Route::get('/reportes','ReporteController@ventas');
 

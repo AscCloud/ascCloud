@@ -30,7 +30,7 @@
                             <td>
                                 <a href="#" style="background-color:#000 !important; border-color:#000 !important;" class="btn btn-warning btn-update-item"><i class="fa fa-eye"></i></a>
                                 <a href="{{ url('/pedido/edit/') }}/{!! $pedido->id !!}" class="btn btn-warning btn-update-item"><i class="fa fa-edit"></i></a>
-                                <a href="#" data-toggle="modal" data-target="#mostrar" class="btn btn-primary btn-update-item"><i class="fa fa-book"></i></a>
+                                <a href="#" data-toggle="modal" data-target="#mostrar_{{ $pedido->id }}" class="btn btn-primary btn-update-item"><i class="fa fa-book"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -38,7 +38,7 @@
             </table>
             @foreach($pedidos as $pedido)
                 <!--Pop up para mostrar la información -->
-                <div class="modal fade" id="mostrar" >
+                <div class="modal fade" id="mostrar_{{ $pedido->id }}" >
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
