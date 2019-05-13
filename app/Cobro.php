@@ -5,17 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Pre_Cobro extends Model
+class Cobro extends Model
 {
     //
     use SoftDeletes;
-    public $table = 'pre_cobros';
+    public $table = 'cobros';
 
     protected $dates = ['deleted_at'];
 
-    public function pre_cobro()
+    public function precobro()
     {
-
-        return $this->hasMany('App\Pre_Cobro','pre_cobro_id','id');
+        return $this->belongsTo('App\Pre_Cobro', 'precobro_id','id');
     }
 }

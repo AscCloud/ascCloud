@@ -50,7 +50,7 @@ $(document).ready(function () {
 
                             cadena= cadena + '<tr>';
                             cadena= cadena + '<th style="text-align: justify; font-weight: bold;"><label>Total: </label></th>';
-                            cadena= cadena + '<th colspan="2" style="text-align: justify"><label style="font-weight: lighter; !important">'+pedidos[0]['total_pedido']+'</label> </th>';
+                            cadena= cadena + '<th colspan="2" style="text-align: justify"><label style="font-weight: lighter; !important" id="total_cuenta">'+pedidos[0]['total_pedido']+'</label> </th>';
                             cadena= cadena + '</tr>';
 
                             cadena= cadena + '<tr>';
@@ -58,6 +58,7 @@ $(document).ready(function () {
                             cadena= cadena + '</tr>';
 
                             $('#contenedor_precobro').append(cadena);
+                            $.getScript("/ascCloud/public/js/enviar_cobro.js", function () {});
 
                         }
                     });

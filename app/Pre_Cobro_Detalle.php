@@ -12,4 +12,9 @@ class Pre_Cobro_Detalle extends Model
     public $table = 'pre_cobro_detalles';
 
     protected $dates = ['deleted_at'];
+
+    public function precobro()
+    {
+        return $this->belongsTo('App\Pre_Cobro', 'pre_cobro_id','id');
+    }
 }
