@@ -162,19 +162,19 @@ class ClienteController extends AppBaseController
 
         $cliente = $this->clienteRepository->create($input);
 
-        Flash::success('Cliente saved successfully.');
-        $url='/precobro/'. Session::get('pedido_id');
+        Flash::success('Cliente guardado satisfactoriamente.');
+        $id= Session::get('pedido_id');
+        $url='/precobro'.'/'. $id;
         return redirect($url);
     }
 
     public function newclienteseparado(CreateClienteRequest $request)
     {
         $input = $request->all();
-
         $cliente = $this->clienteRepository->create($input);
-
-        Flash::success('Cliente saved successfully.');
-        $url='/precobro/separado/'. Session::get('pedido_id');
+        Flash::success('Cliente guardado satisfactoriamente.');
+        $id=Session::get('pedido_id');
+        $url='/precobro/separado/'.$id;
         return redirect($url);
     }
 }

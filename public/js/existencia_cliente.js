@@ -16,6 +16,7 @@ $(document).ready(function () {
                 }else{
                     $("#cliente_id").val(response[0]['id']);
                     pedido_id=$("#pedido_id").val();
+                    $('#contenedor_precobro').empty();
                     $.ajax({
                         type: "GET",
                         url: pathName+"/pedido/"+pedido_id,
@@ -53,7 +54,7 @@ $(document).ready(function () {
                             cadena= cadena + '</tr>';
 
                             cadena= cadena + '<tr>';
-                            cadena= cadena + '<th colspan="3"><a href="#" class="btn btn-success btn-update-item col-md-12"><i class="fa fa-save"> Enviar</i></a></th>';
+                            cadena= cadena + '<th colspan="3"><div style="z-index: 8;" class="col-md-12"><div id="enviar" class="btn btn-success btn-update-item col-md-12"><i class="fa fa-save"> Enviar</i></div></div></th>';
                             cadena= cadena + '</tr>';
 
                             $('#contenedor_precobro').append(cadena);

@@ -16,6 +16,7 @@ $(document).ready(function () {
                 }else{
                     $("#cliente_id").val(response[0]['id']);
                     pedido_id=$("#pedido_id").val();
+                    $('#contenedor_precobro').empty();
                     $.ajax({
                         type: "GET",
                         url: pathName+"/pedido/total/"+pedido_id,
@@ -33,7 +34,7 @@ $(document).ready(function () {
                             cadena=cadena + '<th>Total</th>';
                             cadena=cadena + '</tr>';
                             cadena=cadena + '</thead>';
-                            cadena=cadena + '<tbody >'
+                            cadena=cadena + '<tbody id="productos_detalle">'
                             cadena=cadena + '</tbody>';
                             cadena=cadena + '<tfoot>';
                             cadena=cadena + '<tr>';
@@ -50,24 +51,25 @@ $(document).ready(function () {
                             cadena=cadena + '</tr>';
                             cadena=cadena + '</tfoot>'
                             cadena=cadena + '</table>';
+                            cadena= cadena + '<div class="col-md-12"><div id="enviar" class="btn btn-success btn-update-item col-md-12"><i class="fa fa-save"> Enviar</i></div></div>';
                             $('#contenedor_precobro').append(cadena);
-                        }
-                    });
-                    $.ajax({
-                        type: "GET",
-                        url: pathName+"/pedido/"+pedido_id,
-                        data: { "_token": token},
-                        success: function (pedidos) {
-                            pedidos.forEach(function(element,index){
-                                cadena2='<tr>';
-                                cadena2=cadena2 + '<td><input type="checkbox" value="'+element['id']+'" id="codigo"/></td>';
-                                cadena2=cadena2 + '<td>'+element['nombre_producto']+'</td>';
-                                cadena2=cadena2 + '<td>'+element['cantidad_detalle_pedido']+'</td>';
-                                cadena2=cadena2 + '<td>'+element['total_detalle_pedido']+'</td>';
-                                cadena2=cadena2 + '</tr>';
-                                $("#datatable-responsive tbody").append(cadena2);
+                            $.ajax({
+                                type: "GET",
+                                url: pathName+"/pedido/"+pedido_id,
+                                data: { "_token": token},
+                                success: function (pedidos) {
+                                    pedidos.forEach(function(element,index){
+                                        cadena2='<tr>';
+                                        cadena2=cadena2 + '<td><input type="checkbox" value="'+element['id']+'" id="'+element['id']+'"/></td>';
+                                        cadena2=cadena2 + '<td>'+element['nombre_producto']+'</td>';
+                                        cadena2=cadena2 + '<td>'+element['cantidad_detalle_pedido']+'</td>';
+                                        cadena2=cadena2 + '<td>'+element['total_detalle_pedido']+'</td>';
+                                        cadena2=cadena2 + '</tr>';
+                                        $("#datatable-responsive tbody").append(cadena2);
+                                    });
+                                    $.getScript("/ascCloud/public/js/seleccion_items.js", function () {});
+                                }
                             });
-
                         }
                     });
                 }
