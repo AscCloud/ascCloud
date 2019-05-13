@@ -59,6 +59,7 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('js/existencia_cliente.js') }}"></script>
+    <script src="{{ asset('js/seleccion_items.js') }}"></script>
     <script type="text/javascript">
         $('#nacimiento_cliente').datetimepicker({
             format: 'YYYY-MM-DD',
