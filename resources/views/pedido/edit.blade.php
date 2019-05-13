@@ -13,9 +13,10 @@
                     {!! Form::select('categoria_id', $cat, null, ['class' => 'form-control','id'=>'categoria_id']) !!}
                 </div>
                 <div class="form-group col-sm-2">
-                        <br>
-                        <a href="{{ asset('/pedido/detalle') }}" class="btn btn-warning btn-update-item col-sm-6">Pedido <i class="fa fa-shopping-cart"></i></a>
+                    <br>
+                    <a href="{{ asset('/agregar/detalle') }}" class="btn btn-warning btn-update-item col-sm-6">Pedido <i class="fa fa-shopping-cart"></i></a>
                 </div>
+
                 <div id="contenedor_producto" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                 </div>
@@ -24,5 +25,5 @@
 </div>
 @endsection
 @section('scripts')
-    <script src="{{ asset('js/categorias_pedido.js') }}"></script>
+    <script src="{{ asset('js/categorias_pedido_edit.js') }}"></script>
 @endsection

@@ -18,6 +18,7 @@ class CreateProductosTable extends Migration
             $table->string('nombre_producto', 60);
             $table->decimal('precio_producto', 10, 2);
             $table->string('img_producto', 200);
+            $table->string('especificacion_producto', 60);
             $table->integer('iva_id')->unsigned();
             $table->integer('sucursal_id')->unsigned();
             $table->integer('categoria_id')->unsigned();

@@ -34,6 +34,12 @@
     {!! Form::select('categoria_id', $cat, null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Especificacion Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('especificacion_producto', 'Especificacion') !!}
+    {!! Form::select('especificacion_producto', ['Comida' => 'Comida', 'Bebidas' => 'Bebidas'] , null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}

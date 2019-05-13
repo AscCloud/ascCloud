@@ -64,6 +64,7 @@ Route::get('/reservasm/{id}', 'ReservaController@reserva');
 
 Route::get('/pedido', 'PedidoController@index');
 Route::post('categorias/find/{id}', 'PedidoController@categorias');
+
 Route::get('/pedido/detalle', 'PedidoController@show');
 Route::get('/pedido/detalle/add/{producto}','PedidoController@add');
 Route::get('/pedido/detalle/eliminar/{producto}/{dot}','PedidoController@delete');
@@ -73,10 +74,30 @@ Route::get('/pedido/create','PedidoController@create');
 Route::get('/pedido/list','PedidoController@list');
 Route::get('/pedido/edit/{id}','PedidoController@edit');
 
+Route::get('/agregar/detalle', 'EditPedidoController@show');
+Route::get('/agregar','EditPedidoController@agregar');
+Route::get('/agregar/detalle','EditPedidoController@show');
+Route::get('/agregar/detalle/add/{producto}','EditPedidoController@add');
+Route::get('/agregar/detalle/eliminar/{producto}/{dot}','EditPedidoController@delete');
+Route::get('/agregar/detalle/update/{producto}/{dot}/{cantidad}/{observacion}','EditPedidoController@update');
+Route::get('/agregar/detalle/update/{producto}/{dot}/{cantidad}','EditPedidoController@sinupdate');
+Route::get('/agregar/create','EditPedidoController@create');
+
+Route::get('/precobro/{id}', 'PreCobroController@index');
+Route::post('/precobro/cliente/{ruc}', 'PreCobroController@cliente');
+Route::get('/precobro/pedido/{id}', 'PreCobroController@pedido');
+
+
+Route::get('/precobro/separado/{id}', 'PreCobroController@indexseparado');
+Route::post('/precobro/separado/cliente/{ruc}', 'PreCobroController@cliente');
+Route::get('/precobro/separado/pedido/{id}', 'PreCobroController@pedido_separado');
+
 Route::get('/reportes','ReporteController@ventas');
 
 
 Route::resource('clientes', 'ClienteController');
+Route::post('/newcliente', 'ClienteController@newcliente');
+Route::post('/newcliente/separado', 'ClienteController@newclienteseparado');
 
 Route::get('/facturacion', function(){
     $url="https://celcer.sri.gob.ec/comprobantes-electronicos-ws/RecepcionComprobantesOffline?wsdl";

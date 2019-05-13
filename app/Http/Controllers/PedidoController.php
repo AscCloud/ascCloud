@@ -62,6 +62,7 @@ class PedidoController extends Controller
         $detalle->nombre_producto=$producto->nombre_producto;
         $detalle->img_producto=$producto->img_producto;
         Session::put('iva',$producto->iva->iva);
+        $detalle->iva=$producto->iva->iva;
         $detalle->cantidad_detalle_pedido=1;
         $detalle->precio_producto=$producto->precio_producto;
         $detalle->observacion_detalle_pedido='';
@@ -111,11 +112,13 @@ class PedidoController extends Controller
         $total=0;
         $servicio=0;
         foreach ($cart as $clave => $item) {
-            $total +=(($item->precio_producto)*(($item->iva/100)+1)) *$item->cantidad_detalle_pedido;
+            $total +=(($item->precio_producto)) *$item->cantidad_detalle_pedido;
         }
         $servicio=$total*0.10;
         return $servicio;
     }
+
+
 
     public function sinupdate(Producto $producto,$dot,$cantidad){
         $cart=Session::get('cart');
@@ -152,6 +155,8 @@ class PedidoController extends Controller
                 $cabecera->fecha_pedido=\Carbon\Carbon::today();
                 $servicio=$this->servicio();
                 $subtotal = $this->subtotal();
+                $cabecera->subtotal_pedido=round($subtotal,2);
+                $cabecera->servicio_pedido=round($servicio,2);
                 $cabecera->total_pedido=$this->total($servicio);
                 $iva=Session::get('iva');
                 $cabecera->iva_pedido=round($subtotal*($iva/100),2);
@@ -201,7 +206,68 @@ class PedidoController extends Controller
     }
 
     public function edit($id){
-        $detalle=Detalle_pedido::where('pedido_id','=',$id)->get();
-        return $detalle;
+        Session::put('idpedido',$id);
+        $cartedit=Session::put('cartedit',array());
+        $detalles=Detalle_pedido::where('pedido_id','=',$id)->get();
+        foreach ($detalles as $det) {
+            $detalle=new Detalle_pedido();
+            $detalle->producto_id=$det->producto_id;
+            $detalle->nombre_producto=$det->producto->nombre_producto;
+            $detalle->img_producto=$det->producto->img_producto;
+            $detalle->estado_detalle_pedido=$det->estado_detalle_pedido;
+            Session::put('iva',$det->producto->iva->iva);
+            $detalle->cantidad_detalle_pedido=$det->cantidad_detalle_pedido;
+            $detalle->precio_producto=$det->producto->precio_producto;
+            $detalle->observacion_detalle_pedido=$det->observacion_detalle_pedido;
+            $cartedit[]=$detalle;
+        }
+        Session::put('cartedit',$cartedit);
+        $cart=Session::get('cartedit');
+        $subtotal = $this->subtotal_cuenta();
+        $servicio=$this->servicio_cuenta();
+        $total=$this->total_cuenta($servicio);
+        if(empty($cart)){
+            $iva='';
+        }else{
+            $iva=Session::get('iva');
+
+        }
+        return view('detalle_pedido.edit')->with('cart',$cart)->with('subtotal',$subtotal)->with('iva',$iva)->with('total',$total)->with('servicio',$servicio);
+        // Session::forget('idpedido');
+        // Session::forget('subtotal');
+        // Session::forget('iva');
+        // Session::forget('servicio');
+        // Session::forget('total');
     }
+
+    private function subtotal_cuenta(){
+        $cart=Session::get('cartedit');
+        $subtotal=0;
+        foreach ($cart as $clave => $item) {
+            $subtotal +=$item->precio_producto *$item->cantidad_detalle_pedido;
+        }
+        return $subtotal;
+    }
+
+    private function total_cuenta($servicio){
+        $cart=Session::get('cartedit');
+        $total=0;
+        foreach ($cart as $clave => $item) {
+            $total +=(($item->precio_producto)*(($item->iva/100)+1)) *$item->cantidad_detalle_pedido;
+        }
+        $total=$total+$servicio;
+        return $total;
+    }
+
+    private function servicio_cuenta(){
+        $cart=Session::get('cartedit');
+        $total=0;
+        $servicio=0;
+        foreach ($cart as $clave => $item) {
+            $total +=(($item->precio_producto)) *$item->cantidad_detalle_pedido;
+        }
+        $servicio=$total*0.10;
+        return $servicio;
+    }
+
 }
