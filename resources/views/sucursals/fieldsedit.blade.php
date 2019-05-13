@@ -30,13 +30,13 @@
 <!-- Establecimiento Sucursal Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('establecimiento_sucursal', 'Establecimiento') !!}
-    {!! Form::text('establecimiento_sucursal', null, ['class' => 'form-control', 'onkeypress'=>'return soloLetras(event)']) !!}
+    {!! Form::text('establecimiento_sucursal', null, ['class' => 'form-control', 'onkeypress'=>'return soloNumeros(event)']) !!}
 </div>
 
 <!-- Punto de Emision Sucursal Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('punto_emision_sucursal', 'Punto Emision') !!}
-    {!! Form::text('punto_emision_sucursal', null, ['class' => 'form-control', 'onkeypress'=>'return soloLetras(event)']) !!}
+    {!! Form::text('punto_emision_sucursal', null, ['class' => 'form-control', 'onkeypress'=>'return soloNumeros(event)']) !!}
 </div>
 
 <!-- Empresa Id Field -->

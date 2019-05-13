@@ -18,7 +18,7 @@
                         {!! Form::label('ruc_cliente', 'Cedula') !!}
                         {!! Form::text('ruc_cliente', null, ['class' => 'form-control']) !!}
                     </div>
-                    <input type="hidden" value="1" value="{{ Session::get('pedido_id') }}" id="pedido_id"/>
+                    <input type="hidden" value="{{ Session::get('pedido_id') }}" id="pedido_id"/>
                     <input type="hidden" id="cliente_id"/>
                     <div id="contenedor_precobro" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     </div>

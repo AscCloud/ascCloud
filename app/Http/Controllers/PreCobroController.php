@@ -19,6 +19,7 @@ class PreCobroController extends Controller
     }
 
     public function indexseparado($id){
+        Session::put('pedido_id',$id);
         return view('pre_cobros.cuentas_separadas');
     }
 
@@ -34,6 +35,11 @@ class PreCobroController extends Controller
 
     public function pedido_separado($id){
         $pedido=DB::select("select * from pedidocuentaseparado('".$id."')");
+        return $pedido;
+    }
+
+    public function pedido_separado_total($id){
+        $pedido=DB::select("select * from pedidocuentaseparadototal('".$id."')");
         return $pedido;
     }
 }

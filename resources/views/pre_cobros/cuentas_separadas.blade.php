@@ -17,10 +17,10 @@
                         {!! Form::label('ruc_cliente', 'Cedula') !!}
                         {!! Form::text('ruc_cliente', null, ['class' => 'form-control']) !!}
                     </div>
-                    <input type="hidden" value="1" value="{{ Session::get('pedido_id') }}" id="pedido_id"/>
+                    <input type="hidden" value="{{ Session::get('pedido_id') }}" id="pedido_id"/>
                     <input type="hidden" id="cliente_id"/>
                     <div id="contenedor_precobro" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
+                        {{--  <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
                             <thead>
                                 <tr>
                                     <th colspan="4" style="text-align: center"><label style="font-size: 30px;">Factura</label></th>
@@ -54,7 +54,7 @@
                                     <th style="text-align:right" colspan="4"> Total: sd</th>
                                 </tr>
                             </tfoot>
-                        </table>
+                        </table>  --}}
                     </div>
                 </div>
             </div>
