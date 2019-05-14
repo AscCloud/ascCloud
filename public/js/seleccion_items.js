@@ -16,7 +16,7 @@ $(document).ready(function () {
             url: pathName,
             data: { "_token": token, "cliente_id": cliente_id, "pedido_id": pedido_id, "productos_ids": JSON.stringify(productos_ids)},
             success: function (response) {
-                console.log(response);
+                window.location.href=window.location.href;
             }
         });
     });

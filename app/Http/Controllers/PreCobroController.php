@@ -90,6 +90,11 @@ class PreCobroController extends Controller
             }
             $precobro->save();
             $precobro->pre_cobro()->saveMany($items);
+            foreach ($precobro_detalle_datos as $dato) {
+                $detalle_pedido=Detalle_pedido::find($dato);
+                $detalle_pedido->estado_detalle_pedido_cobrado=true;
+                $detalle_pedido->save();
+            }
             Flash::success('Guardado Exitosamente.');
             DB::commit();
             return "guarado exitosamente";

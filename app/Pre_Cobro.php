@@ -15,7 +15,6 @@ class Pre_Cobro extends Model
 
     public function pre_cobro()
     {
-
         return $this->hasMany('App\Pre_Cobro','pre_cobro_id','id');
     }
 }

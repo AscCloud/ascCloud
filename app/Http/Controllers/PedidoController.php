@@ -157,7 +157,7 @@ class PedidoController extends Controller
                 $subtotal = $this->subtotal();
                 $cabecera->subtotal_pedido=round($subtotal,2);
                 $cabecera->servicio_pedido=round($servicio,2);
-                $cabecera->total_pedido=$this->total($servicio);
+                $cabecera->total_pedido=round($this->total($servicio),2);
                 $iva=Session::get('iva');
                 $cabecera->iva_pedido=round($subtotal*($iva/100),2);
                 $cart=Session::get('cart');
