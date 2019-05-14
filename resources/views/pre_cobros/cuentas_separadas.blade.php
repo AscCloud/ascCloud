@@ -7,6 +7,8 @@
         </h1>
     </section>
     <div class="content">
+        <div id="errorMessage"></div>
+        @include('flash::message')
         @include('adminlte-templates::common.errors')
         <div class="box box-primary">
             <div class="box-body">
@@ -20,41 +22,6 @@
                     <input type="hidden" value="{{ Session::get('pedido_id') }}" id="pedido_id"/>
                     <input type="hidden" id="cliente_id"/>
                     <div id="contenedor_precobro" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        {{--  <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
-                            <thead>
-                                <tr>
-                                    <th colspan="4" style="text-align: center"><label style="font-size: 30px;">Factura</label></th>
-                                </tr>
-                                <tr>
-                                    <th>Codigo</th>
-                                    <th>Nombre</th>
-                                    <th>Cantidad</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type="checkbox" value="1" id="codigo"/></td>
-                                    <td>sa</td>
-                                    <td>2</td>
-                                    <td>asad</td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th style="text-align:right" colspan="4"> Subtotal: </th>
-                                </tr>
-                                <tr>
-                                    <th style="text-align:right" colspan="4"> Iva: 56</th>
-                                </tr>
-                                <tr>
-                                    <th style="text-align:right" colspan="4"> Servicio: as</th>
-                                </tr>
-                                <tr>
-                                    <th style="text-align:right" colspan="4"> Total: sd</th>
-                                </tr>
-                            </tfoot>
-                        </table>  --}}
                     </div>
                 </div>
             </div>

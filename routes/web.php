@@ -86,12 +86,18 @@ Route::get('/agregar/create','EditPedidoController@create');
 Route::get('/precobro/{id}', 'PreCobroController@index');
 Route::post('/precobro/cliente/{ruc}', 'PreCobroController@cliente');
 Route::get('/precobro/pedido/{id}', 'PreCobroController@pedido');
+Route::post('/precobro', 'PreCobroController@createone');
+
 
 
 Route::get('/precobro/separado/{id}', 'PreCobroController@indexseparado');
 Route::post('/precobro/separado/cliente/{ruc}', 'PreCobroController@cliente');
 Route::get('/precobro/separado/pedido/{id}', 'PreCobroController@pedido_separado');
 Route::get('/precobro/separado/pedido/total/{id}', 'PreCobroController@pedido_separado_total');
+Route::post('/precobro/separado', 'PreCobroController@createmany');
+
+Route::get('/cobro', 'CobroController@index');
+Route::get('/cobro/{id}', 'CobroController@showmoney');
 
 Route::get('/reportes','ReporteController@ventas');
 

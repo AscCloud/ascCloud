@@ -19,7 +19,7 @@ class CreateClientesTable extends Migration
             $table->string('nombre_cliente', 120);
             $table->string('telefono_cliente', 10);
             $table->string('email_cliente', 100);
-            $table->date('nacimiento_cliente');
+            $table->date('nacimiento_cliente')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -7,6 +7,7 @@
         </h1>
     </section>
     <div class="content">
+        @include('flash::message')
         @include('adminlte-templates::common.errors')
         <div class="box box-primary">
 
@@ -20,7 +21,7 @@
                     </div>
                     <input type="hidden" value="{{ Session::get('pedido_id') }}" id="pedido_id"/>
                     <input type="hidden" id="cliente_id"/>
-                    <div id="contenedor_precobro" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div id="contenedor_precobro" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     </div>
                 </div>
             </div>
@@ -59,7 +60,6 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('js/existencia_cliente.js') }}"></script>
-    <script src="{{ asset('js/seleccion_items.js') }}"></script>
     <script type="text/javascript">
         $('#nacimiento_cliente').datetimepicker({
             format: 'YYYY-MM-DD',

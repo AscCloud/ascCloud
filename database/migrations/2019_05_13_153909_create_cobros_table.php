@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePreCobrosTable extends Migration
+class CreateCobrosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,15 @@ class CreatePreCobrosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pre_cobros', function (Blueprint $table) {
+        Schema::create('cobros', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('descripcion_pre_cobro', 150)->nullable()->default('Alimentación');
-            $table->date('fecha_pre_cobro');
-            $table->decimal('total_pre_cobro', 10, 2);
-            $table->boolean('estado_pre_cobro')->default(false);
-            $table->integer('cliente_id')->unsigned();
+            $table->date('fecha_cobro');
             $table->integer('pedido_id')->unsigned();
             $table->integer('sucursal_id')->unsigned();
-            $table->foreign('sucursal_id')->references('id')->on('sucursals');
+            $table->integer('precobro_id')->unsigned();
             $table->foreign('pedido_id')->references('id')->on('pedidos');
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreign('sucursal_id')->references('id')->on('sucursals');
+            $table->foreign('precobro_id')->references('id')->on('pre_cobros');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -37,6 +34,6 @@ class CreatePreCobrosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pre__cobros');
+        Schema::dropIfExists('cobros');
     }
 }

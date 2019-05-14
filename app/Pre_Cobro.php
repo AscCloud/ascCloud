@@ -12,4 +12,14 @@ class Pre_Cobro extends Model
     public $table = 'pre_cobros';
 
     protected $dates = ['deleted_at'];
+
+    public function pre_cobro()
+    {
+        return $this->hasMany('App\Pre_Cobro','pre_cobro_id','id');
+    }
+
+    public function cliente()
+    {
+        return $this->belongsTo('App\Models\Cliente', 'cliente_id','id');
+    }
 }

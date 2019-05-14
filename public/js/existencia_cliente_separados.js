@@ -59,13 +59,15 @@ $(document).ready(function () {
                                 data: { "_token": token},
                                 success: function (pedidos) {
                                     pedidos.forEach(function(element,index){
-                                        cadena2='<tr>';
-                                        cadena2=cadena2 + '<td><input type="checkbox" value="'+element['id']+'" id="'+element['id']+'"/></td>';
-                                        cadena2=cadena2 + '<td>'+element['nombre_producto']+'</td>';
-                                        cadena2=cadena2 + '<td>'+element['cantidad_detalle_pedido']+'</td>';
-                                        cadena2=cadena2 + '<td>'+element['total_detalle_pedido']+'</td>';
-                                        cadena2=cadena2 + '</tr>';
-                                        $("#datatable-responsive tbody").append(cadena2);
+                                        if(element['estado_detalle_pedido_cobrado']==false){
+                                            cadena2='<tr>';
+                                            cadena2=cadena2 + '<td><input type="checkbox" value="'+element['id']+'" id="'+element['id']+'"/></td>';
+                                            cadena2=cadena2 + '<td>'+element['nombre_producto']+'</td>';
+                                            cadena2=cadena2 + '<td>'+element['cantidad_detalle_pedido']+'</td>';
+                                            cadena2=cadena2 + '<td>'+element['total_detalle_pedido']+'</td>';
+                                            cadena2=cadena2 + '</tr>';
+                                            $("#datatable-responsive tbody").append(cadena2);
+                                        }
                                     });
                                     $.getScript("/ascCloud/public/js/seleccion_items.js", function () {});
                                 }

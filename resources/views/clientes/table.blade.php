@@ -1,12 +1,12 @@
-<table class="table table-responsive" id="clientes-table">
+<table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
     <thead>
         <tr>
-            <th>Ruc Cliente</th>
+        <th>Ruc Cliente</th>
         <th>Nombre Cliente</th>
         <th>Telefono Cliente</th>
         <th>Email Cliente</th>
         <th>Nacimiento Cliente</th>
-            <th colspan="3">Action</th>
+        <th>Action</th>
         </tr>
     </thead>
     <tbody>
