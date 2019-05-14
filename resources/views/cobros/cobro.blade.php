@@ -6,7 +6,7 @@
         <div class="box-body">
             {!! Form::hidden('token', csrf_token(),['id'=>'token']) !!}
             <input type="hidden" value="{{ Session::get('precobro_id') }}" id="precobro_id"/>
-            <div class="form-group col-md-12" style="text-align: center;font-size: 30px;"><strong>Facturacion</strong></div>
+            <div class="form-group col-md-12" style="text-align: center;font-size: 30px;"><strong>Facturación</strong></div>
             <div class="form-group col-md-12">
                 <div class="col-md-2"><strong>Orden: </strong> 5</div>
                 <div class="col-md-4"><strong>Cliente: </strong> Mauricio Leon</div>
@@ -15,8 +15,8 @@
             </div>
             <div class="col-md-12">
                 <div class="form-group col-md-6">
-                    <label for="tipo">Tipo Cobro:</label>
-                    <select id="tipo" class="form-control">
+                    <label for="tipos_cobros">Tipo Cobro:</label>
+                    <select id="tipos_cobros" class="form-control">
                         <option>--Seleccione--</option>
                         <option>Efectivo</option>
                         <option>Tarjeta</option>
@@ -25,81 +25,53 @@
                 </div>
             </div>
             <div id="Ejectivo" class="col-md-12">
-                <div class="form-group col-md-10">
-                    <label for="valor">Valor:</label>
-                    <input id="valor" type="text" class="form-control"/>
-                </div>
-                <div class="form-group col-md-2">
-                    <br>
-                    <a href="#" style="background-color:#26c04d !important; border-color:#000 !important;" class="btn btn-warning btn-update-item"><i class="fa fa-plus"></i></a>
-                </div>
             </div>
             <div id="tarjeta_pago" class="col-md-12">
-                <div class="form-group col-md-6">
-                    <label for="tipo">Tipo Tarjeta:</label>
-                    <select id="tipo" class="form-control">
-                        <option>--Seleccione--</option>
-                        <option>Debito</option>
-                        <option>Credito</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="tipo_provedor">Provedor:</label>
-                    <select id="tipo_provedor" class="form-control">
-                        <option>--Seleccione--</option>
-                        <option>Visa</option>
-                        <option>Master Card</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="vaucher">Vaucher:</label>
-                    <input id="vaucher" type="text" class="form-control"/>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="valor">Valor:</label>
-                    <input id="valor" type="text" class="form-control"/>
-                </div>
-                <div class="form-group col-md-2">
-                    <br>
-                    <a href="#" style="background-color:#26c04d !important; border-color:#000 !important;" class="btn btn-warning btn-update-item"><i class="fa fa-plus"></i></a>
-                </div>
             </div>
-            <div class="col-md-6">
-                <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsivess">
+            <div class="col-md-4">
+                <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive-ejectivo">
                     <thead>
                         <th style="text-align: center"><label style="font-size: 30px;">Ejectivo</label></th>
                         <tr>
                             <th>Valor</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>12.5</td>
-                        </tr>
+                    <tbody id="ejectivo_detalle">
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-6">
-                <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsives">
+            <div class="col-md-4">
+                <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive-cupones">
+                    <thead>
+                        <th style="text-align: center"><label style="font-size: 30px;">Cupones</label></th>
+                        <tr>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cupones_detalle">
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive-tarjeta">
                     <thead>
                         <th colspan="2" style="text-align: center"><label style="font-size: 30px;">Tarjeta</label></th>
                         <tr>
+                            <th>Tarjeta</th>
                             <th>Vaucher</th>
                             <th>Valor</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1545664</td>
-                            <td>12.5</td>
-                        </tr>
+                    <tbody id="tarjeta_detalle">
                     </tbody>
                 </table>
             </div>
             <div class="col-md-12"><div id="enviar" class="btn btn-success btn-update-item col-md-12"><i class="fa fa-save"> Guardar</i></div></div>
         </div>
-
-
     </div>
 </div>
+@endsection
+@section('scripts')
+    <script src="{{ asset('js/tipo_cobros.js') }}"></script>
+    <script src="{{ asset('js/guardar_cobros.js') }}"></script>
 @endsection
