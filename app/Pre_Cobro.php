@@ -17,4 +17,9 @@ class Pre_Cobro extends Model
     {
         return $this->hasMany('App\Pre_Cobro','pre_cobro_id','id');
     }
+
+    public function cliente()
+    {
+        return $this->belongsTo('App\Models\Cliente', 'cliente_id','id');
+    }
 }

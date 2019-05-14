@@ -57,6 +57,12 @@ class PreCobroController extends Controller
         $precobro->pedido_id=$request->pedido_id;
         $precobro->sucursal_id=$personal->personal->sucursal_id;
         $precobro->save();
+        $detalle_pedido_datos=Detalle_pedido::where('pedido_id','=',$request->pedido_id)->get();
+        foreach ($detalle_pedido_datos as $item) {
+            $detalle_pedido=Detalle_pedido::find($item->id);
+            $detalle_pedido->estado_detalle_pedido_cobrado=true;
+            $detalle_pedido->save();
+        }
         Flash::success('Guardado Exitosamente.');
         return "guarado exitosamente";
     }
@@ -80,6 +86,7 @@ class PreCobroController extends Controller
             $precobro->total_pre_cobro=$total;
             $precobro->cliente_id=$request->cliente_id;
             $precobro->pedido_id=$request->pedido_id;
+            $precobro->estado_pre_cobro=true;
             $precobro->sucursal_id=$personal->personal->sucursal_id;
             $items=[];
             foreach ($precobro_detalle_datos as $item_producto) {

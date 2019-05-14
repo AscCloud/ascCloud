@@ -57,7 +57,6 @@ class Cliente extends Model
         'nombre_cliente' => 'required',
         'telefono_cliente' => 'required',
         'email_cliente' => 'email',
-        'nacimiento_cliente' => 'date'
     ];
 
 
