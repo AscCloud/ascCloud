@@ -18,6 +18,7 @@ class CreatePreCobrosTable extends Migration
             $table->string('descripcion_pre_cobro', 150)->nullable()->default('Alimentación');
             $table->date('fecha_pre_cobro');
             $table->decimal('total_pre_cobro', 10, 2);
+            $table->boolean('estado_pre_cobro')->default(false);
             $table->integer('cliente_id')->unsigned();
             $table->integer('pedido_id')->unsigned();
             $table->integer('sucursal_id')->unsigned();

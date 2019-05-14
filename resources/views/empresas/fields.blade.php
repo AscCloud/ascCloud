@@ -12,7 +12,7 @@
 <!-- Ruc Empresa Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('ruc_empresa', 'Ruc') !!}
-    {!! Form::text('ruc_empresa', null, ['class' => 'form-control']) !!}
+    {!! Form::text('ruc_empresa', null, ['class' => 'form-control', 'onkeypress'=>'return soloNumeros(event)']) !!}
 </div>
 <!-- Nombre Empresa Field -->
 <div class="form-group col-sm-6">
@@ -57,6 +57,9 @@
                 return false;
             }
         }
-
+        function soloNumeros(e){
+            var key = window.Event ? e.which : e.keyCode
+            return (key >= 48 && key <= 57)
+        }
 </script>
 @endsection

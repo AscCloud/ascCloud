@@ -21,7 +21,7 @@ class Cliente extends Model
     use SoftDeletes;
 
     public $table = 'clientes';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -60,5 +60,5 @@ class Cliente extends Model
         'nacimiento_cliente' => 'date'
     ];
 
-    
+
 }
