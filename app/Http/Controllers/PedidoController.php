@@ -196,7 +196,7 @@ class PedidoController extends Controller
 
     public function list(){
         $personal=Auth::user();
-        $pedidos=Pedido::where('sucursal_id','=',$personal->personal->sucursal_id)->where('estado_pedido'.'=',false)->get();
+        $pedidos=Pedido::where('sucursal_id','=',$personal->personal->sucursal_id)->where('estado_pedido','=',false)->get();
         $detalles=[];
         foreach ($pedidos as $clave => $item) {
             $detalle_pedido=Detalle_pedido::where('pedido_id','=',$item->id)->get();

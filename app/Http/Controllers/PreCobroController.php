@@ -66,6 +66,7 @@ class PreCobroController extends Controller
         }
         $pedido=Pedido::find($request->pedido_id);
         $pedido->estado_pedido=true;
+        $pedido->save();
         Flash::success('Guardado Exitosamente.');
         Session::forget('pedido_id');
         return "guarado exitosamente";
@@ -108,6 +109,7 @@ class PreCobroController extends Controller
             }
             $pedido=Pedido::find($request->pedido_id);
             $pedido->estado_pedido=true;
+            $pedido->save();
             Flash::success('Guardado Exitosamente.');
             DB::commit();
             Session::forget('pedido_id');
