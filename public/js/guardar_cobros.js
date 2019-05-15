@@ -8,13 +8,15 @@ $(document).ready(function () {
         var tipo_tarjeta =new Array();
         var cupones =new Array();
         $("#ejectivo_detalle").find(":hidden").each(function(index){
-            // efectivo.push({
-            //     valor:$(this).val()
-            // });
-            alert($(this).val())
+            efectivo.push({
+                valor:$(this).val()
+            });
         });
-        var n=$("#tarjeta_detalle tr").length;
-
+        $("#cupones_detalle").find(":hidden").each(function(index){
+            cupones.push({
+                valor:$(this).val()
+            });
+        });
         $("#tarjeta_detalle tr").find("#tarjeta_tipo_table").each(function(index){
             tipo_tarjeta.push($(this).val());
         });
