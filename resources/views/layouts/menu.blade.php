@@ -50,3 +50,7 @@
     <a href="{!! route('clientes.index') !!}"><i class="fa fa-edit"></i><span>Clientes</span></a>
 </li>
 
+<li class="{{ Request::is('cobro*') ? 'active' : '' }}">
+        <a href="{!! asset('/cobro') !!}"><i class="fa fa-edit"></i><span>Cobro</span></a>
+</li>
+
