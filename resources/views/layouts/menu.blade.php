@@ -54,3 +54,11 @@
         <a href="{!! asset('/cobro') !!}"><i class="fa fa-edit"></i><span>Cobro</span></a>
 </li>
 
+<li class="{{ Request::is('list*') ? 'active' : '' }}">
+        <a href="{!! asset('/list') !!}"><i class="fa fa-edit"></i><span>Listado Cobros</span></a>
+</li>
+
+<li class="{{ Request::is('cierre*') ? 'active' : '' }}">
+        <a href="{!! asset('/cierre') !!}"><i class="fa fa-edit"></i><span>Cierre</span></a>
+</li>
+

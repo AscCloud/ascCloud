@@ -5,8 +5,9 @@ $(document).ready(function () {
             valor=$(this).val();
         })
         var total_cuenta=$("#total_cuenta").text();
-        total_cuenta=parseFloat(total_cuenta) + parseFloat(valor);
-        $("#total_cuenta").text(total_cuenta);
+        total_cuenta=(parseFloat(total_cuenta) + parseFloat(valor));
+        console.log("total: "+total_cuenta);
+        $("#total_cuenta").text(parseFloat(total_cuenta).toFixed(2));
         $(this).parents("tr").remove();
     });
     $("#datatable-responsive-cupones").on("click",".delc", function () {
@@ -14,8 +15,8 @@ $(document).ready(function () {
             valor=$(this).val();
         })
         var total_cuenta=$("#total_cuenta").text();
-        total_cuenta=parseFloat(total_cuenta) + parseFloat(valor);
-        $("#total_cuenta").text(total_cuenta);
+        total_cuenta=(parseFloat(total_cuenta) + parseFloat(valor));
+        $("#total_cuenta").text(parseFloat(total_cuenta).toFixed(2));
         $(this).parents("tr").remove();
     });
     $("#datatable-responsive-tarjeta").on("click",".delt", function () {
@@ -23,8 +24,8 @@ $(document).ready(function () {
             valor=$(this).val();
         })
         var total_cuenta=$("#total_cuenta").text();
-        total_cuenta=parseFloat(total_cuenta) + parseFloat(valor);
-        $("#total_cuenta").text(total_cuenta);
+        total_cuenta=(parseFloat(total_cuenta) + parseFloat(valor));
+        $("#total_cuenta").text(parseFloat(total_cuenta).toFixed(2));
         $(this).parents("tr").remove();
     });
 });

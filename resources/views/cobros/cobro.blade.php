@@ -10,7 +10,7 @@
             <div class="form-group col-md-12" style="text-align: center;font-size: 30px;"><strong>Facturación</strong></div>
             <div class="form-group col-md-12">
                 <div class="col-md-2"><strong>Orden: </strong> {{ $precobro->pedido_id }}</div>
-                <div class="col-md-4"><strong>Cliente: </strong> {{ $precobro->cliente->nombre_cliente }} Leon</div>
+                <div class="col-md-4"><strong>Cliente: </strong> {{ $precobro->cliente->nombre_cliente }} </div>
                 <div class="col-md-4"><strong>Fecha: </strong> {{ \Carbon\Carbon::today()->format('Y-m-d') }}</div>
                 <div class="col-md-2" style="font-size: 20px;"><strong>Total: </strong> <label style="font-weight: lighter; !important" id="total_cuenta">{{ $precobro->total_pre_cobro  }}</label></div>
             </div>

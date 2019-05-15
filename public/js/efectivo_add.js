@@ -19,8 +19,8 @@ $(document).ready(function () {
                     cadena= cadena + '<td><div id="cupon_add" style="background-color:#FF0000 !important; border-color:#FF0000 !important;" class="btn btn-warning btn-update-item del"><i class="fa fa-trash"></i></div></td>';
                     cadena= cadena + '</tr>';
                     $("#datatable-responsive-ejectivo tbody").append(cadena);
-                    total_cuenta=total_cuenta-valor;
-                    $("#total_cuenta").text(total_cuenta);
+                    total_cuenta=parseFloat(total_cuenta).toFixed(2)-parseFloat(valor).toFixed(2);
+                    $("#total_cuenta").text(parseFloat(total_cuenta).toFixed(2));
                 }
             }
         }

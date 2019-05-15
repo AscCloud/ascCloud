@@ -98,9 +98,12 @@ Route::get('/precobro/separado/pedido/total/{id}', 'PreCobroController@pedido_se
 Route::post('/precobro/separado', 'PreCobroController@createmany');
 
 Route::get('/cobro', 'CobroController@index');
+Route::post('/cobro', 'CobroController@create');
 Route::get('/cobro/{id}', 'CobroController@showmoney');
+Route::get('/list', 'CobroController@list');
 
 Route::get('/reportes','ReporteController@ventas');
+Route::get('/cierre','ReporteController@cierre');
 
 
 Route::resource('clientes', 'ClienteController');

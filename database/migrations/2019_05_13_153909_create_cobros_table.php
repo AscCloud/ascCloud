@@ -19,9 +19,11 @@ class CreateCobrosTable extends Migration
             $table->integer('pedido_id')->unsigned();
             $table->integer('sucursal_id')->unsigned();
             $table->integer('precobro_id')->unsigned();
+            $table->integer('personal_id')->unsigned();
             $table->foreign('pedido_id')->references('id')->on('pedidos');
             $table->foreign('sucursal_id')->references('id')->on('sucursals');
             $table->foreign('precobro_id')->references('id')->on('pre_cobros');
+            $table->foreign('personal_id')->references('id')->on('personals');
             $table->timestamps();
             $table->softDeletes();
         });

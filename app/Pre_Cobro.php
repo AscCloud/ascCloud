@@ -22,4 +22,8 @@ class Pre_Cobro extends Model
     {
         return $this->belongsTo('App\Models\Cliente', 'cliente_id','id');
     }
+
+    public function pedido(){
+        return $this->belongsTo('App\Pedido', 'pedido_id','id');
+    }
 }
