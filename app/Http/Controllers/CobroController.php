@@ -25,8 +25,8 @@ class CobroController extends Controller
 
     public function showmoney($id){
         Session::put('precobro_id',$id);
-        return view('cobros.cobro');
-
+        $precobro=Pre_Cobro::find($id);
+        return $precobro->total_pre_cobro . " / ". $precobro->cliente->nombre_cliente;
     }
 
 

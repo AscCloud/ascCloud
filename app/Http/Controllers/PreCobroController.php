@@ -12,6 +12,7 @@ use DB;
 use App\Pre_Cobro;
 use App\Detalle_pedido;
 use App\Pre_Cobro_Detalle;
+use App\Pedido;
 use Illuminate\Support\Facades\Auth;
 
 class PreCobroController extends Controller
@@ -63,7 +64,10 @@ class PreCobroController extends Controller
             $detalle_pedido->estado_detalle_pedido_cobrado=true;
             $detalle_pedido->save();
         }
+        $pedido=Pedido::find($request->pedido_id);
+        $pedido->estado_pedido=true;
         Flash::success('Guardado Exitosamente.');
+        Session::forget('pedido_id');
         return "guarado exitosamente";
     }
 
@@ -102,8 +106,11 @@ class PreCobroController extends Controller
                 $detalle_pedido->estado_detalle_pedido_cobrado=true;
                 $detalle_pedido->save();
             }
+            $pedido=Pedido::find($request->pedido_id);
+            $pedido->estado_pedido=true;
             Flash::success('Guardado Exitosamente.');
             DB::commit();
+            Session::forget('pedido_id');
             return "guarado exitosamente";
         }catch(\Exception $e){
             DB::rollBack();

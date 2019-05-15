@@ -20,6 +20,7 @@ class CreatePedidosTable extends Migration
             $table->decimal('iva_pedido', 10, 2);
             $table->decimal('servicio_pedido', 10, 2);
             $table->decimal('total_pedido', 10, 2);
+            $table->boolean('estado_pedido')->default(false);
             $table->integer('sucursal_id')->unsigned();
             $table->integer('personal_id')->unsigned();
             $table->integer('mesa_id')->unsigned();
