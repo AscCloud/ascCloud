@@ -19,7 +19,7 @@
             <td>{!! $cliente->nombre_cliente !!}</td>
             <td>{!! $cliente->telefono_cliente !!}</td>
             <td>{!! $cliente->email_cliente !!}</td>
-            <td>{!! $cliente->nacimiento_cliente !!}</td>
+            <td>{!! \Carbon\Carbon::parse($cliente->nacimiento_cliente)->format('Y-m-d')!!}</td><!--Formato de fecha Año, mes y día-->
             <td>
                 {!! Form::open(['route' => ['clientes.destroy', $cliente->id], 'method' => 'delete']) !!}
                 <a href=""{!! route('clientes.show', [$cliente->id]) !!}"" style="background-color:#000 !important; border-color:#000 !important;" data-toggle="modal" data-target="#mostrar" class="btn btn-warning btn-update-item"><i class="fa fa-eye"></i></a>
