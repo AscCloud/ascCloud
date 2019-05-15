@@ -18,11 +18,9 @@
             <td>{!! $planta->sucursal->nombre_sucursal !!}</td>
             <td>
                 {!! Form::open(['route' => ['plantas.destroy', $planta->id], 'method' => 'delete']) !!}
-                <div class='btn-group'>
-                    <a href="#" class='btn btn-default btn-xs' data-toggle="modal" data-target="#mostrar"><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('plantas.edit', [$planta->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                </div>
+                <a href="#" style="background-color:#000 !important; border-color:#000 !important;" data-toggle="modal" data-target="#mostrar" class="btn btn-warning btn-update-item"><i class="fa fa-eye"></i></a>
+                <a href="{!! route('plantas.edit', [$planta->id]) !!}" class="btn btn-warning btn-update-item"><i class="fa fa-edit"></i></a>
+                {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-delete-item', 'onclick' => "return confirm('¿Desea eliminar?')"]) !!}
                 {!! Form::close() !!}
             </td>
         </tr>

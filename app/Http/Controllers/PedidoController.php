@@ -240,6 +240,36 @@ class PedidoController extends Controller
         // Session::forget('total');
     }
 
+    public function editar($id){
+        Session::put('idpedido',$id);
+        $cartedit=Session::put('cartedit',array());
+        $detalles=Detalle_pedido::where('pedido_id','=',$id)->get();
+        foreach ($detalles as $det) {
+            $detalle=new Detalle_pedido();
+            $detalle->producto_id=$det->producto_id;
+            $detalle->nombre_producto=$det->producto->nombre_producto;
+            $detalle->img_producto=$det->producto->img_producto;
+            $detalle->estado_detalle_pedido=$det->estado_detalle_pedido;
+            Session::put('iva',$det->producto->iva->iva);
+            $detalle->cantidad_detalle_pedido=$det->cantidad_detalle_pedido;
+            $detalle->precio_producto=$det->producto->precio_producto;
+            $detalle->observacion_detalle_pedido=$det->observacion_detalle_pedido;
+            $cartedit[]=$detalle;
+        }
+        Session::put('cartedit',$cartedit);
+        $cart=Session::get('cartedit');
+        $subtotal = $this->subtotal_cuenta();
+        $servicio=$this->servicio_cuenta();
+        $total=$this->total_cuenta($servicio);
+        if(empty($cart)){
+            $iva='';
+        }else{
+            $iva=Session::get('iva');
+
+        }
+        return view('detalle_pedido.lista_detalle')->with('cart',$cart)->with('subtotal',$subtotal)->with('iva',$iva)->with('total',$total)->with('servicio',$servicio);
+    }
+
     private function subtotal_cuenta(){
         $cart=Session::get('cartedit');
         $subtotal=0;

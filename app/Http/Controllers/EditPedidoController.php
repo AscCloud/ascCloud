@@ -29,6 +29,7 @@ class EditPedidoController extends Controller
         return view('pedido.edit')->with('cat',$cat);
     }
 
+
     public function show(){
         $cart=Session::get('cartedit');
         $subtotal = $this->subtotal_cuenta();

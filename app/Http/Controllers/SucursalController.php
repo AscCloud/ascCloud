@@ -198,6 +198,6 @@ class SucursalController extends AppBaseController
         if(empty($sucursales)){
             return "-1";
         }
-        return $sucursales;
+        return $sucursales;//
     }
 }

@@ -73,6 +73,7 @@ Route::get('/pedido/detalle/update/{producto}/{dot}/{cantidad}','PedidoControlle
 Route::get('/pedido/create','PedidoController@create');
 Route::get('/pedido/list','PedidoController@list');
 Route::get('/pedido/edit/{id}','PedidoController@edit');
+Route::get('/pedido/detalle/{id}','PedidoController@editar');
 
 Route::get('/agregar/detalle', 'EditPedidoController@show');
 Route::get('/agregar','EditPedidoController@agregar');
