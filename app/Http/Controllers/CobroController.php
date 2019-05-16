@@ -15,6 +15,7 @@ use Response;
 use Session;
 use Redirect;
 use DB;
+use PDF;
 
 class CobroController extends Controller
 {
@@ -37,6 +38,24 @@ class CobroController extends Controller
         return view('cobros.list')->with('cobros',$cobros);
     }
 
+    public function showpdf($id){
+        $cobros=Cobro::find($id);
+        $estado=$cobros->precobro->estado_pre_cobro;
+        if($estado==false){
+            $cabeceras=DB::select("select * from cobros_cabecera('".$id."')");
+            $detalle_cabeceras=DB::select("select * from cobros_detalle('".$cobros->id."')");
+            $invoice = "2222";
+            // return $cabecera['nombre_cliente'];
+            $view=\View::make('facturas.index', compact('cabeceras','detalle_cabeceras','invoice'))->render();
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            return $pdf->stream('invoice');
+            // return $view;
+        }else if($estado==true){
+        }
+        // $view = '<h1>hola</h1>';
+        //
+    }
     public function create(Request $request){
         try{
             DB::beginTransaction();

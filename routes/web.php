@@ -101,6 +101,7 @@ Route::get('/cobro', 'CobroController@index');
 Route::post('/cobro', 'CobroController@create');
 Route::get('/cobro/{id}', 'CobroController@showmoney');
 Route::get('/list', 'CobroController@list');
+Route::get('/pdf/cobro/{id}', 'CobroController@showpdf');
 
 Route::get('/reportes','ReporteController@ventas');
 Route::get('/cierre','ReporteController@cierre');

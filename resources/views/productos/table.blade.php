@@ -23,7 +23,7 @@
             <td>
                 {!! Form::open(['route' => ['productos.destroy', $producto->id], 'method' => 'delete']) !!}
                 <a href="#" style="background-color:#000 !important; border-color:#000 !important;" data-toggle="modal" data-target="#mostrar" class="btn btn-warning btn-update-item"><i class="fa fa-eye"></i></a>
-                <a href="{!! route('productoss.edit', [$producto->id]) !!}" class="btn btn-warning btn-update-item"><i class="fa fa-edit"></i></a>
+                <a href="{!! route('productos.edit', [$producto->id]) !!}" class="btn btn-warning btn-update-item"><i class="fa fa-edit"></i></a>
                 {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-delete-item', 'onclick' => "return confirm('¿Desea eliminar?')"]) !!}
                 {!! Form::close() !!}
             </td>

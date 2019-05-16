@@ -20,7 +20,7 @@
                             <td>{!! $cobro->fecha_cobro !!}</td>
                             <td>{!! $cobro->precobro->total_pre_cobro !!}</td>
                             <td>
-                                <a href="#" style="background-color:#000 !important; border-color:#000 !important;" class="btn btn-warning btn-update-item"><i class="fa fa-eye"></i></a>
+                                <a href="{{ asset('/pdf/cobro') }}/{{ $cobro->id }}" style="background-color:#000 !important; border-color:#000 !important;" class="btn btn-warning btn-update-item"><i class="fa fa-eye"></i></a>
                             </td>
                         </tr>
                     @endforeach
