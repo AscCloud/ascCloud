@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cobro;
 use App\Detalle_cobro;
+use App\Detalle_pedido;
 use App\Pre_Cobro;
 use App\Pedido;
 use App\Models\Mesa;
@@ -45,10 +46,18 @@ class CobroController extends Controller
         if($estado==false){
             $cabeceras=DB::select("select * from cobros_cabecera('".$id."')");
             $detalle_cabeceras=DB::select("select * from cobros_detalle('".$cobros->id."')");
-            // return $cabecera['nombre_cliente'];
-            $view=\View::make('facturas.fac', compact('cabeceras','detalle_cabeceras'))->render();
+            $detalle=[];
+            foreach ($detalle_cabeceras as $item) {
+                $detalle_item=Detalle_pedido::find($item->id);
+                $detalle[]=$detalle_item;
+            }
+            $subtotal=round($this->subtotal_cuenta($detalle),2);
+            $servicio=round($this->servicio_cuenta($detalle),2);
+            $total=round($this->total_cuenta($detalle,$servicio),2);
+            $iva=round($this->iva($detalle,$subtotal),2);
+            $view=\View::make('facturas.fac', compact('cabeceras','detalle_cabeceras','subtotal','servicio','iva','total'))->render();
             $pdf = \App::make('dompdf.wrapper');
-            $pdf->setPaper(array(0,0,200,1000));
+            $pdf->setPaper(array(0,0,200,600));
             $pdf->loadHTML($view);
             return $pdf->stream('cabeceras');
         } else if($estado==true){
@@ -142,5 +151,15 @@ class CobroController extends Controller
         }
         $servicio=$total*0.10;
         return $servicio;
+    }
+
+    private function iva($cart,$subtotal){
+        $valor_iva;
+        $iva=0;
+        foreach ($cart as $item) {
+            $valor_iva=$item->producto->iva->iva;
+        }
+        $iva=$subtotal*($valor_iva/100);
+        return $iva;
     }
 }

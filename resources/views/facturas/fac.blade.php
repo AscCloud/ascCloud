@@ -49,13 +49,27 @@
             </tr>
         @endforeach
     </table>
-    <table>
-        @foreach ($cabeceras as $cabecera)
-            <tr>
-                <td colspan="2" style="text-align: right">Total:</td>
-                <td>{{ $cabecera->total_pre_cobro }}</td>
-            </tr>
-        @endforeach
-    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p style="margin-left: 70px">Subtotal: {{ $subtotal }}</p>
+    <p style="margin-left: 102px">Iva: {{ $iva }}</p>
+    <p style="margin-left: 70px">Servicio: {{ $servicio }}</p>
+    @foreach ($cabeceras as $cabecera)
+        <p style="margin-left: 90px">Total: {{ $cabecera->total_pre_cobro }}</p>
+    @endforeach
 </body>
 </html>
