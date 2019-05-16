@@ -6,9 +6,6 @@
 <body>
     <table>
         <tr>
-            <th colspan="3" style="text-align: center; font-size: 30px;">Factura</th>
-        </tr>
-        <tr>
             <td>Cliente</td>
         </tr>
         @foreach ($cabeceras as $cabecera)
@@ -34,7 +31,6 @@
         @endforeach
         @foreach ($cabeceras as $cabecera)
             <tr>
-                <td WIDTH="10%"> Fecha: </td>
                 <td colspan="3">Fecha: {{ $cabecera->fecha_cobro}}</td>
             </tr>
         @endforeach

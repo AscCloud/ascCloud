@@ -16,6 +16,7 @@ use Session;
 use Redirect;
 use DB;
 use PDF;
+use Dompdf\Dompdf;
 
 class CobroController extends Controller
 {
@@ -44,17 +45,15 @@ class CobroController extends Controller
         if($estado==false){
             $cabeceras=DB::select("select * from cobros_cabecera('".$id."')");
             $detalle_cabeceras=DB::select("select * from cobros_detalle('".$cobros->id."')");
-            $invoice = "2222";
             // return $cabecera['nombre_cliente'];
-            $view=\View::make('facturas.index', compact('cabeceras','detalle_cabeceras','invoice'))->render();
+            $view=\View::make('facturas.fac', compact('cabeceras','detalle_cabeceras'))->render();
             $pdf = \App::make('dompdf.wrapper');
+            $pdf->setPaper(array(0,0,200,1000));
             $pdf->loadHTML($view);
-            return $pdf->stream('invoice');
-            // return $view;
-        }else if($estado==true){
+            return $pdf->stream('cabeceras');
+        } else if($estado==true){
+
         }
-        // $view = '<h1>hola</h1>';
-        //
     }
     public function create(Request $request){
         try{
@@ -115,5 +114,33 @@ class CobroController extends Controller
             Flash::error('error');
             return $e;
         }
+    }
+    private function subtotal_cuenta($cart){
+        $subtotal=0;
+        foreach ($cart as $clave => $item) {
+            $subtotal +=$item->producto->precio_producto *$item->cantidad_detalle_pedido;
+        }
+        return $subtotal;
+    }
+
+    private function total_cuenta($cart,$servicio){
+        $cart=$cart;
+        $total=0;
+        foreach ($cart as $clave => $item) {
+            $total +=(($item->producto->precio_producto)*(($item->producto->iva->iva/100)+1)) *$item->cantidad_detalle_pedido;
+        }
+        $total=$total+$servicio;
+        return $total;
+    }
+
+    private function servicio_cuenta($cart){
+        $cart=$cart;
+        $total=0;
+        $servicio=0;
+        foreach ($cart as $clave => $item) {
+            $total +=(($item->producto->precio_producto)) *$item->cantidad_detalle_pedido;
+        }
+        $servicio=$total*0.10;
+        return $servicio;
     }
 }
