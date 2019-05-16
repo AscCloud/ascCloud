@@ -11,6 +11,9 @@
                 <div class="col-lg-12 col-xs-12">
                     <a href="{{ asset('/pedido/list') }}" class="btn btn-danger col-lg-12 col-xs-12" ><i class="fa fa-arrow-circle-left"></i> Regresar </a>
                 </div>
+                <div class="col-lg-6 col-xs-6">
+                    <a href="#" class="btn btn-success col-lg-12 col-xs-12" ><i class="fa fa-save"></i> Despachar</a>
+                </div>
             </div>
             <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive">
                 <thead>
