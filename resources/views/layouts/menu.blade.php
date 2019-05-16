@@ -62,3 +62,7 @@
         <a href="{!! asset('/cierre') !!}"><i class="fa fa-edit"></i><span>Cierre</span></a>
 </li>
 
+<li class="{{ Request::is('reportes*') ? 'active' : '' }}">
+        <a href="{!! asset('/reportes') !!}"><i class="fa fa-edit"></i><span>Ventas</span></a>
+</li>
+

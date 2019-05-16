@@ -14,7 +14,7 @@ class ReporteController extends Controller
     }
     public function ventas(){
         $productos=DB::select("select * from reporteventas('".\Carbon\Carbon::today()."')");
-        return $productos;
+        return view('ventas.index')->with('productos',$productos);
     }
 
     public function cierre(){
