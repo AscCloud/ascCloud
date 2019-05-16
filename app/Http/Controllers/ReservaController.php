@@ -13,6 +13,12 @@ use Redirect;
 class ReservaController extends Controller
 {
     //
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
         $id_mesa=Session::get('idm');
         if(empty($id_mesa)){

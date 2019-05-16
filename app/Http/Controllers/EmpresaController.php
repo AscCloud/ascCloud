@@ -21,6 +21,7 @@ class EmpresaController extends AppBaseController
     public function __construct(EmpresaRepository $empresaRepo)
     {
         $this->empresaRepository = $empresaRepo;
+        $this->middleware('auth');
     }
 
     /**

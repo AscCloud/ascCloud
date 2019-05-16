@@ -8,6 +8,12 @@ use DOMDocument;
 class FacturacionController extends Controller
 {
     //
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     function crearXml(){
         $filexml="C:/xampp/htdocs/esquemas offline/factura_2_1_0.xml";
         $schema="C:/xampp/htdocs/esquemas offline/factura_2_1_0.xsd";

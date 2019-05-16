@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Auth;
 class PreCobroController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index($id){
         Session::put('pedido_id',$id);

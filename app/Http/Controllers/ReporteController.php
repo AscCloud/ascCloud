@@ -8,6 +8,10 @@ use View;
 
 class ReporteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function ventas(){
         $productos=DB::select("select * from reporteventas('".\Carbon\Carbon::today()."')");
         return $productos;

@@ -17,6 +17,7 @@ use DB;
 class PedidoController extends Controller
 {
     public function __construct(){
+        $this->middleware('auth');
         if(!Session::has('cart')){
             Session::put('cart',array());
         }

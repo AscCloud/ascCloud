@@ -21,6 +21,7 @@ class MesaController extends AppBaseController
 
     public function __construct(MesaRepository $mesaRepo)
     {
+        $this->middleware('auth');
         $this->mesaRepository = $mesaRepo;
     }
 

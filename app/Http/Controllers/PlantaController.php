@@ -20,6 +20,7 @@ class PlantaController extends AppBaseController
 
     public function __construct(PlantaRepository $plantaRepo)
     {
+        $this->middleware('auth');
         $this->plantaRepository = $plantaRepo;
     }
 
