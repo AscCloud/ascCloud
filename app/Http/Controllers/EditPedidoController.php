@@ -106,6 +106,7 @@ class EditPedidoController extends Controller
                 $cabecera->subtotal_pedido=round($subtotal,2);
                 $cabecera->servicio_pedido=round($servicio,2);
                 $cabecera->total_pedido=$this->total_cuenta($servicio);
+                $cabecera->estado_entrega_pedido=false;
                 $iva=Session::get('iva');
                 $cabecera->iva_pedido=round($subtotal*($iva/100),2);
                 $cart=Session::get('cartedit');

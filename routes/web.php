@@ -111,6 +111,10 @@ Route::resource('clientes', 'ClienteController');
 Route::post('/newcliente', 'ClienteController@newcliente');
 Route::post('/newcliente/separado', 'ClienteController@newclienteseparado');
 
+Route::get('/comida','DespacharController@indexcomida');
+Route::get('/bebida','DespacharController@indexbebida');
+Route::get('/entregar/{id}','DespacharController@despacharcomida');
+
 Route::get('/facturacion', function(){
     $url="https://celcer.sri.gob.ec/comprobantes-electronicos-ws/RecepcionComprobantesOffline?wsdl";
     // try{
