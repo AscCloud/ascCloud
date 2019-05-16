@@ -1,5 +1,5 @@
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/detalle.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/popup.css') }}" />
 @endsection
 @extends('layouts.app')
 @section('content')
@@ -70,49 +70,6 @@
 </div>
 @endsection
 
-@foreach($pedidos as $pedido)
-<!--Pop up para mostrar la información -->
-<div class="modal fade" id="info">
-    <div class="modal-dialog">
-        <div class="modal-content">
-                <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <i class="glyphicon glyphicon-remove-circle"></i>
-                        </button>
-                        <label style="font-size: 30px">Información</label>
-                    </div>
-             <div class="modal-body">
-                <!-- Nombre Sucursal Field -->
-                <div class="form-group">
-                    {!! Form::label('personal_id', 'Personal') !!}
-                    <p>{!! $pedido->personal->nombre_personal !!}</p>
-                </div>
-
-                <!-- Direccion Sucursal Field -->
-                <div class="form-group">
-                    {!! Form::label('fecha_pedido', 'Fecha') !!}
-                    <p>{!! $pedido->fecha_pedido !!}</p>
-                </div>
-
-                <!-- Telefono Sucursal Field -->
-                <div class="form-group">
-                    {!! Form::label('mesa_id', 'Planta') !!}
-                    <p>{!! $pedido->mesa->planta->nombre_planta  !!}</p>
-                </div>
-
-                <!-- Empresa Id Field -->
-                <div class="form-group">
-                    {!! Form::label('mesa_id', 'Mesa') !!}
-                    <p>{!! $pedido->mesa->numero_mesa !!}</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="btn btn-danger" data-dismiss="modal">Regresar</a>
-            </div>
-        </div>
-    </div>
-</div>
-@endforeach
 
 
 
