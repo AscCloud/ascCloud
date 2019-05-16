@@ -37,7 +37,7 @@ class CobroController extends Controller
 
     public function list(){
         $personal=Auth::user();
-        $cobros=Cobro::where('sucursal_id','=',$personal->personal->sucursal_id)->get();
+        $cobros=Cobro::where('sucursal_id','=',$personal->personal->sucursal_id)->where('fecha_cobro','=',\Carbon\Carbon::today())->get();
         return view('cobros.list')->with('cobros',$cobros);
     }
 
