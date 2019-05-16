@@ -43,8 +43,11 @@
 </li>
 
 <li class="{{ Request::is('pedido/list*') ? 'active' : '' }}">
-        <a href="{!! asset('/pedido/list') !!}"><i class="fa fa-edit"></i><span>Listado Pedidos</span></a>
-    </li>
+    <a href="{!! asset('/pedido/list') !!}"><i class="fa fa-edit"></i><span>Listado Pedidos</span></a>
+</li>
+<li class="{{ Request::is('comida*') ? 'active' : '' }}">
+    <a href="{!! asset('/comida') !!}"><i class="fa fa-edit"></i><span>Despachar</span></a>
+</li>
 
 <li class="{{ Request::is('clientes*') ? 'active' : '' }}">
     <a href="{!! route('clientes.index') !!}"><i class="fa fa-edit"></i><span>Clientes</span></a>
