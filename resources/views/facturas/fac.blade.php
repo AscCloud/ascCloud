@@ -51,20 +51,6 @@
     </table>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <p style="margin-left: 70px">Subtotal: {{ $subtotal }}</p>
     <p style="margin-left: 102px">Iva: {{ $iva }}</p>
     <p style="margin-left: 70px">Servicio: {{ $servicio }}</p>

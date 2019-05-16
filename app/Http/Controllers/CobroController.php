@@ -8,6 +8,7 @@ use App\Detalle_cobro;
 use App\Detalle_pedido;
 use App\Pre_Cobro;
 use App\Pedido;
+use App\Pre_Cobro_Detalle;
 use App\Models\Mesa;
 use Illuminate\Support\Facades\Auth;
 use View;
@@ -57,11 +58,27 @@ class CobroController extends Controller
             $iva=round($this->iva($detalle,$subtotal),2);
             $view=\View::make('facturas.fac', compact('cabeceras','detalle_cabeceras','subtotal','servicio','iva','total'))->render();
             $pdf = \App::make('dompdf.wrapper');
-            $pdf->setPaper(array(0,0,200,600));
+            $pdf->setPaper(array(0,0,200,100000));
             $pdf->loadHTML($view);
-            return $pdf->stream('cabeceras');
+            return $pdf->stream('factura');
         } else if($estado==true){
-
+            $cabeceras=DB::select("select * from cobros_cabecera('".$id."')");
+            $precobro_detalle=Pre_Cobro_Detalle::where('pre_cobro_id','=',$cobros->precobro_id)->get();
+            $detalle_cabeceras=DB::select("select * from cobros_detalle_separados('".$cobros->precobro_id."')");
+            $detalle_separado=[];
+            foreach ($precobro_detalle as $item_producto) {
+                $detalle_item_separdado=Detalle_pedido::find($item_producto->detalle_pedido_id);
+                $detalle_separado[]=$detalle_item_separdado;
+            }
+            $subtotal=round($this->subtotal_cuenta($detalle_separado),2);
+            $servicio=round($this->servicio_cuenta($detalle_separado),2);
+            $total=round($this->total_cuenta($detalle_separado,$servicio),2);
+            $iva=round($this->iva($detalle_separado,$subtotal),2);
+            $view=\View::make('facturas.fac', compact('cabeceras','detalle_cabeceras','subtotal','servicio','iva','total'))->render();
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->setPaper(array(0,0,200,100000));
+            $pdf->loadHTML($view);
+            return $pdf->stream('factura');
         }
     }
     public function create(Request $request){
