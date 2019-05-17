@@ -57,8 +57,8 @@
         <a href="{!! asset('/cobro') !!}"><i class="fa fa-edit"></i><span>Cobro</span></a>
 </li>
 
-<li class="{{ Request::is('list*') ? 'active' : '' }}">
-        <a href="{!! asset('/list') !!}"><i class="fa fa-edit"></i><span>Listado Pre Cobros</span></a>
+<li class="{{ Request::is('list/precobro*') ? 'active' : '' }}">
+        <a href="{!! asset('/list/precobro') !!}"><i class="fa fa-edit"></i><span>Listado Pre Cobros</span></a>
 </li>
 
 <li class="{{ Request::is('cierre*') ? 'active' : '' }}">
