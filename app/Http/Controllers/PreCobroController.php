@@ -28,6 +28,12 @@ class PreCobroController extends Controller
         return view('pre_cobros.index');
     }
 
+    public function listpre(){
+        $personal=Auth::user();
+        $cobros=Pre_Cobro::where('sucursal_id','=',$personal->personal->sucursal_id)->where('fecha_pre_cobro','=',\Carbon\Carbon::today())->get();
+        return view('pre_cobros.list')->with('cobros',$cobros);
+    }
+
     public function indexseparado($id){
         Session::put('pedido_id',$id);
         return view('pre_cobros.cuentas_separadas');

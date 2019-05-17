@@ -96,12 +96,13 @@ Route::post('/precobro/separado/cliente/{ruc}', 'PreCobroController@cliente');
 Route::get('/precobro/separado/pedido/{id}', 'PreCobroController@pedido_separado');
 Route::get('/precobro/separado/pedido/total/{id}', 'PreCobroController@pedido_separado_total');
 Route::post('/precobro/separado', 'PreCobroController@createmany');
+Route::get('/list/precobro', 'PreCobroController@listpre');
 
 Route::get('/cobro', 'CobroController@index');
 Route::post('/cobro', 'CobroController@create');
 Route::get('/cobro/{id}', 'CobroController@showmoney');
 Route::get('/list', 'CobroController@list');
-Route::get('/pdf/cobro/{id}', 'CobroController@showpdf');
+Route::get('/pdf/cobro/{id}', 'CobroController@showpdfpre');
 
 Route::get('/reportes','ReporteController@ventas');
 Route::get('/cierre','ReporteController@cierre');

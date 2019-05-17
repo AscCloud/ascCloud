@@ -58,7 +58,7 @@
 </li>
 
 <li class="{{ Request::is('list*') ? 'active' : '' }}">
-        <a href="{!! asset('/list') !!}"><i class="fa fa-edit"></i><span>Listado Cobros</span></a>
+        <a href="{!! asset('/list') !!}"><i class="fa fa-edit"></i><span>Listado Pre Cobros</span></a>
 </li>
 
 <li class="{{ Request::is('cierre*') ? 'active' : '' }}">

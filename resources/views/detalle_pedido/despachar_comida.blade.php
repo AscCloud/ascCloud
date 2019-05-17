@@ -7,6 +7,7 @@
     @include('flash::message')
     <div class="box box-primary">
         <div class="box-body">
+            <div class="col-md-12">
                 @foreach ($pedido as $item)
                 <div class="col-md-4">
                         <table>
@@ -38,6 +39,7 @@
                             </table>
                 </div>
                 @endforeach
+            </div>
         </div>
     </div>
 </div>
