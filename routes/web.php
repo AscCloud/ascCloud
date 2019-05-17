@@ -74,6 +74,10 @@ Route::get('/pedido/create','PedidoController@create');
 Route::get('/pedido/list','PedidoController@list');
 Route::get('/pedido/edit/{id}','PedidoController@edit');
 Route::get('/pedido/detalle/{id}','PedidoController@editar');
+Route::get('/pedido/caja','PedidoController@showfechapedido');
+Route::get('/pedido/meseros','PedidoController@showfechapedidomesero');
+Route::post('/pedido/datos','PedidoController@fechapedido');
+Route::post('/pedido/datosmesero','PedidoController@fechapedidomesero');
 
 Route::get('/agregar/detalle', 'EditPedidoController@show');
 Route::get('/agregar','EditPedidoController@agregar');
@@ -105,7 +109,11 @@ Route::get('/list', 'CobroController@list');
 Route::get('/pdf/cobro/{id}', 'CobroController@showpdfpre');
 
 Route::get('/reportes','ReporteController@ventas');
-Route::get('/cierre','ReporteController@cierre');
+Route::get('/reporte/venta','ReporteController@showventas');
+Route::post('/reporte/ventas','ReporteController@fechaventas');
+Route::get('/cierres','ReporteController@cierre');
+Route::get('/cierre/fecha','ReporteController@showciere');
+Route::post('/cierre/caja','ReporteController@cierrefecha');
 
 
 Route::resource('clientes', 'ClienteController');

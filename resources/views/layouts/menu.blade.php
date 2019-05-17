@@ -54,17 +54,29 @@
         <a href="{!! route('clientes.index') !!}"><i class="fa fa-edit"></i><span>Clientes</span></a>
     </li>
 
+
+@endif
+
+@if (Auth::user()->rol_id==2)
+    <li class="{{ Request::is('pedido/meseros*') ? 'active' : '' }}">
+        <a href="{!! asset('/pedido/meseros') !!}"><i class="fa fa-edit"></i><span>Listado Pedidos por Fecha</span></a>
+    </li>
 @endif
 
 @if (Auth::user()->rol_id==4)
     <li class="{{ Request::is('pedido/list*') ? 'active' : '' }}">
         <a href="{!! asset('/pedido/list') !!}"><i class="fa fa-edit"></i><span>Listado Pedidos</span></a>
     </li>
+
 @endif
 
 @if (Auth::user()->rol_id==4 || Auth::user()->rol_id==5 || Auth::user()->rol_id==1)
-
-
+    <li class="{{ Request::is('pedido/caja*') ? 'active' : '' }}">
+        <a href="{!! asset('/pedido/caja') !!}"><i class="fa fa-edit"></i><span>Listado Pedidos por Fecha</span></a>
+    </li>
+<li class="{{ Request::is('pedido/meseros*') ? 'active' : '' }}">
+        <a href="{!! asset('/pedido/meseros') !!}"><i class="fa fa-edit"></i><span>Listado Pedidos Mesero</span></a>
+    </li>
     <li class="{{ Request::is('cobro*') ? 'active' : '' }}">
             <a href="{!! asset('/cobro') !!}"><i class="fa fa-edit"></i><span>Cobro</span></a>
     </li>
@@ -73,11 +85,19 @@
             <a href="{!! asset('/list/precobro') !!}"><i class="fa fa-edit"></i><span>Listado Pre Cobros</span></a>
     </li>
 
-    <li class="{{ Request::is('cierre*') ? 'active' : '' }}">
-            <a href="{!! asset('/cierre') !!}"><i class="fa fa-edit"></i><span>Cierre</span></a>
+    <li class="{{ Request::is('cierres*') ? 'active' : '' }}">
+            <a href="{!! asset('/cierres') !!}"><i class="fa fa-edit"></i><span>Cierre</span></a>
+    </li>
+
+    <li class="{{ Request::is('cierre/fecha*') ? 'active' : '' }}">
+            <a href="{!! asset('/cierre/fecha') !!}"><i class="fa fa-edit"></i><span>Cierre Por Fecha</span></a>
     </li>
 
     <li class="{{ Request::is('reportes*') ? 'active' : '' }}">
             <a href="{!! asset('/reportes') !!}"><i class="fa fa-edit"></i><span>Ventas</span></a>
+    </li>
+
+    <li class="{{ Request::is('reporte/venta*') ? 'active' : '' }}">
+            <a href="{!! asset('/reporte/venta') !!}"><i class="fa fa-edit"></i><span>Ventas Por Fecha</span></a>
     </li>
 @endif

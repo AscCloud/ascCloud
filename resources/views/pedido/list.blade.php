@@ -26,7 +26,7 @@
                             <td>{!! $pedido->id !!}</td>
                             <td>{!! $pedido->personal->nombre_personal !!}</td>
                             <td>{!! $pedido->fecha_pedido !!}</td>
-                            <td>{!! \Carbon\Carbon::parse($pedido->created_at)->format('H:i:s') !!}</td>
+                            <td>{!! \Carbon\Carbon::parse($pedido->updated_at)->format('H:i:s') !!}</td>
                             <td>{!! $pedido->mesa->planta->nombre_planta !!}</td>
                             <td>{!! $pedido->mesa->numero_mesa !!}</td>
                             <td>{!! $pedido->total_pedido !!}</td>

@@ -16,7 +16,6 @@
                     <tr>
                         <td>Cantidad</th>
                         <td>{{ $producto->total }}</td>
-
                     </tr>
                 @endforeach
             </table>

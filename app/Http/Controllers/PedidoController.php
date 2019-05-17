@@ -272,6 +272,38 @@ class PedidoController extends Controller
         return view('detalle_pedido.lista_detalle')->with('cart',$cart)->with('subtotal',$subtotal)->with('iva',$iva)->with('total',$total)->with('servicio',$servicio);
     }
 
+    public function fechapedido(Request $request){
+        $personal=Auth::user();
+        if($request->fecha=="hoy"){
+            $pedidos=DB::select("select * from lista_pedidos('".\Carbon\Carbon::today()."','".$personal->personal->sucursal_id."')");
+            return $pedidos;
+        }
+        else{
+            $pedidos=DB::select("select * from lista_pedidos('".$request->fecha."','".$personal->personal->sucursal_id."')");
+            return $pedidos;
+        }
+    }
+
+    public function fechapedidomesero(Request $request){
+        $personal=Auth::user();
+        if($request->fecha=="hoy"){
+            $pedidos=DB::select("select * from lista_pedidos_mesero('".\Carbon\Carbon::today()."','".$personal->personal->sucursal_id."','".$personal->personal->id."')");
+            return $pedidos;
+        }
+        else{
+            $pedidos=DB::select("select * from lista_pedidos_mesero('".$request->fecha."','".$personal->personal->sucursal_id."','".$personal->personal->id."')");
+            return $pedidos;
+        }
+    }
+
+    public function showfechapedido(){
+        return view('pedido.fecha_pedido');
+    }
+
+    public function showfechapedidomesero(){
+        return view('pedido.fecha_pedido_mesero');
+    }
+
     private function subtotal_cuenta(){
         $cart=Session::get('cartedit');
         $subtotal=0;
