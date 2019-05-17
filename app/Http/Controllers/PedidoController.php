@@ -18,6 +18,7 @@ class PedidoController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
+        $this->middleware('mesero');
         if(!Session::has('cart')){
             Session::put('cart',array());
         }

@@ -28,6 +28,7 @@ class PersonalController extends AppBaseController
     public function __construct(PersonalRepository $personalRepo)
     {
         $this->middleware('auth');
+        $this->middleware('administrador');
         $this->personalRepository = $personalRepo;
     }
 

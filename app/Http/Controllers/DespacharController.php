@@ -11,6 +11,12 @@ use View;
 class DespacharController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('chef');
+    }
+
     public function indexcomida(){
         $personal=Auth::user();
         $pedido=Pedido::where('fecha_pedido','=',\Carbon\Carbon::today())->where('sucursal_id','=',$personal->personal->sucursal_id)->where('estado_entrega_pedido','=',false)->get();

@@ -22,6 +22,7 @@ class EmpresaController extends AppBaseController
     {
         $this->empresaRepository = $empresaRepo;
         $this->middleware('auth');
+        $this->middleware('administrador');
     }
 
     /**

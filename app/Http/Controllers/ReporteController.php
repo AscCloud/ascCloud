@@ -11,6 +11,7 @@ class ReporteController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('cajero');
     }
     public function ventas(){
         $productos=DB::select("select * from reporteventas('".\Carbon\Carbon::today()."')");

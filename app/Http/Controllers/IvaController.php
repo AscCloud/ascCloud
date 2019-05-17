@@ -18,6 +18,7 @@ class IvaController extends AppBaseController
     public function __construct(IvaRepository $ivaRepo)
     {
         $this->middleware('auth');
+        $this->middleware('administrador');
         $this->ivaRepository = $ivaRepo;
     }
 

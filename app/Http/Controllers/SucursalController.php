@@ -22,6 +22,7 @@ class SucursalController extends AppBaseController
     public function __construct(SucursalRepository $sucursalRepo)
     {
         $this->middleware('auth');
+        $this->middleware('administrador');
         $this->sucursalRepository = $sucursalRepo;
     }
 

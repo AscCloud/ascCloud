@@ -12,6 +12,7 @@ class FacturacionController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('administrador');
     }
 
     function crearXml(){

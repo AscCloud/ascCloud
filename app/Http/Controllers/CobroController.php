@@ -23,6 +23,12 @@ use Dompdf\Dompdf;
 class CobroController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('mesero');
+    }
+
     public function index(){
         $personal=Auth::user();
         $cobros=Pre_Cobro::where('sucursal_id','=',$personal->personal->sucursal_id)->where('fecha_pre_cobro','=',\Carbon\Carbon::today())->where('estado_cobro','=',false)->get();
