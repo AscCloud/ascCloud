@@ -17,7 +17,7 @@ class CreateEmpresasTable extends Migration
             $table->increments('id');
             $table->string('ruc_empresa',20);
             $table->string('nombre_empresa', 120);
-            $table->string('img_empresa',200);
+            $table->string('img_empresa',200)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

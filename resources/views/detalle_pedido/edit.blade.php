@@ -60,9 +60,11 @@
                             @endif
                         </th>
                     </tr>
-                    <tr>
-                        <th style="text-align:right" colspan="6"> Servicio: {{ number_format(round($servicio,2),2) }}</th>
-                    </tr>
+                    @if (Auth::user()->personal->sucursal->cobro_servicio_sucursal==true)
+                        <tr>
+                            <th style="text-align:right" colspan="6"> Servicio: {{ number_format(round($servicio,2),2) }}</th>
+                        </tr>
+                    @endif
                     <tr>
                         <th style="text-align:right" colspan="6"> Total: {{ number_format(round($total,2),2) }}</th>
                     </tr>

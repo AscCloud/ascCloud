@@ -49,6 +49,7 @@ class CobroController extends Controller
 
     public function showpdf($id){
         $cobros=Cobro::find($id);
+        $personal=Auth::user();
         $estado=$cobros->precobro->estado_pre_cobro;
         if($estado==false){
             $cabeceras=DB::select("select * from cobros_cabecera('".$id."')");
@@ -60,7 +61,11 @@ class CobroController extends Controller
             }
             $subtotal=round($this->subtotal_cuenta($detalle),2);
             $servicio=round($this->servicio_cuenta($detalle),2);
-            $total=round($this->total_cuenta($detalle,$servicio),2);
+            if($personal->personal->sucursal->cobro_servicio_sucursal==true){
+                $total=round($this->total_cuenta($detalle,$servicio),2);
+            }else{
+                $total=round($this->total_cuenta_sinservicio($detalle),2);
+            }
             $iva=round($this->iva($detalle,$subtotal),2);
             $view=\View::make('facturas.fac', compact('cabeceras','detalle_cabeceras','subtotal','servicio','iva','total'))->render();
             $pdf = \App::make('dompdf.wrapper');
@@ -78,7 +83,11 @@ class CobroController extends Controller
             }
             $subtotal=round($this->subtotal_cuenta($detalle_separado),2);
             $servicio=round($this->servicio_cuenta($detalle_separado),2);
-            $total=round($this->total_cuenta($detalle_separado,$servicio),2);
+            if($personal->personal->sucursal->cobro_servicio_sucursal==true){
+                $total=round($this->total_cuenta($detalle_separado,$servicio),2);
+            }else{
+                $total=round($this->total_cuenta_sinservicio($detalle_separado),2);
+            }
             $iva=round($this->iva($detalle_separado,$subtotal),2);
             $view=\View::make('facturas.fac', compact('cabeceras','detalle_cabeceras','subtotal','servicio','iva','total'))->render();
             $pdf = \App::make('dompdf.wrapper');
@@ -89,6 +98,7 @@ class CobroController extends Controller
     }
 
     public function showpdfpre($id){
+        $personal=Auth::user();
         $pre_cobro_im=Pre_Cobro::find($id);
         $estado=$pre_cobro_im->estado_pre_cobro;
         if($estado==false){
@@ -101,7 +111,11 @@ class CobroController extends Controller
             }
             $subtotal=round($this->subtotal_cuenta($detalle),2);
             $servicio=round($this->servicio_cuenta($detalle),2);
-            $total=round($this->total_cuenta($detalle,$servicio),2);
+            if($personal->personal->sucursal->cobro_servicio_sucursal==true){
+                $total=round($this->total_cuenta($detalle,$servicio),2);
+            }else{
+                $total=round($this->total_cuenta_sinservicio($detalle),2);
+            }
             $iva=round($this->iva($detalle,$subtotal),2);
             $view=\View::make('facturas.fac', compact('cabeceras','detalle_cabeceras','subtotal','servicio','iva','total'))->render();
             $pdf = \App::make('dompdf.wrapper');
@@ -120,7 +134,11 @@ class CobroController extends Controller
             }
             $subtotal=round($this->subtotal_cuenta($detalle_separado),2);
             $servicio=round($this->servicio_cuenta($detalle_separado),2);
-            $total=round($this->total_cuenta($detalle_separado,$servicio),2);
+            if($personal->personal->sucursal->cobro_servicio_sucursal==true){
+                $total=round($this->total_cuenta($detalle_separado,$servicio),2);
+            }else{
+                $total=round($this->total_cuenta_sinservicio($detalle_separado),2);
+            }
             $iva=round($this->iva($detalle_separado,$subtotal),2);
             $view=\View::make('facturas.fac', compact('cabeceras','detalle_cabeceras','subtotal','servicio','iva','total'))->render();
             $pdf = \App::make('dompdf.wrapper');
@@ -205,6 +223,16 @@ class CobroController extends Controller
             $total +=(($item->producto->precio_producto)*(($item->producto->iva->iva/100)+1)) *$item->cantidad_detalle_pedido;
         }
         $total=$total+$servicio;
+        return $total;
+    }
+
+    private function total_cuenta_sinservicio($cart){
+        $cart=$cart;
+        $total=0;
+        foreach ($cart as $clave => $item) {
+            $total +=(($item->producto->precio_producto)*(($item->producto->iva->iva/100)+1)) *$item->cantidad_detalle_pedido;
+        }
+        $total=$total;
         return $total;
     }
 

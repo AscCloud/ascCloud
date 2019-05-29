@@ -53,7 +53,10 @@
     <br>
     <p style="margin-left: 70px">Subtotal: {{ $subtotal }}</p>
     <p style="margin-left: 102px">Iva: {{ $iva }}</p>
-    <p style="margin-left: 70px">Servicio: {{ $servicio }}</p>
+    @if (Auth::user()->personal->sucursal->cobro_servicio_sucursal==true)
+        <p style="margin-left: 70px">Servicio: {{ $servicio }}</p>    
+    @endif
+    
     @foreach ($cabeceras as $cabecera)
         <p style="margin-left: 90px">Total: {{ $cabecera->total_pre_cobro }}</p>
     @endforeach

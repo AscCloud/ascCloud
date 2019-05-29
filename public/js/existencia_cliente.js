@@ -6,6 +6,7 @@ $(document).ready(function () {
     $('#ruc_cliente').change(function () {
         var ruc=$("#ruc_cliente").val();
         var token=$("#token").val();
+        console.log(pathName);
         $.ajax({
             type: 'POST',
             url: pathName+'/cliente/' + ruc,
@@ -58,7 +59,7 @@ $(document).ready(function () {
                             cadena= cadena + '</tr>';
 
                             $('#contenedor_precobro').append(cadena);
-                            $.getScript("/ascCloud/public/js/enviar_cobro.js", function () {});
+                            $.getScript("/js/enviar_cobro.js", function () {});
 
                         }
                     });

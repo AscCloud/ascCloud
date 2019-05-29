@@ -38,10 +38,15 @@ class EditPedidoController extends Controller
 
 
     public function show(){
+        $personal=Auth::user();
         $cart=Session::get('cartedit');
         $subtotal = $this->subtotal_cuenta();
         $servicio=$this->servicio_cuenta();
-        $total=$this->total_cuenta($servicio);
+        if($personal->personal->sucursal->cobro_servicio_sucursal==true){
+            $total=$this->total_cuenta($servicio);
+        }else{
+            $total=$this->total_cuenta_sinservicio();
+        }
         if(empty($cart)){
             $iva='';
         }else{
@@ -106,7 +111,11 @@ class EditPedidoController extends Controller
                 $subtotal = $this->subtotal_cuenta();
                 $cabecera->subtotal_pedido=round($subtotal,2);
                 $cabecera->servicio_pedido=round($servicio,2);
-                $cabecera->total_pedido=$this->total_cuenta($servicio);
+                if($personal->personal->sucursal->cobro_servicio_sucursal==true){
+                    $cabecera->total_pedido=$this->total_cuenta($servicio);
+                }else{
+                    $cabecera->total_pedido=$this->total_cuenta_sinservicio();
+                }
                 $cabecera->estado_entrega_pedido=false;
                 $iva=Session::get('iva');
                 $cabecera->iva_pedido=round($subtotal*($iva/100),2);
@@ -158,6 +167,16 @@ class EditPedidoController extends Controller
             $total +=(($item->precio_producto)*(($item->iva/100)+1)) *$item->cantidad_detalle_pedido;
         }
         $total=$total+$servicio;
+        return $total;
+    }
+
+    private function total_cuenta_sinservicio(){
+        $cart=Session::get('cartedit');
+        $total=0;
+        foreach ($cart as $clave => $item) {
+            $total +=(($item->precio_producto)*(($item->iva/100)+1)) *$item->cantidad_detalle_pedido;
+        }
+        $total=$total;
         return $total;
     }
 

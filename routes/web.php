@@ -10,10 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::bind('producto',function($id){
-    return App\Models\Producto::where('id',$id)->first();
-});
-
 Route::get('/', function () {
     return view('welcome');
 });

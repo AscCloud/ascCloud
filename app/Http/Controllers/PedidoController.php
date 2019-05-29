@@ -43,10 +43,15 @@ class PedidoController extends Controller
     }
 
     public function show(){
+        $personal=Auth::user();
         $cart=Session::get('cart');
         $subtotal = $this->subtotal();
         $servicio=$this->servicio();
-        $total=$this->total($servicio);
+        if($personal->personal->sucursal->cobro_servicio_sucursal==true){
+            $total=$this->total($servicio);
+        }else{
+            $total=$this->total_sinservicio();
+        }
         if(empty($cart)){
             $iva='';
         }else{
@@ -109,6 +114,16 @@ class PedidoController extends Controller
         return $total;
     }
 
+    private function total_sinservicio(){
+        $cart=Session::get('cart');
+        $total=0;
+        foreach ($cart as $clave => $item) {
+            $total +=(($item->precio_producto)*(($item->iva/100)+1)) *$item->cantidad_detalle_pedido;
+        }
+        $total=$total;
+        return $total;
+    }
+
     private function servicio(){
         $cart=Session::get('cart');
         $total=0;
@@ -159,7 +174,11 @@ class PedidoController extends Controller
                 $subtotal = $this->subtotal();
                 $cabecera->subtotal_pedido=round($subtotal,2);
                 $cabecera->servicio_pedido=round($servicio,2);
-                $cabecera->total_pedido=round($this->total($servicio),2);
+                if($personal->personal->sucursal->cobro_servicio_sucursal==true){
+                    $cabecera->total_pedido=round($this->total($servicio),2);
+                }else{
+                    $cabecera->total_pedido=round($this->total_sinservicio(),2);
+                }
                 $iva=Session::get('iva');
                 $cabecera->iva_pedido=round($subtotal*($iva/100),2);
                 $cart=Session::get('cart');
@@ -185,6 +204,7 @@ class PedidoController extends Controller
                 Flash::success('Pedido saved successfully.');
                 Session::forget('idm');
                 Session::forget('cart');
+                Session::forget('iva');
                 return redirect('pedido');
             }catch(\Exception $e){
                 DB::rollBack();
@@ -208,6 +228,7 @@ class PedidoController extends Controller
     }
 
     public function edit($id){
+        $personal=Auth::user();
         Session::put('idpedido',$id);
         $cartedit=Session::put('cartedit',array());
         $detalles=Detalle_pedido::where('pedido_id','=',$id)->get();
@@ -218,6 +239,7 @@ class PedidoController extends Controller
             $detalle->img_producto=$det->producto->img_producto;
             $detalle->estado_detalle_pedido=$det->estado_detalle_pedido;
             Session::put('iva',$det->producto->iva->iva);
+            $detalle->iva=$det->producto->iva->iva;
             $detalle->cantidad_detalle_pedido=$det->cantidad_detalle_pedido;
             $detalle->precio_producto=$det->producto->precio_producto;
             $detalle->observacion_detalle_pedido=$det->observacion_detalle_pedido;
@@ -227,7 +249,11 @@ class PedidoController extends Controller
         $cart=Session::get('cartedit');
         $subtotal = $this->subtotal_cuenta();
         $servicio=$this->servicio_cuenta();
-        $total=$this->total_cuenta($servicio);
+        if($personal->personal->sucursal->cobro_servicio_sucursal==true){
+            $total=$this->total_cuenta($servicio);
+        }else{
+            $total=$this->total_cuenta_sinservicio();
+        }
         if(empty($cart)){
             $iva='';
         }else{
@@ -253,6 +279,7 @@ class PedidoController extends Controller
             $detalle->img_producto=$det->producto->img_producto;
             $detalle->estado_detalle_pedido=$det->estado_detalle_pedido;
             Session::put('iva',$det->producto->iva->iva);
+            $detalle->iva=$det->producto->iva->iva;
             $detalle->cantidad_detalle_pedido=$det->cantidad_detalle_pedido;
             $detalle->precio_producto=$det->producto->precio_producto;
             $detalle->observacion_detalle_pedido=$det->observacion_detalle_pedido;
@@ -262,12 +289,15 @@ class PedidoController extends Controller
         $cart=Session::get('cartedit');
         $subtotal = $this->subtotal_cuenta();
         $servicio=$this->servicio_cuenta();
-        $total=$this->total_cuenta($servicio);
-        if(empty($cart)){
+        if($personal->personal->sucursal->cobro_servicio_sucursal==true){
+            $total=$this->total_cuenta($servicio);
+        }else{
+            $total=$this->total_cuenta_sinservicio();
+        }
+            if(empty($cart)){
             $iva='';
         }else{
             $iva=Session::get('iva');
-
         }
         return view('detalle_pedido.lista_detalle')->with('cart',$cart)->with('subtotal',$subtotal)->with('iva',$iva)->with('total',$total)->with('servicio',$servicio);
     }
@@ -320,6 +350,16 @@ class PedidoController extends Controller
             $total +=(($item->precio_producto)*(($item->iva/100)+1)) *$item->cantidad_detalle_pedido;
         }
         $total=$total+$servicio;
+        return $total;
+    }
+
+    private function total_cuenta_sinservicio(){
+        $cart=Session::get('cartedit');
+        $total=0;
+        foreach ($cart as $clave => $item) {
+            $total +=(($item->precio_producto)*(($item->iva/100)+1)) *$item->cantidad_detalle_pedido;
+        }
+        $total=$total;
         return $total;
     }
 

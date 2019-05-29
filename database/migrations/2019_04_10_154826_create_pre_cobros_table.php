@@ -16,6 +16,8 @@ class CreatePreCobrosTable extends Migration
         Schema::create('pre_cobros', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descripcion_pre_cobro', 150)->nullable()->default('Alimentación');
+            $table->string('secuencial_pre_cobro',9)->nullable();
+            $table->string('secuencial_preimpreso_pre_cobro', 9)->nullable();
             $table->date('fecha_pre_cobro');
             $table->decimal('total_pre_cobro', 10, 2);
             $table->boolean('estado_pre_cobro')->default(false);

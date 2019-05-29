@@ -67,7 +67,12 @@ class PreCobroController extends Controller
         $precobro->total_pre_cobro=$request->total_cuenta;
         $precobro->cliente_id=$request->cliente_id;
         $precobro->pedido_id=$request->pedido_id;
-        $precobro->sucursal_id=$personal->personal->sucursal_id;
+        if($personal->personal->sucursal->factura_preimpresa_sucursal==false){
+            $precobro->secuencial_preimpreso_sucursal=($personal->personal->sucursal->secuencial_preimpreso_sucursal)+1;
+        }else{
+            $precobro->secuencial_sucursal=$personal->personal->sucursal->secuencial_sucursal;
+        }
+        $precobro->secuencial_preimpreso_pre_cobro=$personal->personal->sucursal_id;
         $precobro->save();
         $detalle_pedido_datos=Detalle_pedido::where('pedido_id','=',$request->pedido_id)->get();
         foreach ($detalle_pedido_datos as $item) {
@@ -96,8 +101,11 @@ class PreCobroController extends Controller
             }
             $subtotal=$this->subtotal_cuenta($detalle);
             $servicio=$this->servicio_cuenta($detalle);
-            $total=round($this->total_cuenta($detalle,$servicio),2);
-
+            if($personal->personal->sucursal->cobro_servicio_sucursal==true){
+                $total=round($this->total_cuenta($detalle,$servicio),2);
+            }else{
+                $total=round($this->total_cuenta_sinservicio($detalle),2);
+            }
             $precobro->fecha_pre_cobro=\Carbon\Carbon::today();
             $precobro->total_pre_cobro=$total;
             $precobro->cliente_id=$request->cliente_id;
@@ -130,7 +138,6 @@ class PreCobroController extends Controller
             Flash::error('error');
             return $e;
         }
-
     }
 
     private function subtotal_cuenta($cart){
@@ -148,6 +155,16 @@ class PreCobroController extends Controller
             $total +=(($item->producto->precio_producto)*(($item->producto->iva->iva/100)+1)) *$item->cantidad_detalle_pedido;
         }
         $total=$total+$servicio;
+        return $total;
+    }
+
+    private function total_cuenta_sinservicio($cart){
+        $cart=$cart;
+        $total=0;
+        foreach ($cart as $clave => $item) {
+            $total +=(($item->producto->precio_producto)*(($item->producto->iva->iva/100)+1)) *$item->cantidad_detalle_pedido;
+        }
+        $total=$total;
         return $total;
     }
 

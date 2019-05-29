@@ -19,7 +19,7 @@ class CreatePersonalsTable extends Migration
             $table->string('nombre_personal', 120);
             $table->string('telefono_personal', 10);
             $table->string('email_personal', 100);
-            $table->string('img_personal', 200);
+            $table->string('img_personal', 200)->nullable();
             $table->date('nacimiento_personal');
             $table->integer('sucursal_id')->unsigned();
             $table->timestamps();
