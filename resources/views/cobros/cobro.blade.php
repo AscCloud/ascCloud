@@ -32,7 +32,7 @@
             <div class="col-md-4">
                 <table class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" id="datatable-responsive-ejectivo">
                     <thead>
-                        <th colspan="2" style="text-align: center"><label style="font-size: 30px;">Ejectivo</label></th>
+                        <th colspan="2" style="text-align: center"><label style="font-size: 30px;">Efectivo</label></th>
                         <tr>
                             <th>Valor</th>
                             <th>Accion</th>
